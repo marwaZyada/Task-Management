@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Auth } from '../../../../core/services/auth';
-import { SignupRequest } from '../../models/signup-request';
+import { SignupRequest } from '../../models/auth-service';
 @Component({
   selector: 'app-signup',
   imports: [ReactiveFormsModule],

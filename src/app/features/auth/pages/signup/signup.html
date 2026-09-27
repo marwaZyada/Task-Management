@@ -1,5 +1,5 @@
-<div class="min-h-screen w-full flex items-center justify-center">
-    <div class="signup-container bg-white border-0 rounded-lg p-12 max-w-xl w-full shadow-sm ">
+<div class="min-h-screen w-full flex items-center justify-center pb-12 pt-4 bg-background">
+    <div class="signup-container bg-white border-0 rounded-lg p-12 max-w-xl w-full shadow-[0px_24px_48px_0px_#041B3C0F] ">
         <!--main header-->
         <div class="text-center pb-10">
             <h1 class="text-3xl font-semibold mb-2 text-secondary-dark">Create your workspace</h1>
@@ -59,6 +59,13 @@
                             <i class="fa-regular fa-eye"></i>
                         </span>
                     </div>
+                         @if (password.touched && password.hasError('required'))
+                { <p class="text-red-500 text-sm mt-1"> Password is required. </p> }
+                @if (password.touched && password.hasError('minlength'))
+                { <p class="text-red-500 text-sm mt-1"> Password must be at least 8 characters. </p> }
+                @if (password.touched && password.hasError('pattern'))
+                { <p class="text-red-500 text-sm mt-1"> Password must contain uppercase, lowercase, number and special
+                    character. </p> }
                 </div>
                 <!--Confirm Password-->
                 <div>
@@ -75,14 +82,6 @@
 
             <!-- password restriction-->
             <div class="pss-restriction rounded-md p-4   text-text mb-6">
-
-                @if (password.touched && password.hasError('required'))
-                { <p class="text-red-500 text-sm mt-1"> Password is required. </p> }
-                @if (password.touched && password.hasError('minlength'))
-                { <p class="text-red-500 text-sm mt-1"> Password must be at least 8 characters. </p> }
-                @if (password.touched && password.hasError('pattern'))
-                { <p class="text-red-500 text-sm mt-1"> Password must contain uppercase, lowercase, number and special
-                    character. </p> }
 
                 <div class="flex items-center gap-2">
                     <span class="text-emerald-500 font-bold"><i class="fa-regular fa-circle-check"></i></span>

@@ -7,8 +7,8 @@ body {
   width: 100%;
   font-family: var(--font-family);
   
-  padding-bottom: 48px;
-  background-color: var(--color-background);
+  /* padding-bottom: 48px; */
+  /* background-color: var(--color-background); */
 }
 /* font (label,body,heading,title)*/
 .text-color {

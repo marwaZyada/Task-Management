@@ -1,6 +1,6 @@
 .signup-container{
     box-shadow: 0px 24px 48px 0px #041B3C0F;
-    margin-top: 16px;
+    /* margin-top: 16px; */
 }
 .pss-restriction{
     background-color: var(--color-blue-low);

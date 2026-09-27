@@ -1,1 +1,97 @@
-<p>login works!</p>
+<div class="bg-background min-h-screen flex items-center justify-center px-6 py-[147px]">
+
+  <!-- Main Login Card Container Container -->
+  <div class="bg-white w-full max-w-[480px] rounded-[8px] shadow-[0_24px_48px_0_#041B3C0F] px-12 py-12 flex flex-col items-center">
+    
+    <!-- Header Text Block -->
+    <h1 class="w-full  mb-2 text-secondary-dark text-[30px] font-semibold leading-[36px] tracking-[-0.75px]  text-center">
+      Welcome Back
+    </h1>
+    <p class="text-secondary text-sm font-normal text-center ">
+      Please enter your details to access your workspace
+    </p>
+
+    <!-- Interactive Authentication Form -->
+    <form class="w-full mt-10 mb-[32px]"[formGroup]="loginForm"   (ngSubmit)="signIn()" >
+      
+      
+      <div class="mb-6">
+        <label for="email" class="block text-secondary text-[11px] font-bold uppercase tracking-wider mb-2">
+          Email
+        </label>
+        <input 
+          type="email" 
+          id="email" 
+          placeholder="yourname@company.com" 
+          class="input-box input-text"
+        formControlName="email"
+        />
+            @if (email.invalid && email.touched) {
+      <small>Email is required and must be valid.</small>
+            }
+      </div>
+
+      <!-- Field: Security Passphrase -->
+      <div class="mb-6">
+        <label for="password" class="block text-secondary text-[11px] font-bold uppercase tracking-wider mb-2">
+          Password
+        </label>
+        <div class="relative">
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Enter your password" 
+            class="input-box input-text"
+            formControlName="password"
+          />
+          <!-- Interactive Visibility Toggle -->
+          <button 
+            type="button" 
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-[#475569] transition-colors"
+            aria-label="Toggle password visibility"
+          >
+            <!-- SVG Eye Icon -->
+            <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+          </button>
+        </div>
+           @if (password.invalid && password.touched) {
+      <small>Password is required.</small>
+           }
+      </div>
+
+      <!-- Control Bar: Session Retention & Password Reset Link -->
+      <div class="flex items-center justify-between text-[13px] mb-6">
+        <label class="flex items-center space-x-2 text-[#475569] font-medium cursor-pointer select-none">
+          <input 
+            type="checkbox" 
+            class="w-4 h-4 rounded-[2px] bg-background text-[#0052CC] border border-[#C3C6D6] focus:ring-[#0052CC] cursor-pointer"
+            formControlName="rememberMe"
+          />
+          <span class="text-text text-sm font-medium leading-5 tracking-normal ">Remember Me</span>
+        </label>
+        <a href="#" class="text-[#003D9B] text-sm font-medium leading-5 tracking-normal">
+          Forgot Password?
+        </a>
+      </div>
+
+      <!-- Action Execution Control -->
+      <button 
+        type="submit" 
+        class="w-full bg-[#0052CC] hover:bg-[#0043A4] text-white text-[14px] font-semibold py-3  rounded-[6px] shadow-sm active:scale-[0.99] transition-all "
+      [disabled]="loginForm.invalid"
+      >
+        Log In
+      </button>
+    </form>
+
+    <!-- Alternative Routing Node -->
+    <div class=" ext-sm font-normal leading-5 tracking-normal pt-8 text-secondary">
+      Don't have an account? 
+      <a href="#" class="text-sm font-semibold leading-5 tracking-normal text-[#003D9B]">Sign Up</a>
+    </div>
+
+  </div>
+
