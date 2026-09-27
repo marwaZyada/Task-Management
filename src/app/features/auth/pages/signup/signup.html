@@ -1,0 +1,113 @@
+<div class="min-h-screen w-full flex items-center justify-center">
+    <div class="signup-container bg-white border-0 rounded-lg p-12 max-w-xl w-full shadow-sm ">
+        <!--main header-->
+        <div class="text-center pb-10">
+            <h1 class="text-3xl font-semibold mb-2 text-secondary-dark">Create your workspace</h1>
+            <p class="text-sm font-normal text-secondary">Join the editorial approach to task management.</p>
+        </div>
+
+        <!--form-->
+        <form class="pb-4 " [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+            <!-- Name-->
+            <div class="mb-6">
+                <label class="block label-sm text-secondary">Name</label>
+                <input type="text" placeholder="Enter your full name" class="input-box input-text"
+                    formControlName="name">
+                @if (name.touched && name.hasError('required'))
+                { <p class="text-red-500 px-1 body-md"> Name is required. </p> }
+                @if (name.touched && name.hasError('minlength'))
+                { <p class="text-red-500 px-1 body-md"> Name must be at least 3 characters. </p> }
+                @if (name.touched && name.hasError('invalidName')) {
+                <p class="text-red-500 px-1 body-md">
+                    Name can contain letters and Single spaces between names .
+                </p>
+                }
+
+            </div>
+
+            <!-- Email-->
+            <div class="mb-6">
+                <label class="block label-sm text-secondary">Email</label>
+                <input type="email" placeholder="yourname@company.com" class="input-box input-text"
+                    formControlName="email">
+                @if (email.touched && email.hasError('required'))
+                { <p class="text-red-500 px-1 body-md"> Email is required. </p> }
+                @if (email.touched && email.hasError('email'))
+                { <p class="text-red-500 px-1 body-md"> Please enter a valid email address. </p> }
+            </div>
+
+            <!--Job Title-->
+            <div class="mb-6">
+                <label class="block label-sm text-secondary">Job Title
+                    <span class="body-md">(Optional)</span> </label>
+                <input type="text" placeholder="e.g. Project Manager" class="input-box input-text"
+                    formControlName="department">
+
+            </div>
+
+            <!-- Password-->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+
+                <div>
+                    <label class="block label-sm text-secondary">Password</label>
+                    <div class="relative">
+                        <input type="password" placeholder="Password" class="input-box input-text"
+                            formControlName="password">
+                        <span
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 cursor-pointer hover:text-slate-600">
+                            <i class="fa-regular fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <!--Confirm Password-->
+                <div>
+                    <label class="block label-sm text-secondary">Confirm
+                        Password</label>
+                    <input type="password" placeholder="Repeat your password" class="input-box input-text"
+                        formControlName="confirmPassword">
+                    @if (confirmPassword.touched && confirmPassword.hasError('required'))
+                    { <p class="text-red-500 px-1 body-md"> Confirm password is required. </p> }
+                    @if ( confirmPassword.touched && signupForm.hasError('passwordMismatch') )
+                    { <p class="text-red-500 px-1 body-md"> Passwords do not match. </p> }
+                </div>
+            </div>
+
+            <!-- password restriction-->
+            <div class="pss-restriction rounded-md p-4   text-text mb-6">
+
+                @if (password.touched && password.hasError('required'))
+                { <p class="text-red-500 text-sm mt-1"> Password is required. </p> }
+                @if (password.touched && password.hasError('minlength'))
+                { <p class="text-red-500 text-sm mt-1"> Password must be at least 8 characters. </p> }
+                @if (password.touched && password.hasError('pattern'))
+                { <p class="text-red-500 text-sm mt-1"> Password must contain uppercase, lowercase, number and special
+                    character. </p> }
+
+                <div class="flex items-center gap-2">
+                    <span class="text-emerald-500 font-bold"><i class="fa-regular fa-circle-check"></i></span>
+                    <span>At least 8 characters</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-slate-300"><i class="fa-regular fa-circle"></i></span>
+                    <span>One uppercase, lowercase, and digit</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-slate-300"><i class="fa-regular fa-circle"></i></span>
+                    <span>One special character</span>
+                </div>
+            </div>
+
+
+            <button type="submit "
+                class="w-full text-sm  py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all text-center block ">
+                Create Account
+            </button>
+        </form>
+
+
+        <div class="text-center pt-8 text-sm font-normal text-secondary">
+            Already have an account? <a href="#" class="text-blue-600 font-semibold  hover:underline">Log in</a>
+        </div>
+    </div>
+</div>

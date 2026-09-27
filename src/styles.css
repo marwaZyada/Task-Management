@@ -4,7 +4,7 @@
 
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
 
-/* @import './styles/_Typography.css'; */
+@import './styles/_Typography.css';
 
 
 @theme {
@@ -24,12 +24,14 @@
   --color-secondary-light: #c3c6d6;
 
   --color-text: #434654;
-  --color-input: #6b7280;
+ --color-blue-low:#e8edff;
 
   --color-success: #82f9be;
   --color-error: #ba1a1a;
   --color-warning: #ffb300;
   --color-error-light: #ffdad6;
+
+   --shadow-card: 0px 24px 48px 0px #041B3C0F;
 }
 :root {
   --gradient-primary: linear-gradient(
@@ -37,7 +39,7 @@
     #003d9b 0%,
     #0052cc 100%
   );
-  --color-background: #f9f9ff;
+
 }
 .gradient-primary {
   background: var(--gradient-primary);

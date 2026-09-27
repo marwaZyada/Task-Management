@@ -5,12 +5,14 @@
 
 body {
   width: 100%;
-  max-width: 1280px;
   font-family: var(--font-family);
+  
+  padding-bottom: 48px;
+  background-color: var(--color-background);
 }
 /* font (label,body,heading,title)*/
 .text-color {
-  color: var(--text-color);
+  color: var(--color-text);
 }
 .display-lg {
   font-size: 3.5rem;
@@ -33,7 +35,7 @@ body {
 .body-md {
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.625;
+  /* line-height: 1.625; */
 }
 
 .label-sm {
@@ -84,22 +86,37 @@ body {
 }
 
 /* input box */
-.input {
+.input-box 
+ {
   width: 100%;
   max-width: 568px;
-  height: 44px;
   border-radius: 4px;
-  padding: 13px 16px 14px;
-  background-color: var(--color-surface-heigh);
+  padding: 14px 16px;
+  margin-top: 6px;
+  /* margin-bottom: 6px; */
+  background-color: var(--color-surface-high);
   outline: none;
+}
+input:-webkit-autofill,
+input:-internal-autofill-selected
+{
+    -webkit-box-shadow: 0 0 0px 1000px var(--color-surface-high) inset !important;
+     -webkit-text-fill-color: var(--color-secondary) !important; 
+  
 }
 .input-error {
   background-color: var(--color-error-light);
 }
+input::placeholder{
+  
+   color: var(--color-surface-medium);
+}
 .input-text {
-  font-size: 0.875rem; /* 14px */
+  font-size: 1rem; 
   font-weight: 400;
-  color: var(--input-color);
+  color: var(--color-surface-medium);
+  
+  
 }
 
 .input-text-error {
