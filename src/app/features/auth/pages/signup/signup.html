@@ -77,12 +77,7 @@
                     </div>
                     @if (password.touched && password.hasError('required'))
                     { <p class="text-red-500 text-sm mt-1"> Password is required. </p> }
-                    @if (password.touched && password.hasError('minlength'))
-                    { <p class="text-red-500 text-sm mt-1"> Password must be at least 8 characters. </p> }
-                    @if (password.touched && password.hasError('pattern'))
-                    { <p class="text-red-500 text-sm mt-1"> Password must contain uppercase, lowercase, number and
-                        special
-                        character. </p> }
+               
                 </div>
                 <!--Confirm Password-->
                 <div>
@@ -103,15 +98,15 @@
             <div class="pss-restriction rounded-md p-4   text-text mb-6">
 
                 <div class="flex items-center gap-2">
-                    <span class="text-emerald-500 font-bold"><i class="fa-regular fa-circle-check"></i></span>
+                     <img [src]="hasMinLength ? 'assets/checkedcircle.svg':'assets/circle.svg' " alt=""/>
                     <span>At least 8 characters</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="text-slate-300"><i class="fa-regular fa-circle"></i></span>
+                     <img [src]="hasUppercaseLowercaseAndDigit ? 'assets/checkedcircle.svg':'assets/circle.svg'" alt=""/>
                     <span>One uppercase, lowercase, and digit</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="text-slate-300"><i class="fa-regular fa-circle"></i></span>
+                    <img [src]="hasSpecialCharacter ? 'assets/checkedcircle.svg':'assets/circle.svg'" alt=""/>
                     <span>One special character</span>
                 </div>
             </div>

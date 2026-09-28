@@ -174,4 +174,25 @@ passwordMatchValidator(
 togglePasswordVisibility(): void {
   this.showPassword = !this.showPassword;
 }
+
+// password restriction 
+get hasMinLength(): boolean {
+  return (this.password.value?.length ?? 0) >= 8;
+}
+
+get hasUppercaseLowercaseAndDigit(): boolean {
+  const password = this.password.value ?? '';
+
+  return (
+    /[A-Z]/.test(password) &&
+    /[a-z]/.test(password) &&
+    /[0-9]/.test(password)
+  );
+}
+
+get hasSpecialCharacter(): boolean {
+  const password = this.password.value ?? '';
+
+  return /[^A-Za-z0-9]/.test(password);
+}
 }
