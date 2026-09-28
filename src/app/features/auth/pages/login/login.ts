@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../../../core/services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LoginRequest } from '../../models/auth-service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -54,7 +54,7 @@ console.log(loginData);
         res,
         this.loginForm.value.rememberMe!
       );
-        this.router.navigate(['/project']);
+        this.router.navigate(['/dashboard']);
       },
 
       error: (error) => {

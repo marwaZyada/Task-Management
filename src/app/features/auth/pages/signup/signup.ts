@@ -2,9 +2,10 @@ import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Auth } from '../../../../core/services/auth';
 import { SignupRequest } from '../../models/auth-service';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-signup',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })

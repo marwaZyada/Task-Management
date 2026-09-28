@@ -89,7 +89,7 @@ body {
 .input-box 
  {
   width: 100%;
-  max-width: 568px;
+  
   border-radius: 4px;
   padding: 14px 16px;
   margin-top: 6px;
@@ -114,6 +114,7 @@ input::placeholder{
 .input-text {
   font-size: 1rem; 
   font-weight: 400;
+  
   color: var(--color-surface-medium);
   
   

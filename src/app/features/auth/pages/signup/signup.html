@@ -1,5 +1,5 @@
 <div class="min-h-screen w-full flex items-center justify-center pb-12 pt-4 bg-background">
-    <div class="signup-container bg-white border-0 rounded-lg p-12 max-w-xl w-full shadow-[0px_24px_48px_0px_#041B3C0F] ">
+    <div class="signup-container bg-white border-0 rounded-lg p-12 max-w-[45%] w-full shadow-[0px_24px_48px_0px_#041B3C0F] ">
         <!--main header-->
         <div class="text-center pb-10">
             <h1 class="text-3xl font-semibold mb-2 text-secondary-dark">Create your workspace</h1>
@@ -11,7 +11,7 @@
 
             <!-- Name-->
             <div class="mb-6">
-                <label class="block label-sm text-secondary">Name</label>
+                <label class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Name</label>
                 <input type="text" placeholder="Enter your full name" class="input-box input-text"
                     formControlName="name">
                 @if (name.touched && name.hasError('required'))
@@ -28,7 +28,7 @@
 
             <!-- Email-->
             <div class="mb-6">
-                <label class="block label-sm text-secondary">Email</label>
+                <label class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Email</label>
                 <input type="email" placeholder="yourname@company.com" class="input-box input-text"
                     formControlName="email">
                 @if (email.touched && email.hasError('required'))
@@ -39,7 +39,7 @@
 
             <!--Job Title-->
             <div class="mb-6">
-                <label class="block label-sm text-secondary">Job Title
+                <label class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Job Title
                     <span class="body-md">(Optional)</span> </label>
                 <input type="text" placeholder="e.g. Project Manager" class="input-box input-text"
                     formControlName="department">
@@ -50,7 +50,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
 
                 <div>
-                    <label class="block label-sm text-secondary">Password</label>
+                    <label class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Password</label>
                     <div class="relative">
                         <input type="password" placeholder="Password" class="input-box input-text"
                             formControlName="password">
@@ -69,7 +69,7 @@
                 </div>
                 <!--Confirm Password-->
                 <div>
-                    <label class="block label-sm text-secondary">Confirm
+                    <label class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Confirm
                         Password</label>
                     <input type="password" placeholder="Repeat your password" class="input-box input-text"
                         formControlName="confirmPassword">
@@ -106,7 +106,7 @@
 
 
         <div class="text-center pt-8 text-sm font-normal text-secondary">
-            Already have an account? <a href="#" class="text-blue-600 font-semibold  hover:underline">Log in</a>
+            Already have an account? <a routerLink="/auth/login" class="text-blue-600 font-semibold  hover:underline">Log in</a>
         </div>
     </div>
 </div>

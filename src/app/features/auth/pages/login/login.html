@@ -23,7 +23,7 @@
           type="email" 
           id="email" 
           placeholder="yourname@company.com" 
-          class="input-box input-text"
+          class=" w-full input-box input-text"
         formControlName="email"
         />
             @if (email.invalid && email.touched) {
@@ -41,7 +41,7 @@
             type="password" 
             id="password" 
             placeholder="Enter your password" 
-            class="input-box input-text"
+            class="w-full input-box input-text"
             formControlName="password"
           />
           <!-- Interactive Visibility Toggle -->
@@ -90,7 +90,7 @@
     <!-- Alternative Routing Node -->
     <div class=" ext-sm font-normal leading-5 tracking-normal pt-8 text-secondary">
       Don't have an account? 
-      <a href="#" class="text-sm font-semibold leading-5 tracking-normal text-[#003D9B]">Sign Up</a>
+      <a routerLink="/auth/register" class="text-sm font-semibold leading-5 tracking-normal text-[#003D9B]">Sign Up</a>
     </div>
 
   </div>
