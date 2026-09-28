@@ -15,7 +15,7 @@ export const AUTH_LAYOUT_ROUTES: Routes = [
           ),
       },
       {
-        path: 'register',
+        path: 'sign-up',
         loadComponent: () =>
           import('../../features/auth/pages/signup/signup').then(
             (m) => m.Signup

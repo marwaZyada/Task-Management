@@ -1,17 +1,31 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Auth } from '../../../../core/services/auth';
 import { SignupRequest } from '../../models/auth-service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-signup',
   imports: [ReactiveFormsModule,RouterLink],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
-export class Signup {
+export class Signup implements OnInit{
    private readonly fb = inject(FormBuilder);
    private readonly authService = inject(Auth);
+   private readonly router = inject(Router);
+   apiError = signal('');
+   private errorTimeout?: ReturnType<typeof setTimeout>;
+
+ngOnInit(): void {
+      this.signupForm.valueChanges.subscribe(() => {
+    if (this.apiError()) {
+      this.apiError.set('');
+      clearTimeout(this.errorTimeout);
+    }
+  });
+}
+
+
    signupForm = this.fb.group(
     {
       name: [
@@ -41,6 +55,7 @@ department:
         [
           Validators.required,
           Validators.minLength(8),
+          Validators.maxLength(64),
           Validators.pattern(
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).+$/
           ),
@@ -112,6 +127,7 @@ passwordMatchValidator(
   }
 
   onSubmit(): void {
+    this.apiError.set('');
     if (this.signupForm.invalid) {
       this.signupForm.markAllAsTouched();
       return;
@@ -133,11 +149,22 @@ passwordMatchValidator(
 
   this.authService.signup(signupData).subscribe({
     next: response => {
+       this.router.navigate(['/login']);
       console.log(response);
     },
     error: error => {
-      console.error(error);
+       this.apiError.set(error?.error?.msg);
+          this.clearErrorAfterDelay();
+      console.error(this.apiError());
     },
   });
   }
+// clear api error message 
+  private clearErrorAfterDelay(): void {
+  clearTimeout(this.errorTimeout);
+
+  this.errorTimeout = setTimeout(() => {
+    this.apiError.set('');
+  }, 3000);
+}
 }
