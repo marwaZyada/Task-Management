@@ -12,11 +12,18 @@
     </p>
 
     <!-- Interactive Authentication Form -->
+   
     <form class="w-full mt-10 mb-[32px]"[formGroup]="loginForm"   (ngSubmit)="signIn()" >
-      
+         @if (apiError()) {
+        <div class="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-600" role="alert">
+            {{ apiError() }}
+        </div>
+        }
       
       <div class="mb-6">
-        <label for="email" class="block text-secondary text-[11px] font-bold uppercase tracking-wider mb-2">
+        <label for="email" class="block text-[11px] font-bold uppercase tracking-wider mb-2"
+         [class.text-error]="email.invalid && email.touched"
+                    [class.text-secondary]="!email.invalid || !email.touched">
           Email
         </label>
         <input 
@@ -25,40 +32,44 @@
           placeholder="yourname@company.com" 
           class=" w-full input-box input-text"
         formControlName="email"
+         [ngClass]="{ 'input-error input-text-error': email.invalid && email.touched
+                        ,'placeholder-error': email.invalid && email.touched
+                    }"
         />
             @if (email.invalid && email.touched) {
-      <small>Email is required and must be valid.</small>
+      <p class="text-red-500 text-sm mt-1">Email is required and must be valid.</p>
             }
       </div>
 
       <!-- Field: Security Passphrase -->
       <div class="mb-6">
-        <label for="password" class="block text-secondary text-[11px] font-bold uppercase tracking-wider mb-2">
+        <label for="password" class="block text-[11px] font-bold uppercase tracking-wider mb-2"
+         [class.text-error]="password.invalid && password.touched"
+                    [class.text-secondary]="!password.invalid || !password.touched">
           Password
         </label>
         <div class="relative">
           <input 
-            type="password" 
+            [type]="showPassword ? 'text' : 'password'" 
             id="password" 
             placeholder="Enter your password" 
             class="w-full input-box input-text"
             formControlName="password"
+             [ngClass]="{ 'input-error input-text-error': password.invalid && password.touched
+                        ,'placeholder-error': password.invalid && password.touched
+                    }"
           />
           <!-- Interactive Visibility Toggle -->
-          <button 
-            type="button" 
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-[#475569] transition-colors"
-            aria-label="Toggle password visibility"
-          >
-            <!-- SVG Eye Icon -->
-            <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-            </svg>
-          </button>
+           <button type="button" (click)="togglePasswordVisibility()"
+                            class="absolute right-0 top-[8px] h-full w-12 flex items-center justify-center">
+                            <img [src]="'assets/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
+       
+          
+     
+                        </button>
         </div>
            @if (password.invalid && password.touched) {
-      <small>Password is required.</small>
+      <p class="text-red-500 text-sm mt-1">Password is required.</p>
            }
       </div>
 

@@ -120,6 +120,6 @@ input::placeholder{
   
 }
 
-.input-text-error {
+.input-text-error ,.placeholder-error::placeholder{
   color: var(--color-error);
 }

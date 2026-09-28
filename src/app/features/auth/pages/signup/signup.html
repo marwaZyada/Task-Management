@@ -18,9 +18,15 @@
             <!-- Name-->
             <div class="mb-6">
                 <label
-                    class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Name</label>
-                <input type="text" placeholder="Enter your full name" class="input-box input-text"
-                    formControlName="name" [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched}">
+                  for="name"
+                    class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
+                    [class.text-error]="name.invalid && name.touched"
+                    [class.text-secondary]="!name.invalid || !name.touched">Name</label>
+                <input id="name" type="text" placeholder="Enter your full name" class="input-box input-text"
+                    formControlName="name" [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched,
+                        'placeholder-error': name.invalid && name.touched
+                    }"
+                    />
                 @if (name.touched && name.hasError('required'))
                 { <p class="text-red-500 px-1 body-md"> Name is required. </p> }
                 @if (name.touched && name.hasError('minlength'))
@@ -35,11 +41,15 @@
 
             <!-- Email-->
             <div class="mb-6">
-                <label
-                    class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Email</label>
-                <input type="email" placeholder="yourname@company.com" class="input-box input-text"
+                <label for="email"
+                    class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
+                     [class.text-error]="email.invalid && email.touched"
+                    [class.text-secondary]="!email.invalid || !email.touched">Email</label>
+                <input id="email" type="email" placeholder="yourname@company.com" class="input-box input-text"
                     formControlName="email"
-                    [ngClass]="{ 'input-error input-text-error': email.invalid && email.touched}">
+                    [ngClass]="{ 'input-error input-text-error': email.invalid && email.touched
+                        ,'placeholder-error': email.invalid && email.touched
+                    }"/>
                 @if (email.touched && email.hasError('required'))
                 { <p class="text-red-500 px-1 body-md"> Email is required. </p> }
                 @if (email.touched && email.hasError('email'))
@@ -48,11 +58,11 @@
 
             <!--Job Title-->
             <div class="mb-6">
-                <label
+                <label for="job"
                     class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Job
                     Title
                     <span class="body-md">(Optional)</span> </label>
-                <input type="text" placeholder="e.g. Project Manager" class="input-box input-text"
+                <input id="job" type="text" placeholder="e.g. Project Manager" class="input-box input-text"
                     formControlName="department">
 
             </div>
@@ -61,12 +71,16 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
 
                 <div>
-                    <label
-                        class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Password</label>
+                    <label for="password"
+                        class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
+                         [class.text-error]="password.invalid && password.touched"
+                    [class.text-secondary]="!password.invalid || !password.touched">Password</label>
                     <div class="relative">
                         <input [type]="showPassword ? 'text' : 'password'" placeholder="Password" class="input-box input-text w-full pr-12"
                             formControlName="password"
-                            [ngClass]="{ 'input-error input-text-error': password.invalid && password.touched}">
+                            [ngClass]="{ 'input-error input-text-error': password.invalid && password.touched,
+                                'placeholder-error': password.invalid && password.touched
+                            }"/>
                         <button type="button" (click)="togglePasswordVisibility()"
                             class="absolute right-0 top-[8px] h-full w-12 flex items-center justify-center">
                             <img [src]="'assets/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
@@ -81,12 +95,16 @@
                 </div>
                 <!--Confirm Password-->
                 <div>
-                    <label
-                        class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Confirm
+                    <label for="confirm"
+                        class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
+                         [class.text-error]="confirmPassword.invalid && confirmPassword.touched"
+                    [class.text-secondary]="!confirmPassword.invalid || !confirmPassword.touched">Confirm
                         Password</label>
-                    <input type="password" placeholder="Repeat your password" class="input-box input-text"
+                    <input id="confirm" type="password" placeholder="Repeat your password" class="input-box input-text"
                         formControlName="confirmPassword"
-                        [ngClass]="{ 'input-error input-text-error': confirmPassword.invalid && confirmPassword.touched}">
+                        [ngClass]="{ 'input-error input-text-error': confirmPassword.invalid && confirmPassword.touched
+                            ,'placeholder-error': confirmPassword.invalid && confirmPassword.touched
+                        }">
                     @if (confirmPassword.touched && confirmPassword.hasError('required'))
                     { <p class="text-red-500 px-1 body-md"> Confirm password is required. </p> }
                     @if ( confirmPassword.touched && signupForm.hasError('passwordMismatch') )
