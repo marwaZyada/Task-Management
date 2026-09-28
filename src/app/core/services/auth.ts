@@ -184,4 +184,13 @@ console.log("remember active");
    
     return !!this.getAccessToken();
   }
+
+
+
+  // get user data 
+   getUser(): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}user`
+    );
+  }
 }
