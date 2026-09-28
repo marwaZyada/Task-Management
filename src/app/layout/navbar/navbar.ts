@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Auth } from '../../core/services/auth';
 
 @Component({
@@ -9,8 +9,8 @@ import { Auth } from '../../core/services/auth';
 })
 export class Navbar implements OnInit{
 private authService=inject(Auth)
-name=''
-department=''
+name=signal('')
+department=signal('')
 
 ngOnInit(): void {
     this.getUser();
@@ -20,8 +20,10 @@ getUser(){
   this.authService.getUser().subscribe({
   next: (user) => {
     console.log(user);
-    this.name= user.user_metadata.name;
-   this.department= user.user_metadata.department;
+    this.name.set(user.user_metadata.name);
+   
+   this.department.set(user.user_metadata.department);
+    console.log(this.name,this.department)
   },
   error: (error) => {
     console.error(error);

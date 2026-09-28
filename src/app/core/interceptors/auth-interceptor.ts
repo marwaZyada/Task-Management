@@ -9,6 +9,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const publicUrls = [
     '/auth/v1/signup',
     '/auth/v1/token',
+    
   ];
 
   const isPublicUrl = publicUrls.some(url =>
@@ -31,7 +32,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = authService.getAccessToken();
 
 
-  if (token) {
+  if (token ) {
     modifiedReq = modifiedReq.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,

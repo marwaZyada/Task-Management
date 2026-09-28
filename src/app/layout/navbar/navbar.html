@@ -1,13 +1,14 @@
 
   <!-- Right Side: User Profile Section -->
-  <div class="flex items-center gap-4">
+  
+  <div class="flex items-center gap-4 ">
     <!-- User Information -->
     <div class="text-right">
       <div class="text-sm font-semibold text-secondary-dark">
-        {{name}}
+        {{ name() }}
       </div>
       <div class="text-[10px] font-bold  leading-[20px] tracking-[1px]  uppercase text-primary-dark uppercase">
-        {{department}}
+        {{department()}}
       </div>
     </div>
 
@@ -15,5 +16,6 @@
     <div class="rounded-2 ">
      <img  [src]="'assets/MT.svg' " width="40" height="40" alt="avatar">
     </div>
+  
   </div>
 

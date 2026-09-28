@@ -89,7 +89,7 @@ saveSession(
 
 console.log("refresh session")
     return this.http
-      .post<LoginResponse>(
+      .post<any>(
         `${this.apiUrl}/auth/v1/token?grant_type=refresh_token`,
         {
           refresh_token: refreshToken,
