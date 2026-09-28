@@ -3,9 +3,10 @@ import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Va
 import { Auth } from '../../../../core/services/auth';
 import { SignupRequest } from '../../models/auth-service';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-signup',
-  imports: [ReactiveFormsModule,RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
