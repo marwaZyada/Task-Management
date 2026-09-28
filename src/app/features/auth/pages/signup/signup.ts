@@ -15,6 +15,7 @@ export class Signup implements OnInit{
    private readonly authService = inject(Auth);
    private readonly router = inject(Router);
    apiError = signal('');
+   showPassword = false;
    private errorTimeout?: ReturnType<typeof setTimeout>;
 
 ngOnInit(): void {
@@ -167,5 +168,10 @@ passwordMatchValidator(
   this.errorTimeout = setTimeout(() => {
     this.apiError.set('');
   }, 3000);
+}
+
+// show/hide password
+togglePasswordVisibility(): void {
+  this.showPassword = !this.showPassword;
 }
 }
