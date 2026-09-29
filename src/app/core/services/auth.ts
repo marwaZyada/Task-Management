@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { LoginRequest, LoginResponse, SignupRequest } from '../../features/auth/models/auth-service'
+import { SKIP_LOADING } from '../tokens/loading-context';
 
 @Injectable({
   providedIn: 'root',
@@ -93,6 +94,7 @@ console.log("refresh session")
         `${this.apiUrl}/auth/v1/token?grant_type=refresh_token`,
         {
           refresh_token: refreshToken,
+           context: new HttpContext().set(SKIP_LOADING, true)
         }
       )
       .pipe(
