@@ -193,4 +193,10 @@ console.log("remember active");
       `${this.apiUrl}user`
     );
   }
+
+
+  // logout
+signout(): Observable<void> {
+  return this.http.post<void>(`${this.apiUrl}logout`, {});
+}
 }
