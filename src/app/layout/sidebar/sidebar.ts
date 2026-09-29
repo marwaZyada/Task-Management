@@ -25,13 +25,13 @@ export class Sidebar {
   logout(): void {
   this.authService.signout().subscribe({
     next: () => {
-      this.authService.logout();
+      this.authService.clearStorage();
       this.router.navigate(['/auth/login']);
     },
 
     error: error => {
       console.error('Logout failed:', error);
-this.authService.logout();
+this.authService.clearStorage();
       this.router.navigate(['/auth/login']);
     },
   });

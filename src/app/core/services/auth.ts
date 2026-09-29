@@ -31,7 +31,10 @@ export class Auth {
             "accessToken",
             response.access_token
           );
-          
+          sessionStorage.setItem(
+            "refreshToken",
+            response.refresh_token
+          );
         })
       );
   }
@@ -113,8 +116,8 @@ console.log("refresh session")
       );
   }
 
-// log out
-  logout(): void {
+// clear storage
+  clearStorage(): void {
      localStorage.removeItem(
       "accessToken"
     );
@@ -133,6 +136,7 @@ console.log("refresh session")
 
   
     sessionStorage.removeItem('accessToken');
+      sessionStorage.removeItem('refreshToken');
   }
 
   // generate access token 
@@ -145,7 +149,8 @@ console.log("refresh session")
 
    getRefreshToken(): string | null {
 
-    return localStorage.getItem(
+    return  localStorage.getItem(
+      "refreshToken")??sessionStorage.getItem(
       "refreshToken"
     );
   }
@@ -174,7 +179,7 @@ console.log("refresh session")
 
     if (Date.now() >= expiresAt) {
 
-      this.logout();
+      this.clearStorage();
 
       return false;
     }
