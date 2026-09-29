@@ -1,7 +1,7 @@
 <div class="flex flex-col h-screen " [class.w-[50px]]="isCollapsed()" [class.w-[224px]]="!isCollapsed()">
     <div class=" pb-8 px-2">
 
-        <app-taskly [collapse]="isCollapsed()"/>
+        <app-taskly [collapse]="isCollapsed()" />
 
     </div>
 
@@ -15,7 +15,7 @@
                 [routerLinkActiveOptions]="{ exact: true }" class="inline-flex items-center gap-3 px-3 py-[10px] rounded-1 mb-1
          hover:bg-white hover:text-primary-dark
          hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200" >
+         transition-all duration-200">
                 <img [src]="'assets/' + item.image" alt="ii" />
                 @if (!isCollapsed()) {
                 <span class="font-medium text-[14px] leading-[20px] ">{{ item.label }}</span>
@@ -29,22 +29,25 @@
 
     <div class="mt-auto border-t pt-6 border-[#C3C6D633] text--secondary-dark text-sm font-medium leading-5">
         <div class="px-3 py-[10px] flex gap-3 mb-1 ">
-            <button type="button" (click)="toggleSidebar()"
-                class="cursor-pointer ">
+            <button type="button" (click)="toggleSidebar()" class="cursor-pointer ">
                 <img src="../../../assets/collapse.svg" width="11.7" height="20" alt="" />
             </button>
             @if (!isCollapsed()) {
             <p>Collapse</p>
             }
         </div>
-        <div class="px-3 py-[10px] flex gap-3" >
-            <button type="button" (click)="logout()"
-                class="cursor-pointer " [disabled]="isLoggingOut()">
-            <img src="../../../assets/logout.svg" width="18" height="18" alt="" />
-                 </button>
-            @if (!isCollapsed()) {
+        <div class="px-3 py-[10px] flex gap-3">
+            <button type="button" (click)="logout()" class="cursor-pointer " [disabled]="isLoggingOut()">
+                <img src="../../../assets/logout.svg" width="18" height="18" alt="" />
+            </button>
+            @if (!isCollapsed()&&!isLoggingOut()) {
+
             <p>Logout</p>
             }
+            @if (isLoggingOut()&&!isCollapsed()) {
+            <span>Logging out...</span>
+        }
+           
         </div>
     </div>
 
