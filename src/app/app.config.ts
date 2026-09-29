@@ -11,9 +11,11 @@ import { errorInterceptor } from './core/interceptors/error.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [provideBrowserGlobalErrorListeners(), provideRouter(routes),
     provideHttpClient(
-      withInterceptors([authInterceptor,
-        loadingInterceptor,
-        errorInterceptor
+      withInterceptors([
+         errorInterceptor,
+        authInterceptor,
+        loadingInterceptor
+       
       ])
     ),
   
