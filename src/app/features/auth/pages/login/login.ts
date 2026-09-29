@@ -64,7 +64,7 @@ console.log(loginData);
         res,
         this.loginForm.value.rememberMe!
       );
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/project']);
       },
 
       error: (error) => {

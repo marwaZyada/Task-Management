@@ -11,7 +11,7 @@ export const SIDEBAR_ITEMS: SidebarItem[] = [
     route: '/dashboard',
   },
   {
-    label: 'Tasks',
+    label: 'Projects',
     image: 'tasks.svg',
     route: '/project',
   },
