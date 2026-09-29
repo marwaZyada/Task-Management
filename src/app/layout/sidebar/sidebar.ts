@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Taskly } from '../../shared/components/taskly/taskly';
 import { SIDEBAR_ITEMS } from './sidebar-menu';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -11,4 +11,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Sidebar {
    sidebarItems = SIDEBAR_ITEMS;
+     isCollapsed = signal(false);
+
+       toggleSidebar(): void {
+    this.isCollapsed.update(value => !value);
+  }
 }

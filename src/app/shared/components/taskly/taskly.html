@@ -1,4 +1,6 @@
 <div class="w-full  flex items-center gap-2  ">
   
   <img src="assets/Icon.svg" width="18" height="20" alt="Taskly" />
-  <p class="text-xl font-bold uppercase text-secondary-dark">taskly</p></div>
+  @if (!collapse()) {
+  <p class="text-xl font-bold uppercase text-secondary-dark">taskly</p>
+  }</div>

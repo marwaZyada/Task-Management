@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-taskly',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './taskly.css',
 })
 export class Taskly {
-
+ collapse = input(false);
 }
