@@ -2,29 +2,27 @@
 
 
 
-  <div class="flex item-center justify-center ">
+  <div class="flex item-center justify-center hidden md:block">
 
     <!-- Sidebar -->
-     <div class="p-4  bg-surface-low">
-    <app-sidebar />
+    <div class="p-4  bg-surface-low ">
+      <app-sidebar />
     </div>
+  </div>
+  <div class="flex flex-col  w-full bg-background ">
+    <!-- Navbar -->
+    <div class="border-b border-[#0000001A] w-full">
+      <div class="flex justify-end  py-3 px-6 ">
+        <app-navbar />
+      </div>
     </div>
-<div class="flex flex-col  w-full bg-background ">
-      <!-- Navbar -->
-        <div class="border-b border-[#0000001A] w-full">
-       <div class="flex justify-end  py-3 px-6 ">
- <app-navbar  />
-       </div>
- </div>
 
- <!-- Content -->
-   <div class="flex-grow-1 ">
+    <!-- Content -->
+    <div class="flex-grow-1 ">
       <router-outlet />
     </div>
-</div>
-   
-   
-
   </div>
 
 
+
+</div>

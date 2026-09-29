@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Taskly } from '../../shared/components/taskly/taskly';
 import { SIDEBAR_ITEMS } from './sidebar-menu';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {  Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Auth } from '../../core/services/auth';
 
 @Component({
