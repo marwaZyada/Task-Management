@@ -21,6 +21,13 @@ export const AUTH_LAYOUT_ROUTES: Routes = [
             (m) => m.Signup
           ),
       },
+      
+
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
     ],
   },
 ];

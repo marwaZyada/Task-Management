@@ -1,22 +1,24 @@
-<div class="flex   h-screen w-full">
+<div class="flex   min-h-screen w-full">
 
 
 
-  <div class="flex item-center justify-center">
+  <div class="flex item-center justify-center ">
 
     <!-- Sidebar -->
+     <div class="p-4  bg-surface-low">
     <app-sidebar />
     </div>
-<div class="flex flex-col h-screen w-full bg-background ">
+    </div>
+<div class="flex flex-col  w-full bg-background ">
       <!-- Navbar -->
-        <div class="border-b w-full">
+        <div class="border-b border-background w-full">
        <div class="flex justify-end  py-3 px-6 ">
  <app-navbar  />
        </div>
  </div>
 
  <!-- Content -->
-   <div class="flex-grow-1 bg-danger">
+   <div class="flex-grow-1 ">
       <router-outlet />
     </div>
 </div>

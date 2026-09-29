@@ -19,12 +19,12 @@ export const MAIN_LAYOUT_ROUTES: Routes = [
           ),
       },
 
-   
-
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
+    {
+        path: 'project',
+        loadComponent: () =>
+          import('../../features/project/project').then(
+            (m) => m.Project
+          ),
       },
     ],
   },

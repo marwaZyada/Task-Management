@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { Taskly } from '../../shared/components/taskly/taskly';
+import { SIDEBAR_ITEMS } from './sidebar-menu';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
+  imports: [Taskly,RouterLink,RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
-export class Sidebar {}
+export class Sidebar {
+   sidebarItems = SIDEBAR_ITEMS;
+}
