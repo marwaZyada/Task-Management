@@ -31,8 +31,7 @@ export class Sidebar {
 
     error: error => {
       console.error('Logout failed:', error);
-this.authService.clearStorage();
-      this.router.navigate(['/auth/login']);
+
     },
   });
 }
