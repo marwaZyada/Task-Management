@@ -13,6 +13,7 @@ import { Auth } from '../../core/services/auth';
 export class Sidebar {
   private authService=inject(Auth)
   private router=inject(Router)
+  isLoggingOut = signal(false);
    sidebarItems = SIDEBAR_ITEMS;
      isCollapsed = signal(false);
 
@@ -23,6 +24,11 @@ export class Sidebar {
 
 
   logout(): void {
+      if (this.isLoggingOut()) {
+    return;
+  }
+
+  this.isLoggingOut.set(true);
   this.authService.signout().subscribe({
     next: () => {
       this.authService.clearStorage();
@@ -30,6 +36,7 @@ export class Sidebar {
     },
 
     error: error => {
+       this.isLoggingOut.set(false);
       console.error('Logout failed:', error);
 
     },
