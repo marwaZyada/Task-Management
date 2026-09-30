@@ -1,0 +1,10 @@
+    @media (max-width: 768px)  {
+  .mobile-setting{
+    position: absolute;
+    top: 80%;
+    left: 0;
+    width: 100%;
+  
+    background-color: yellow;
+  }
+}
