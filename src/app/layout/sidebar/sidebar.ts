@@ -1,4 +1,4 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import { Component, inject, input, model, OnInit, output, signal } from '@angular/core';
 import { Taskly } from '../../shared/components/taskly/taskly';
 import { SIDEBAR_ITEMS } from './sidebar-menu';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -13,27 +13,37 @@ import { BreakpointObserver } from '@angular/cdk/layout';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
-export class Sidebar {
+export class Sidebar implements OnInit{
   private authService = inject(Auth);
   private router = inject(Router);
   isLoggingOut = signal(false);
   sidebarItems = SIDEBAR_ITEMS;
   isCollapsed = signal(false);
-  menushow=input(false)
+  menushow=model(false)
   closeSidebar = output<void>();
   isOpen = false;
+  islargescreen=true;
   private breakpointObserver = inject(BreakpointObserver);
 
-constructor(){
-    
-  this.updateProjectMenu(this.router.url);
+
+
+
+
+ngOnInit(): void {
+      this.updateProjectMenu(this.router.url);
    this.breakpointObserver
     .observe('(max-width: 767px)')
     .subscribe(result => {
       if (result.matches) {
         this.isCollapsed.set(false);
+       this.menushow.set(false)
       }
+  
+    this.menushow.set(true)
+    
     });
+
+    
 
  // change route   
  this.router.events
@@ -44,7 +54,6 @@ constructor(){
         this.updateProjectMenu(event.urlAfterRedirects);
       });
   }
-
 
   // collapse
   toggleSidebar(): void {

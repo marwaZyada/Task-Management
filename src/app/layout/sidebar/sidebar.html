@@ -1,5 +1,7 @@
-<div class="flex flex-col h-screen " [class.w-[50px]]="isCollapsed()"
-[class.md:w-[240px]]="!isCollapsed()"
+<div class="flex flex-col " [class.w-[50px]]="isCollapsed()"
+[class.md:w-[240px]]="!isCollapsed()" [class.h-fit]="!menushow() "
+[class.h-screen]="menushow()  " 
+
 >
     <div class=" justify-between pb-8 px-2" [class.hidden]="!menushow()"
   [class.md:flex]="!menushow()"
@@ -31,7 +33,7 @@
          hover:shadow-[0px_1px_2px_0px_#0000000D]
          transition-all duration-200" >
                 <img [src]="'assets/project.svg'" alt="ii" />
-                @if (!isCollapsed()  ) {
+                @if (!isCollapsed() && menushow() ) {
                 <span class="font-medium text-[14px] leading-[20px] ">Projects</span>
                 }
               
@@ -46,11 +48,12 @@
          hover:shadow-[0px_1px_2px_0px_#0000000D]
          transition-all duration-200" >
                 <img [src]="'assets/statistics.svg'" alt="ii" />
-            
+            @if(!isCollapsed() && menushow()  )
+            {
                 <span class="font-medium text-[14px] leading-[20px] "
-                [class.md:hidden]="isCollapsed()" 
+                
                 >statistics</span>
-               
+            }
             </a>
 
 </div>
