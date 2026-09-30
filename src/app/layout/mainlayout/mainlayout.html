@@ -8,7 +8,7 @@
 
     <!-- Sidebar -->
     <div class="p-4  bg-surface-low ">
-      <app-sidebar />
+      <app-sidebar (closeSidebar)="menuclicked = false"/>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
     <!-- Navbar -->
     <div class="flex border-b border-[#0000001A] items-center w-full justify-between md:justify-end">
       <div class="flex px-6 py-3 md:hidden">
-         <img src="assets/Button.svg" width="26" height="20" alt="menu" class="me-4 " 
+         <img src="assets/Button.svg" width="26" height="20" alt="menu" class="cursor-pointer me-4 " 
         
          (click)="menuclicked=true"/>
         <app-taskly [icon]="false"/>

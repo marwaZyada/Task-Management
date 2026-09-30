@@ -3,7 +3,9 @@
     <div class="flex justify-between pb-8 px-2">
         <app-taskly [collapse]="isCollapsed()" />
         
-         <img src="assets/close.svg" width="14" height="14" alt="menu" class=" md:hidden" />
+         <img src="assets/close.svg" width="14" height="14" alt="menu" 
+         class="cursor-pointer md:hidden" 
+         (click)="onClose()"/>
 
 
     </div>
