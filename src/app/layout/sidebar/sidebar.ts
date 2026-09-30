@@ -20,7 +20,7 @@ export class Sidebar {
   closeSidebar = output<void>();
   isOpen = false;
 
-  // collapse 
+  // collapse
   toggleSidebar(): void {
     this.isCollapsed.update((value) => !value);
   }
@@ -43,6 +43,11 @@ export class Sidebar {
       },
 
       error: (error) => {
+        if (error.error.code == 403) {
+            this.isLoggingOut.set(true);
+          this.authService.clearStorage();
+          this.router.navigate(['/auth/login']);
+        }
         this.isLoggingOut.set(false);
         console.error('Logout failed:', error);
       },
