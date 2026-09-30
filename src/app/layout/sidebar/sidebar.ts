@@ -3,10 +3,11 @@ import { Taskly } from '../../shared/components/taskly/taskly';
 import { SIDEBAR_ITEMS } from './sidebar-menu';
 import {  Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Auth } from '../../core/services/auth';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [Taskly,RouterLink,RouterLinkActive],
+  imports: [Taskly, RouterLink, RouterLinkActive,CommonModule ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
@@ -16,7 +17,7 @@ export class Sidebar {
   isLoggingOut = signal(false);
    sidebarItems = SIDEBAR_ITEMS;
      isCollapsed = signal(false);
-
+isOpen = false;
 
        toggleSidebar(): void {
     this.isCollapsed.update(value => !value);
