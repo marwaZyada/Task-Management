@@ -5,6 +5,7 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/ro
 import { Auth } from '../../core/services/auth';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,11 +22,18 @@ export class Sidebar {
   menushow=input(false)
   closeSidebar = output<void>();
   isOpen = false;
+  private breakpointObserver = inject(BreakpointObserver);
 
 constructor(){
     
   this.updateProjectMenu(this.router.url);
- 
+   this.breakpointObserver
+    .observe('(max-width: 767px)')
+    .subscribe(result => {
+      if (result.matches) {
+        this.isCollapsed.set(false);
+      }
+    });
 
  // change route   
  this.router.events
