@@ -25,6 +25,7 @@ export class Sidebar {
 constructor(){
     
   this.updateProjectMenu(this.router.url);
+ 
 
  // change route   
  this.router.events
