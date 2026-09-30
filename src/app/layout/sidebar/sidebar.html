@@ -56,6 +56,7 @@
          hover:shadow-[0px_1px_2px_0px_#0000000D]
          transition-all duration-200"  
   >
+ 
     <div class="flex min-w-0 items-center gap-2">
       
       <!-- Folder icon -->
@@ -72,13 +73,15 @@
           d="M3 7.5A1.5 1.5 0 014.5 6H9l2 2h8.5A1.5 1.5 0 0121 9.5v7A1.5 1.5 0 0119.5 18h-15A1.5 1.5 0 013 16.5v-9z"
         />
       </svg>
-
+ @if (!isCollapsed()) {
       <span class="truncate">
         Active Project Name
       </span>
+    }
     </div>
 
     <!-- Arrow -->
+      @if (!isCollapsed()) {
     <svg
       class="h-4 w-4 shrink-0 transition-transform duration-200"
       [class.rotate-180]="isOpen"
@@ -93,13 +96,18 @@
         d="m6 9 6 6 6-6"
       />
     </svg>
+}
   </button>
 
 
   <!-- Dropdown Menu -->
   @if (isOpen) {
     <div
-      class="w-full rounded-bl-[6px] rounded-br-[6px] bg-white p-2"
+   [ngClass]="{
+    'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed(),
+    'w-full bg-white': !isCollapsed()
+  }"
+      class="rounded-bl-[6px] rounded-br-[6px] p-2"
     >
 
       <!-- Epics -->
