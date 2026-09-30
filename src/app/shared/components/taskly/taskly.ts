@@ -8,4 +8,5 @@ import { Component, input } from '@angular/core';
 })
 export class Taskly {
  collapse = input(false);
+ icon = input(true);
 }

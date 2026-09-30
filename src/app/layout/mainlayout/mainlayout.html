@@ -1,18 +1,28 @@
-<div class="flex   min-h-screen w-full">
+<div class="min-h-screen w-full"
+[ngClass]="{'block':menuclicked,'flex':!menuclicked}">
 
 
 
-  <div class="flex item-center justify-center hidden md:block">
+  <div class="item-center justify-center "
+  [ngClass]="{'hidden md:flex':!menuclicked}">
 
     <!-- Sidebar -->
     <div class="p-4  bg-surface-low ">
       <app-sidebar />
     </div>
   </div>
-  <div class="flex flex-col  w-full bg-background ">
+
+  <div class=" flex-col  w-full bg-background "
+  [ngClass]="{'hidden md:flex':menuclicked}">
     <!-- Navbar -->
-    <div class="border-b border-[#0000001A] w-full">
-      <div class="flex justify-end  py-3 px-6 ">
+    <div class="flex border-b border-[#0000001A] items-center w-full justify-between md:justify-end">
+      <div class="flex px-6 py-3 md:hidden">
+         <img src="assets/Button.svg" width="26" height="20" alt="menu" class="me-4 " 
+        
+         (click)="menuclicked=true"/>
+        <app-taskly [icon]="false"/>
+      </div>
+      <div class=" flex px-6 py-3  ">
         <app-navbar />
       </div>
     </div>
