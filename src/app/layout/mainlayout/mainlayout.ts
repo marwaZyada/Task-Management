@@ -6,6 +6,7 @@ import { Taskly } from '../../shared/components/taskly/taskly';
 import { CommonModule } from '@angular/common';
 
 
+
 @Component({
   selector: 'app-mainlayout',
   imports: [Navbar, Sidebar, RouterOutlet, Taskly, CommonModule],
@@ -13,12 +14,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mainlayout.css',
 })
 export class Mainlayout  implements OnInit{
- 
+
   menuclicked=false
   
 ngOnInit(): void {
     this.menuclicked=false
     console.log("m",this.menuclicked)
+
 }
 
 }

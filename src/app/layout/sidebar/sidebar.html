@@ -1,4 +1,5 @@
-<div class="flex flex-col h-screen " [class.w-[50px]]="isCollapsed()" >
+<div class="flex flex-col h-screen  " [class.w-[50px]]="isCollapsed()"
+ [class.md:w-[240px]]="!isCollapsed()" >
     <div class="flex justify-between pb-8 px-2">
         <app-taskly [collapse]="isCollapsed()" />
         

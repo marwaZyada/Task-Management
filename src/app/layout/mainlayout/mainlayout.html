@@ -1,4 +1,4 @@
-<div class="min-h-screen w-full"
+<div class="min-h-screen w-full md:flex"
 [ngClass]="{'block':menuclicked,'flex':!menuclicked}">
 
 
@@ -12,8 +12,8 @@
     </div>
   </div>
 
-  <div class=" flex-col  w-full bg-background "
-  [ngClass]="{'hidden md:flex':menuclicked}">
+  <div class=" flex-col  w-full bg-background md:flex"
+    [class.hidden]="menuclicked">
     <!-- Navbar -->
     <div class="flex border-b border-[#0000001A] items-center w-full justify-between md:justify-end">
       <div class="flex px-6 py-3 md:hidden">
