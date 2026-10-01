@@ -24,7 +24,7 @@ export class Sidebar implements OnInit{
   isOpen = false;
   isiconshow=signal(false);
   private breakpointObserver = inject(BreakpointObserver);
-
+ isIconChange = output<boolean>();
 
 
 
@@ -104,8 +104,11 @@ ngOnInit(): void {
 }
 
 toggleProjectMenu(): void {
-  this.isOpen = !this.isOpen;
+ 
    this.isiconshow.set(true);
-    console.log(this.isiconshow())
+   this.isOpen=true
+    console.log("show",this.isiconshow())
+    console.log("menu",this.menushow())
+        this.isIconChange.emit(this.isiconshow());
 }
 }

@@ -16,10 +16,12 @@ import { CommonModule } from '@angular/common';
 export class Mainlayout  implements OnInit{
 
   menuclicked=false
+  isIcon = false;
   
 ngOnInit(): void {
     this.menuclicked=false
     console.log("m",this.menuclicked)
+    console.log("iconshow",this.isIcon)
 
 }
 

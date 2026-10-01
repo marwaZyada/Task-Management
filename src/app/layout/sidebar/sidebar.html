@@ -29,9 +29,29 @@
         [class.md:hidden]="!menushow() && !isiconshow()"
         [class.flex-row]="!menushow() ">
 
-        @if(isActive('/project') || menushow()){
-            <a [routerLink]="'/project'"
+        
+@if(!menushow() && !isiconshow() ||(!menushow() && !isOpen) ){
+    <a [routerLink]="'/project'"
             (click)="toggleProjectMenu()"
+            
+                routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
+                [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark  items-center gap-3 px-3 py-[10px]  mb-1
+         hover:bg-surface-high 
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200"  >
+         
+                <img [src]="'assets/project.svg'" alt="ii" 
+                 
+    />
+       
+             
+              
+            </a>
+} 
+ @else{
+        @if( menushow()){
+            <a [routerLink]="'/project'"
+            (click)="isOpen=!isOpen"
                 routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
                 [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark  items-center gap-3 px-3 py-[10px]  mb-1
          hover:bg-surface-high 
@@ -48,6 +68,8 @@
               
             </a>
           }
+        } 
+
             <!-- statistic  -->
                @if(isActive('/dashboard') ||menushow()) {
             <a [routerLink]="'/dashboard'"
@@ -133,7 +155,7 @@
 
 
   <!-- Dropdown Menu -->
-  @if (isOpen) { 
+  @if (isOpen &&menushow()) { 
     <div
    [ngClass]="{
     'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed() ,
@@ -146,7 +168,7 @@
   
   [class.flex]="!menushow()"
       class="rounded-bl-[6px] rounded-br-[6px] p-2 "
-     [class.z-[2]]="!isiconshow()" 
+    
 
    
 >
@@ -264,11 +286,151 @@
     </div>
 }
 
+
+
+<!-- icon clicked -->
+
+ @if ((isiconshow() &&!menushow()) ) { 
+    <div
+   [ngClass]="{
+    'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed() ,
+   
+   
+    'w-full': !isCollapsed() ,
+    'bg-surface-low':!menushow(),
+    'bg-white':menushow()
+  }"
+  
+  [class.flex]="!menushow()"
+      class="rounded-bl-[6px] rounded-br-[6px] p-2 "
+      
+
+   
+>
+      <!-- Epics -->
+      <button
+        type="button"
+        [class.inline-block]="!menushow()"
+        class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm 
+        text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200"
+      >
+        <!-- Epics icon -->
+        <svg
+          class="h-4 w-4 shrink-0 m-auto"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8 8h8M8 16h8M6 6h.01M6 12h.01M6 18h.01"
+          />
+        </svg>
+
+        <span>Epics</span>
+      </button>
+
+
+      <!-- Tasks -->
+      <button
+        type="button"
+        [class.inline-block]="!menushow()"
+        class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm text-[#1D2433]
+         hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200"
+      >
+        <svg
+          class="h-4 w-4 shrink-0 m-auto"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"
+          />
+        </svg>
+
+        <span>Tasks</span>
+      </button>
+
+
+      <!-- Members -->
+      <button
+        type="button"
+        [class.inline-block]="!menushow()"
+        class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm 
+        text-[#1D2433] hover:bg-surface-high  hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200"
+      >
+        <svg
+          class="h-4 w-4 shrink-0 m-auto"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2
+               M9 11a4 4 0 100-8 4 4 0 000 8z
+               M22 21v-2a4 4 0 00-3-3.87
+               M16 3.13a4 4 0 010 7.75"
+          />
+        </svg>
+
+        <span>Members</span>
+      </button>
+
+
+      <!-- Details -->
+      <button
+        type="button"
+        [class.inline-block]="!menushow()"
+        class="flex py-[10px] w-full items-center gap-3 px-4 text-center 
+        text-sm text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200"
+      >
+        <svg
+          class="h-4 w-4 shrink-0 m-auto"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path
+            stroke-linecap="round"
+            d="M12 10v6M12 7h.01"
+          />
+        </svg>
+
+        <span>Details</span>
+      </button>
+
+    </div>
+}
+
 </div>
 
         </div>
 
     </div>
+
+
+
+
+
 
     <div class="mt-auto border-t pt-6 border-[#C3C6D633] text--secondary-dark text-sm font-medium leading-5"
    
