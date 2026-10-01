@@ -5,6 +5,7 @@
     left: 0;
     width: 100%;
   display: block;
+  z-index: 3;
     background-color: yellow;
   }
 }

@@ -22,7 +22,7 @@ export class Sidebar implements OnInit{
   menushow=model(false)
   closeSidebar = output<void>();
   isOpen = false;
-  islargescreen=true;
+  isiconshow=signal(false);
   private breakpointObserver = inject(BreakpointObserver);
 
 
@@ -30,6 +30,7 @@ export class Sidebar implements OnInit{
 
 
 ngOnInit(): void {
+  console.log(this.isiconshow())
       this.updateProjectMenu(this.router.url);
    this.breakpointObserver
     .observe('(max-width: 767px)')
@@ -51,6 +52,7 @@ ngOnInit(): void {
         filter(event => event instanceof NavigationEnd)
       )
       .subscribe(event => {
+        console.log("event",event)
         this.updateProjectMenu(event.urlAfterRedirects);
       });
   }
@@ -95,4 +97,15 @@ ngOnInit(): void {
   private updateProjectMenu(url: string): void {
     this.isOpen = url.startsWith('/project');
   }
+
+
+  isActive(route: string): boolean {
+  return this.router.url.startsWith(route);
+}
+
+toggleProjectMenu(): void {
+  this.isOpen = !this.isOpen;
+   this.isiconshow.set(true);
+    console.log(this.isiconshow())
+}
 }

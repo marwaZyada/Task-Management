@@ -17,7 +17,7 @@
 
     <div class="sidebaritems"  >
 
-        <div class="flex  gap-1 flex-grow-1"[class.flex-row]="!menushow()"
+        <div class=" gap-1 flex-grow-1"[class.block]="!menushow()"
         [class.md:flex-col]="!menushow()" 
         [class.flex-col]="menushow()">
 
@@ -25,22 +25,31 @@
 <div class="flex flex-col w-full" 
 [class.flex-row]="!menushow()"
         [class.md:flex-col]="!menushow()"
-        [class.justify-center]="!menushow()">
+        [class.justify-center]="!menushow()"
+        [class.md:hidden]="!menushow() && !isiconshow()"
+        [class.flex-row]="!menushow() ">
+
+        @if(isActive('/project') || menushow()){
             <a [routerLink]="'/project'"
+            (click)="toggleProjectMenu()"
                 routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
                 [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark  items-center gap-3 px-3 py-[10px]  mb-1
          hover:bg-surface-high 
          hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200" >
-                <img [src]="'assets/project.svg'" alt="ii" />
+         transition-all duration-200"  >
+         
+                <img [src]="'assets/project.svg'" alt="ii" 
+                 
+    />
+       
                 @if (!isCollapsed() && menushow() ) {
                 <span class="font-medium text-[14px] leading-[20px] ">Projects</span>
                 }
               
             </a>
-
+          }
             <!-- statistic  -->
-                
+               @if(isActive('/dashboard') ||menushow()) {
             <a [routerLink]="'/dashboard'"
                 routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
                 [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark items-center gap-3 px-3 py-[10px]  mb-1
@@ -55,12 +64,14 @@
                 >statistics</span>
             }
             </a>
+          }
 
 </div>
             <!-- active project  -->
-             <div class="relative pt-4 border-t border-t-[#0000001A]  
-             " [class.hidden]="!menushow()"
-  [class.md:block]="!menushow()">
+             <div class="relative pt-4  border-t-[#0000001A]  
+             " [class.hidden]="!menushow() && !isOpen"
+  [class.md:block]="!menushow() "
+  [class.border-t]="menushow()">
 
   <!-- Dropdown Header -->
   <button
@@ -70,6 +81,7 @@
     'bg-surface-high': isOpen,
     'bg-surface-low': !isOpen
   }"
+  [class.hidden]="isOpen && !menushow()"
     class="flex p-3 w-full items-center rounded-tl-[6px] rounded-tr-[6px] 
     justify-between   text-sm font-medium 
     text-secondary-dark  hover:bg-surface-high 
@@ -121,18 +133,27 @@
 
 
   <!-- Dropdown Menu -->
-  @if (isOpen) {
+  @if (isOpen) { 
     <div
    [ngClass]="{
-    'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed(),
-    'w-full bg-white': !isCollapsed()
+    'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed() ,
+   
+   
+    'w-full': !isCollapsed() ,
+    'bg-surface-low':!menushow(),
+    'bg-white':menushow()
   }"
-      class="rounded-bl-[6px] rounded-br-[6px] p-2"
-    >
+  
+  [class.flex]="!menushow()"
+      class="rounded-bl-[6px] rounded-br-[6px] p-2 "
+     [class.z-[2]]="!isiconshow()" 
 
+   
+>
       <!-- Epics -->
       <button
         type="button"
+        [class.inline-block]="!menushow()"
         class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm 
         text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
          hover:shadow-[0px_1px_2px_0px_#0000000D]
@@ -160,6 +181,7 @@
       <!-- Tasks -->
       <button
         type="button"
+        [class.inline-block]="!menushow()"
         class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm text-[#1D2433]
          hover:bg-surface-high hover:rounded-[30px]
          hover:shadow-[0px_1px_2px_0px_#0000000D]
@@ -186,6 +208,7 @@
       <!-- Members -->
       <button
         type="button"
+        [class.inline-block]="!menushow()"
         class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm 
         text-[#1D2433] hover:bg-surface-high  hover:rounded-[30px]
          hover:shadow-[0px_1px_2px_0px_#0000000D]
@@ -215,6 +238,7 @@
       <!-- Details -->
       <button
         type="button"
+        [class.inline-block]="!menushow()"
         class="flex py-[10px] w-full items-center gap-3 px-4 text-left 
         text-sm text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
          hover:shadow-[0px_1px_2px_0px_#0000000D]
@@ -238,7 +262,7 @@
       </button>
 
     </div>
-  }
+}
 
 </div>
 
