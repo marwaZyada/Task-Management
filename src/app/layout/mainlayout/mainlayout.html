@@ -13,7 +13,7 @@
  >
 
     <!-- Sidebar -->
-    <div class="p-4  bg-surface-low " [class.hidden]="isIcon">
+    <div class="bg-surface-low "  [class.p-4]="menuclicked"[class.p-0]="!menuclicked" [class.hidden]="isIcon">
       <app-sidebar (closeSidebar)="menuclicked = false" [(menushow)]="menuclicked"
       />
     </div>

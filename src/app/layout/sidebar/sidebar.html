@@ -1,463 +1,298 @@
-<div class="flex flex-col " [class.w-[50px]]="isCollapsed()"
-[class.md:w-[240px]]="!isCollapsed()" [class.h-fit]="!menushow() "
-[class.h-screen]="menushow()  " 
+<div class="flex flex-col " [class.w-[50px]]="isCollapsed()" [class.md:w-[240px]]="!isCollapsed()"
+  [class.h-fit]="!menushow() " [class.h-screen]="menushow()  ">
+  <div class=" justify-between pb-8 px-2" [class.hidden]="!menushow()" [class.md:flex]="!menushow()"
+    [class.flex]="menushow()">
+    <app-taskly [collapse]="isCollapsed()" />
 
->
-    <div class=" justify-between pb-8 px-2" [class.hidden]="!menushow()"
-  [class.md:flex]="!menushow()"
-  [class.flex]="menushow()">
-        <app-taskly [collapse]="isCollapsed()" />
-        
-         <img src="assets/close.svg" width="14" height="14" alt="menu" 
-         class="cursor-pointer md:hidden" 
-         (click)="onClose()"/>
+    <img src="assets/close.svg" width="14" height="14" alt="menu" class="cursor-pointer md:hidden"
+      (click)="onClose()" />
 
 
-    </div>
+  </div>
 
-    <div class="sidebaritems"  >
+  <div class="sidebaritems">
 
-        <div class=" gap-1 flex-grow-1"[class.block]="!menushow()"
-        [class.md:flex-col]="!menushow()" 
-        [class.flex-col]="menushow()">
+    <div class=" gap-1 flex-grow-1" [class.block]="!menushow()" [class.md:flex-col]="!menushow()"
+      [class.flex-col]="menushow()">
 
-           <!-- project  -->
-<div class="flex flex-col w-full" 
-[class.flex-row]="!menushow()"
-        [class.md:flex-col]="!menushow()"
-        [class.justify-center]="!menushow()"
-        [class.md:hidden]="!menushow() && !isiconshow()"
+      <!-- project  -->
+      <div class="flex flex-col w-full" [class.flex-row]="!menushow()" [class.md:flex-col]="!menushow()"
+        [class.justify-center]="!menushow()" [class.md:hidden]="!menushow() && !isiconshow()"
         [class.flex-row]="!menushow() ">
 
-        
-@if(!menushow() && !isiconshow() ||(!menushow() && !isOpen) ){
-    <a [routerLink]="'/project'"
-            (click)="toggleProjectMenu()"
-            
-                routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
-                [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark  items-center gap-3 px-3 py-[10px]  mb-1
+
+        @if(!menushow() && !isiconshow() ||(!menushow() && !isOpen) ){
+        <a [routerLink]="'/project'" (click)="toggleProjectMenu()"
+          routerLinkActive="bg-white  text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
+          [routerLinkActiveOptions]="{ exact: true }" class="inline-flex  text-secondary-dark  items-center gap-3 px-3 py-[10px]  mb-1
          hover:bg-surface-high 
          hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"  >
-         
-                <img [src]="'assets/project.svg'" alt="ii" 
-                 
-    />
-       
-             
-              
-            </a>
-} 
- @else{
+         transition-all duration-200 ">
+
+          <img [src]="'assets/project.svg'" alt="ii" />
+
+
+
+        </a>
+        }
+        @else{
         @if( menushow()){
-            <a [routerLink]="'/project'"
-            (click)="isOpen=!isOpen"
-                routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
-                [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark  items-center gap-3 px-3 py-[10px]  mb-1
+        <a [routerLink]="'/project'" (click)="isOpen=!isOpen"
+          routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
+          [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark  items-center gap-3 px-3 py-[10px]  mb-1
          hover:bg-surface-high 
          hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"  >
-         
-                <img [src]="'assets/project.svg'" alt="ii" 
-                 
-    />
-       
-                @if (!isCollapsed() && menushow() ) {
-                <span class="font-medium text-[14px] leading-[20px] ">Projects</span>
-                }
-              
-            </a>
-          }
-        } 
+         transition-all duration-200">
 
-            <!-- statistic  -->
-               @if(isActive('/dashboard') ||menushow()) {
-            <a [routerLink]="'/dashboard'"
-                routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
-                [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark items-center gap-3 px-3 py-[10px]  mb-1
+          <img [src]="'assets/project.svg'" alt="ii" />
+
+          @if (!isCollapsed() && menushow() ) {
+          <span class="font-medium text-[14px] leading-[20px] ">Projects</span>
+          }
+
+        </a>
+        }
+        }
+
+        <!-- statistic  -->
+        @if(isActive('/dashboard') ||menushow()) {
+        <a [routerLink]="'/dashboard'"
+          routerLinkActive="bg-white text-primary-dark shadow-[0px 1px 2px 0px #0000000D] rounded "
+          [routerLinkActiveOptions]="{ exact: true }" class="inline-flex text-secondary-dark items-center gap-3 px-3 py-[10px]  mb-1
          hover:bg-surface-high 
          hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200" >
-                <img [src]="'assets/statistics.svg'" alt="ii" />
-            @if(!isCollapsed() && menushow()  )
-            {
-                <span class="font-medium text-[14px] leading-[20px] "
-                
-                >statistics</span>
-            }
-            </a>
+         transition-all duration-200">
+          <img [src]="'assets/statistics.svg'" alt="ii" />
+          @if(!isCollapsed() && menushow() )
+          {
+          <span class="font-medium text-[14px] leading-[20px] ">statistics</span>
           }
+        </a>
+        }
 
-</div>
-            <!-- active project  -->
-             <div class="relative pt-4  border-t-[#0000001A]  
-             " [class.hidden]="!menushow() && !isOpen"
-  [class.md:block]="!menushow() "
-  [class.border-t]="menushow()">
-
-  <!-- Dropdown Header -->
-  <button
-    type="button"
-    (click)="isOpen = !isOpen"
-    [ngClass]="{
+      </div>
+      <!-- active project  -->
+      <div class="relative group  border-t-[#0000001A]  
+             "[class.pt-4]="!isiconshow()" [class.hidden]="!menushow() && !isOpen" [class.md:block]="!menushow() " [class.border-t]="menushow()"
+>
+        <!-- Dropdown Header -->
+        <button type="button" (click)="isOpen = !isOpen" [ngClass]="{
     'bg-surface-high': isOpen,
-    'bg-surface-low': !isOpen
-  }"
-  [class.hidden]="isOpen && !menushow()"
-    class="flex p-3 w-full items-center rounded-tl-[6px] rounded-tr-[6px] 
+    'bg-surface-low': !isOpen,
+    'hover:bg-white':isCollapsed
+  }" [class.hidden]="isOpen && !menushow()" class=" flex p-3 w-full items-center rounded-tl-[6px] rounded-tr-[6px] 
     justify-between   text-sm font-medium 
     text-secondary-dark  hover:bg-surface-high 
          hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"  
-  >
- 
-    <div class="flex min-w-0 items-center gap-2">
-      
-      <!-- Folder icon -->
-      <svg
-        class="h-4 w-4 shrink-0"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="1.8"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3 7.5A1.5 1.5 0 014.5 6H9l2 2h8.5A1.5 1.5 0 0121 9.5v7A1.5 1.5 0 0119.5 18h-15A1.5 1.5 0 013 16.5v-9z"
-        />
-      </svg>
- @if (!isCollapsed()) {
-      <span class="truncate">
-        Active Project Name
-      </span>
-    }
-    </div>
+         transition-all duration-200 cursor-pointer ">
 
-    <!-- Arrow -->
-      @if (!isCollapsed()) {
-    <svg
-      class="h-4 w-4 shrink-0 transition-transform duration-200"
-      [class.rotate-180]="isOpen"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      stroke-width="2"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="m6 9 6 6 6-6"
-      />
-    </svg>
-}
-  </button>
+          <div class="flex min-w-0 items-center gap-2">
 
-
-  <!-- Dropdown Menu -->
-  @if (isOpen &&menushow()) { 
-    <div
-   [ngClass]="{
-    'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed() ,
-   
-   
-    'w-full': !isCollapsed() ,
-    'bg-surface-low':!menushow(),
-    'bg-white':menushow()
-  }"
-  
-  [class.flex]="!menushow()"
-      class="rounded-bl-[6px] rounded-br-[6px] p-2 "
-    
-
-   
->
-      <!-- Epics -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm 
-        text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <!-- Epics icon -->
-        <svg
-          class="h-4 w-4 shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M8 8h8M8 16h8M6 6h.01M6 12h.01M6 18h.01"
-          />
-        </svg>
-
-        <span>Epics</span>
-      </button>
-
-
-      <!-- Tasks -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm text-[#1D2433]
-         hover:bg-surface-high hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <svg
-          class="h-4 w-4 shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"
-          />
-        </svg>
-
-        <span>Tasks</span>
-      </button>
-
-
-      <!-- Members -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm 
-        text-[#1D2433] hover:bg-surface-high  hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <svg
-          class="h-4 w-4 shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2
-               M9 11a4 4 0 100-8 4 4 0 000 8z
-               M22 21v-2a4 4 0 00-3-3.87
-               M16 3.13a4 4 0 010 7.75"
-          />
-        </svg>
-
-        <span>Members</span>
-      </button>
-
-
-      <!-- Details -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-left 
-        text-sm text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <svg
-          class="h-4 w-4 shrink-0"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <circle cx="12" cy="12" r="9" />
-          <path
-            stroke-linecap="round"
-            d="M12 10v6M12 7h.01"
-          />
-        </svg>
-
-        <span>Details</span>
-      </button>
-
-    </div>
-}
-
-
-
-<!-- icon clicked -->
-
- @if ((isiconshow() &&!menushow()) ) { 
-    <div
-   [ngClass]="{
-    'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed() ,
-   
-   
-    'w-full': !isCollapsed() ,
-    'bg-surface-low':!menushow(),
-    'bg-white':menushow()
-  }"
-  
-  [class.flex]="!menushow()"
-      class="rounded-bl-[6px] rounded-br-[6px] p-2 "
-      
-
-   
->
-      <!-- Epics -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm 
-        text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <!-- Epics icon -->
-        <svg
-          class="h-4 w-4 shrink-0 m-auto"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M8 8h8M8 16h8M6 6h.01M6 12h.01M6 18h.01"
-          />
-        </svg>
-
-        <span>Epics</span>
-      </button>
-
-
-      <!-- Tasks -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm text-[#1D2433]
-         hover:bg-surface-high hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <svg
-          class="h-4 w-4 shrink-0 m-auto"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"
-          />
-        </svg>
-
-        <span>Tasks</span>
-      </button>
-
-
-      <!-- Members -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm 
-        text-[#1D2433] hover:bg-surface-high  hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <svg
-          class="h-4 w-4 shrink-0 m-auto"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2
-               M9 11a4 4 0 100-8 4 4 0 000 8z
-               M22 21v-2a4 4 0 00-3-3.87
-               M16 3.13a4 4 0 010 7.75"
-          />
-        </svg>
-
-        <span>Members</span>
-      </button>
-
-
-      <!-- Details -->
-      <button
-        type="button"
-        [class.inline-block]="!menushow()"
-        class="flex py-[10px] w-full items-center gap-3 px-4 text-center 
-        text-sm text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
-         hover:shadow-[0px_1px_2px_0px_#0000000D]
-         transition-all duration-200"
-      >
-        <svg
-          class="h-4 w-4 shrink-0 m-auto"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="1.8"
-        >
-          <circle cx="12" cy="12" r="9" />
-          <path
-            stroke-linecap="round"
-            d="M12 10v6M12 7h.01"
-          />
-        </svg>
-
-        <span>Details</span>
-      </button>
-
-    </div>
-}
-
-</div>
-
-        </div>
-
-    </div>
-
-
-
-
-
-
-    <div class="mt-auto border-t pt-6 border-[#C3C6D633] text--secondary-dark text-sm font-medium leading-5"
-   
-[class.hidden]="!menushow()"
-  [class.md:block]="!menushow()">
-        <div class="px-3 py-[10px] gap-3 mb-1 flex" [class.hidden]="menushow()" 
-        [class.md:flex]="menushow()">
-            <button type="button" (click)="toggleSidebar()" class="cursor-pointer ">
-                <img src="../../../assets/collapse.svg" width="11.7" height="20" alt="" />
-            </button>
+            <!-- Folder icon -->
+            <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 7.5A1.5 1.5 0 014.5 6H9l2 2h8.5A1.5 1.5 0 0121 9.5v7A1.5 1.5 0 0119.5 18h-15A1.5 1.5 0 013 16.5v-9z" />
+            </svg>
             @if (!isCollapsed()) {
-            <p>Collapse</p>
+            <span class="truncate">
+              Active Project Name
+            </span>
             }
-        </div>
-        <div class="px-3 py-[10px] flex gap-3 text-error">
-            <button type="button" (click)="logout()" class="cursor-pointer " [disabled]="isLoggingOut()">
-                <img src="../../../assets/logout.svg" width="18" height="18" alt="" />
-            </button>
-            @if (!isCollapsed()&&!isLoggingOut()) {
+          </div>
 
-            <p>Logout</p>
-            }
-            @if (isLoggingOut()&&!isCollapsed()) {
-            <span>Logging out...</span>
-        }
-           
+          <!-- Arrow -->
+          @if (!isCollapsed()) {
+          <svg class="h-4 w-4 shrink-0 transition-transform duration-200" [class.rotate-180]="isOpen" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+          </svg>
+          }
+        </button>
+
+
+        <!-- Dropdown Menu -->
+        @if (isOpen &&menushow()) {
+        <div [ngClass]="{
+    'hidden group-hover:block
+           absolute left-full top-0 p-2 w-full
+           w-max   bg-surface-high rounded-tr-[8px] rounded-br-[8px]': isCollapsed() ,
+   
+   
+    'w-full bg-white': !isCollapsed() ,
+    'bg-surface-low':!menushow(),
+   
+  }" [class.flex]="!menushow()" class="rounded-bl-[6px] rounded-br-[6px] p-2 ">
+          <!-- Epics -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm 
+        text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <!-- Epics icon -->
+            <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 8h8M8 16h8M6 6h.01M6 12h.01M6 18h.01" />
+            </svg>
+
+            <span>Epics</span>
+          </button>
+
+
+          <!-- Tasks -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm text-[#1D2433]
+         hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" />
+            </svg>
+
+            <span>Tasks</span>
+          </button>
+
+
+          <!-- Members -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-left text-sm 
+        text-[#1D2433] hover:bg-surface-high  hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2
+               M9 11a4 4 0 100-8 4 4 0 000 8z
+               M22 21v-2a4 4 0 00-3-3.87
+               M16 3.13a4 4 0 010 7.75" />
+            </svg>
+
+            <span>Members</span>
+          </button>
+
+
+          <!-- Details -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-left 
+        text-sm text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="9" />
+              <path stroke-linecap="round" d="M12 10v6M12 7h.01" />
+            </svg>
+
+            <span>Details</span>
+          </button>
+
         </div>
+        }
+
+
+
+        <!-- icon clicked -->
+
+        @if ((isiconshow() &&!menushow()) ) {
+        <div [ngClass]="{
+    'absolute left-[136%] top-full w-max bg-surface-high': isCollapsed() ,
+   
+   
+    'w-full': !isCollapsed() ,
+    'bg-surface-low':!menushow(),
+    'bg-white':menushow()
+  }" [class.flex]="!menushow()" class="rounded-bl-[6px] rounded-br-[6px] p-2 ">
+          <!-- Epics -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm 
+        text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <!-- Epics icon -->
+            <svg class="h-4 w-4 shrink-0 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 8h8M8 16h8M6 6h.01M6 12h.01M6 18h.01" />
+            </svg>
+
+            <span>Epics</span>
+          </button>
+
+
+          <!-- Tasks -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm text-[#1D2433]
+         hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <svg class="h-4 w-4 shrink-0 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01" />
+            </svg>
+
+            <span>Tasks</span>
+          </button>
+
+
+          <!-- Members -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-center text-sm 
+        text-[#1D2433] hover:bg-surface-high  hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <svg class="h-4 w-4 shrink-0 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2
+               M9 11a4 4 0 100-8 4 4 0 000 8z
+               M22 21v-2a4 4 0 00-3-3.87
+               M16 3.13a4 4 0 010 7.75" />
+            </svg>
+
+            <span>Members</span>
+          </button>
+
+
+          <!-- Details -->
+          <button type="button" [class.inline-block]="!menushow()" class="flex py-[10px] w-full items-center gap-3 px-4 text-center 
+        text-sm text-[#1D2433] hover:bg-surface-high hover:rounded-[30px]
+         hover:shadow-[0px_1px_2px_0px_#0000000D]
+         transition-all duration-200">
+            <svg class="h-4 w-4 shrink-0 m-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="1.8">
+              <circle cx="12" cy="12" r="9" />
+              <path stroke-linecap="round" d="M12 10v6M12 7h.01" />
+            </svg>
+
+            <span>Details</span>
+          </button>
+
+        </div>
+        }
+
+      </div>
+
     </div>
+
+  </div>
+
+
+
+
+
+
+  <div class="mt-auto border-t pt-6 border-[#C3C6D633] text--secondary-dark text-sm font-medium leading-5"
+    [class.hidden]="!menushow()" [class.md:block]="!menushow()">
+    <div class="px-3 py-[10px] gap-3 mb-1 flex" [class.hidden]="menushow()" [class.md:flex]="menushow()">
+      <button type="button" (click)="toggleSidebar()" class="cursor-pointer ">
+        <img src="../../../assets/collapse.svg" width="11.7" height="20" alt="" />
+      </button>
+      @if (!isCollapsed()) {
+      <p>Collapse</p>
+      }
+    </div>
+    <div class="px-3 py-[10px] flex gap-3 text-error">
+      <button type="button" (click)="logout()" class="cursor-pointer " [disabled]="isLoggingOut()">
+        <img src="../../../assets/logout.svg" width="18" height="18" alt="" />
+      </button>
+      @if (!isCollapsed()&&!isLoggingOut()) {
+
+      <p>Logout</p>
+      }
+      @if (isLoggingOut()&&!isCollapsed()) {
+      <span>Logging out...</span>
+      }
+
+    </div>
+  </div>
 
 </div>
