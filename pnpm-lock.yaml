@@ -60,6 +60,9 @@ importers:
       angular-eslint:
         specifier: 21.4.0
         version: 21.4.0(@angular/cli@21.2.24(chokidar@5.0.0))(chokidar@5.0.0)(eslint@10.11.0(jiti@2.7.0))(typescript-eslint@8.59.2(eslint@10.11.0(jiti@2.7.0))(typescript@5.9.3))(typescript@5.9.3)
+      dotenv:
+        specifier: ^18.0.5
+        version: 18.0.5
       eslint:
         specifier: ^10.3.0
         version: 10.11.0(jiti@2.7.0)
@@ -2004,6 +2007,11 @@ packages:
 
   domutils@3.2.2:
     resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
+
+  dotenv@18.0.5:
+    resolution: {integrity: sha512-aBrGvt6KhjxbEnatqMWOMidftwsrCiCvqh1yNIGB9QyF0J+VcWkKDMsvYOEm7ZS82oiV+BT1sTOtIlAmUlTpwQ==}
+    engines: {node: '>=12'}
+    hasBin: true
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -5173,6 +5181,8 @@ snapshots:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
       domhandler: 5.0.3
+
+  dotenv@18.0.5: {}
 
   dunder-proto@1.0.1:
     dependencies:
