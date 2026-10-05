@@ -1,5 +1,6 @@
-<div class="min-h-screen bg-background p-4">
-
+ 
+<div class="h-full bg-background p-4">
+@if(projects.length>0){ 
   <!-- Header -->
   <div class="mb-5 flex items-start justify-between">
 
@@ -17,7 +18,7 @@
       type="button"
       class="cursor-pointer h-6 bg-primary-dark px-4 text-[8px] font-medium text-white
              transition hover:bg-primary-container"
-      routerLink="/project/addproject"
+      routerLink="/project/add"
     >
       Create New Project
     </button>
@@ -31,7 +32,7 @@
            lg:grid-cols-3"
   >
 
-    @for (project of projects; track project.name) {
+    @for (project of projects; track project.id) {
       <app-project-card
         [project]="project"
       />
@@ -44,4 +45,14 @@
 
   </div>
 
+} 
+ @else {
+
+   <app-noitems></app-noitems> 
+ }
+
+  
+ 
 </div>
+  
+

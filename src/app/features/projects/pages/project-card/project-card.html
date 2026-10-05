@@ -2,16 +2,17 @@
 <div
   class="flex h-[120px] flex-col rounded-[4px] bg-white p-3 shadow-[0_1px_2px_0_#0000000D]"
 >
+
   <!-- Title -->
   <h3 class="mb-1 truncate text-[11px] font-semibold text-text-primary">
-    {{ project().name }}
+    {{ project()?.name }}
   </h3>
 
   <!-- Description -->
   <p
     class="line-clamp-2 text-[8px] leading-[12px] text-secondary-dark"
   >
-    {{ project().description }}
+    {{ project()?.description }}
   </p>
 
   <!-- Stats -->
@@ -23,7 +24,7 @@
         class="h-3 w-3"
         alt=""
       />
-      <span>{{ project().epics }} Epics</span>
+      <span>{{ project()?.epics }} Epics</span>
     </div>
 
     <div class="flex items-center gap-1">
@@ -32,7 +33,7 @@
         class="h-3 w-3"
         alt=""
       />
-      <span>{{ project().tasks }} Tasks</span>
+      <span>{{ project()?.tasks }} Tasks</span>
     </div>
 
     <div class="flex items-center gap-1">
@@ -41,7 +42,7 @@
         class="h-3 w-3"
         alt=""
       />
-      <span>{{ project().members }} Members</span>
+      <span>{{ project()?.members }} Members</span>
     </div>
 
   </div>
@@ -53,7 +54,10 @@
     </span>
 
     <span class="text-[7px] text-secondary-dark">
-      {{ project().createdAt }}
+      {{ project()?.created_at
+ }}
     </span>
   </div>
+
+
 </div>

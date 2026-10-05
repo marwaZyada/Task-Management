@@ -2,7 +2,7 @@
   class="
     mx-auto
     w-full
-    max-w-[418px]
+    
     overflow-hidden
     rounded-[5px]
     bg-white
@@ -14,14 +14,14 @@
 
   @if (showHeader()) {
 
-    <div class="border-b border-black/5 px-5 py-5">
+    <div class="border-b border-black/5 px-8 pt-8 pb-10">
 
       <div class="flex items-center gap-3">
 
         <!-- Header Icon -->
         <div
           class="
-            flex
+            hidden md:flex
             h-7
             w-7
             shrink-0
@@ -29,6 +29,7 @@
             justify-center
             rounded-[3px]
             bg-surface-high
+            
           "
         >
 
@@ -73,7 +74,7 @@
 
   <!-- ================= BODY ================= -->
 
-  <div class="px-5 py-5">
+  <div class="p-8">
 
     <ng-content />
 
@@ -86,12 +87,13 @@
 
     <div
       class="
-        flex
+       flex
+        
         min-h-[43px]
-        items-center
-        gap-2
+        items-center 
+       
         bg-surface-low
-        px-5
+        p-6
       "
     >
 

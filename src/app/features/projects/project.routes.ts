@@ -15,7 +15,7 @@ export const PROJECT_ROUTES: Routes = [
       ),
       },
    {
-        path: 'addproject',
+        path: 'add',
           loadComponent: () =>
       import('./pages/add-project/add-project').then(
         (m) => m.AddProject

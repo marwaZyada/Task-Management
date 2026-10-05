@@ -4,14 +4,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Card } from '../../../../shared/components/card/card';
+import {  ProjectService } from '../../service/project-service';
+import { Router } from '@angular/router';
+import { IProjectRequest } from '../../models/iproject';
 
 
 
 @Component({
   selector: 'app-add-project',
-  imports: [ReactiveFormsModule,Card],
+  imports: [ReactiveFormsModule,Card,CommonModule],
   templateUrl: './add-project.html',
   styleUrl: './add-project.css',
 })
@@ -20,6 +23,8 @@ export class AddProject {
 
   private readonly fb = inject(FormBuilder);
   private readonly location = inject(Location);
+    private readonly projectService = inject(ProjectService);
+     private readonly router = inject(Router);
 
 
   // ================= STATE =================
@@ -32,7 +37,7 @@ export class AddProject {
   // ================= FORM =================
 
   readonly projectForm = this.fb.nonNullable.group({
-    title: [
+    name: [
       '',
       [
         Validators.required,
@@ -52,8 +57,8 @@ export class AddProject {
 
   // ================= GETTERS =================
 
-  get title() {
-    return this.projectForm.controls.title;
+  get name() {
+    return this.projectForm.controls.name;
   }
 
   get description() {
@@ -78,14 +83,12 @@ export class AddProject {
     this.errorMessage = '';
 
 
-    const payload = this.projectForm.getRawValue();
+    const payload:IProjectRequest = this.projectForm.getRawValue();
 
     console.log('Create Project:', payload);
 
 
-    // TODO: call project service
-
-    /*
+  
     this.projectService.createProject(payload).subscribe({
 
       next: () => {
@@ -103,7 +106,7 @@ export class AddProject {
       }
 
     });
-    */
+   
 
   }
 

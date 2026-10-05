@@ -37,7 +37,7 @@
       text-[23px]
       font-bold
       leading-[1.2]
-      text-primary-dark
+      text-primary-dark[]
     "
   >
     Add New Project
@@ -45,7 +45,7 @@
 
 
   <!-- ================= REUSABLE CARD ================= -->
-
+<div class="px-9">
   <app-card
     title="Initialize New Project"
     subtitle="Define the scope and foundational details of your project."
@@ -56,7 +56,7 @@
 
     <svg
       card-icon
-      class="h-[17px] w-[17px] text-primary-container"
+      class="h-[17px] w-[17px] text-primary-container "
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -74,13 +74,14 @@
     <form
       [formGroup]="projectForm"
       (ngSubmit)="createProject()"
+      
     >
 
       <!-- PROJECT TITLE -->
 
-      <div class="mb-5">
+      <div class="mb-8">
 
-        <div class="mb-1.5 flex items-center justify-between">
+        <div class="mb-2 flex items-center justify-between">
 
           <label
             for="projectTitle"
@@ -89,8 +90,10 @@
               font-bold
               uppercase
               tracking-[0.08em]
-              text-secondary-dark
+             
             "
+            [class.text-error]="name.invalid && name.touched"
+                    [class.text-secondary-dark]="!name.invalid || !name.touched"
           >
 
             Project Title
@@ -107,7 +110,7 @@
         <input
           id="projectTitle"
           type="text"
-          formControlName="title"
+          formControlName="name"
           placeholder="Enter project title"
           class="
             h-8
@@ -123,10 +126,13 @@
             focus:ring-2
             focus:ring-primary-container/20
           "
+           [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched
+                        ,'placeholder-error': name.invalid && name.touched
+                    }"
         />
 
 
-        @if (title.touched && title.hasError('required')) {
+        @if (name.touched && name.hasError('required')) {
 
           <p class="mt-1 text-[7px] text-error">
             Project title is required.
@@ -134,7 +140,7 @@
 
         }
 
-        @if (title.touched && title.hasError('minlength')) {
+        @if (name.touched && name.hasError('minlength')) {
 
           <p class="mt-1 text-[7px] text-error">
             Project title must be at least 3 characters.
@@ -147,9 +153,9 @@
 
       <!-- DESCRIPTION -->
 
-      <div>
+      <div class="mb-8">
 
-        <div class="mb-1.5 flex items-center justify-between">
+        <div class="mb-2 flex items-center justify-between">
 
           <label
             for="description"
@@ -160,6 +166,8 @@
               tracking-[0.08em]
               text-secondary-dark
             "
+             [class.text-error]="description.invalid && description.touched"
+                    [class.text-secondary-dark]="!description.invalid || !description.touched"
           >
             Description
           </label>
@@ -195,6 +203,9 @@
             focus:ring-2
             focus:ring-primary-container/20
           "
+           [ngClass]="{ 'input-error input-text-error': description.invalid && description.touched
+                        ,'placeholder-error': description.invalid && description.touched
+                    }"
         ></textarea>
 
 
@@ -213,7 +224,7 @@
 
       <!-- ================= ACTIONS ================= -->
 
-      <div class="mt-7 flex items-center justify-between">
+      <div class="w-full flex items-center justify-between flex-col-reverse md:flex-row">
 
         <!-- BACK -->
 
@@ -241,18 +252,18 @@
           [disabled]="projectForm.invalid || isLoading"
           class="
             h-7
-            min-w-[101px]
+           w-full md:max-w-[101px]
             rounded-[3px]
-            bg-primary-container
+            shadow-[0px_4px_6px_-4px_#003D9B33]
             px-4
             text-[9px]
             font-semibold
             text-white
-            shadow-[0_3px_6px_rgba(0,82,204,0.25)]
+            cursor-pointer
             transition
-            hover:bg-primary-dark
+            bg-primary-dark
             disabled:cursor-not-allowed
-            disabled:opacity-50
+            
           "
         >
 
@@ -271,7 +282,7 @@
 
       @if (errorMessage) {
 
-        <div class="mt-5 text-center">
+        <div class="mt-8 text-center">
 
           <p class="text-[8px] font-medium text-error">
             {{ errorMessage }}
@@ -288,7 +299,7 @@
 
     <svg
       card-footer-icon
-      class="h-[12px] w-[12px] shrink-0 text-secondary-dark"
+      class="h-[12px] w-[12px] shrink-0 text-secondary-dark hidden md:block"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -302,7 +313,7 @@
 
     <span card-footer>
 
-      <span class="font-bold">
+      <span class="font-bold block md:inline">
         Pro Tip:
       </span>
 
@@ -312,5 +323,6 @@
     </span>
 
   </app-card>
+  </div>
 
 </div>

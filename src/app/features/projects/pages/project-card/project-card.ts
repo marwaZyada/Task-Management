@@ -2,6 +2,7 @@ import { Component, input } from '@angular/core';
 import { IProject } from '../../models/iproject';
 
 
+
 @Component({
   selector: 'app-project-card',
   imports: [],
@@ -9,5 +10,5 @@ import { IProject } from '../../models/iproject';
   styleUrl: './project-card.css',
 })
 export class ProjectCard {
-   project = input.required<IProject>();
+   project = input<IProject>();
 }

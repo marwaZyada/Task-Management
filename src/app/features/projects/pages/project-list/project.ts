@@ -1,63 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProjectCard } from '../project-card/project-card';
 import { AddProjectCard } from '../add-project-card/add-project-card';
 import { IProject } from '../../models/iproject';
 import { RouterLink } from '@angular/router';
+import { ProjectService } from '../../service/project-service';
+import { Noitems } from '../../../../shared/components/noitems/noitems';
 
 @Component({
   selector: 'app-project',
-  imports: [ProjectCard,AddProjectCard,RouterLink],
+  imports: [ProjectCard,AddProjectCard,RouterLink,Noitems],
   templateUrl: './project.html',
   styleUrl: './project.css',
 })
-export class Project {
-   projects: IProject[] = [
-    {
-      name: 'Skyline Residence Phase II',
-      description:
-        'Structural review and aesthetic curation for the high-rise residential complex in the downtown district tes...',
-      epics: 8,
-      tasks: 24,
-      members: 6,
-      createdAt: '12 Oct 2025',
-    },
-    {
-      name: 'Skyline Residence Phase II',
-      description:
-        'Structural review and aesthetic curation for the high-rise residential complex in the downtown district tes...',
-      epics: 6,
-      tasks: 18,
-      members: 5,
-      createdAt: '12 Oct 2025',
-    },
-    {
-      name: 'Skyline Residence Phase II',
-      description:
-        'Structural review and aesthetic curation for the high-rise residential complex in the downtown district tes...',
-      epics: 10,
-      tasks: 32,
-      members: 8,
-      createdAt: '12 Oct 2025',
-    },
-    {
-      name: 'Skyline Residence Phase II',
-      description:
-        'Structural review and aesthetic curation for the high-rise residential complex in the downtown district tes...',
-      epics: 5,
-      tasks: 15,
-      members: 4,
-      createdAt: '12 Oct 2025',
-    },
-    {
-      name: 'Skyline Residence Phase II',
-      description:
-        'Structural review and aesthetic curation for the high-rise residential complex in the downtown district tes...',
-      epics: 7,
-      tasks: 20,
-      members: 6,
-      createdAt: '12 Oct 2025',
-    },
-  ];
+export class Project implements OnInit {
+  private projecttService=inject(ProjectService)
+   projects!: IProject[] 
+
+    ngOnInit(): void {
+    this.GetAllProjects()
+  }
+
+
+  // get all projects 
+  GetAllProjects()
+{  this.projecttService.getAllProducts().subscribe({
+      next: (response) => {
+     
+        this.projects = response;
+        console.log("projects",this.projects)
+      },
+      error: (error) => {
+        console.error('Failed to load products', error);
+      },
+    });
+  }
 
 
 }
