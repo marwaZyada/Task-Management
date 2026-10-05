@@ -21,9 +21,9 @@ export const MAIN_LAYOUT_ROUTES: Routes = [
 
     {
         path: 'project',
-        loadComponent: () =>
-          import('../../features/project/project').then(
-            (m) => m.Project
+        loadChildren: () =>
+          import('../../features/projects/project.routes').then(
+            (m) => m.PROJECT_ROUTES
           ),
       },
     ],

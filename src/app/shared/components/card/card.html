@@ -1,0 +1,110 @@
+<div
+  class="
+    mx-auto
+    w-full
+    max-w-[418px]
+    overflow-hidden
+    rounded-[5px]
+    bg-white
+    shadow-[0_1px_3px_rgba(0,0,0,0.03)]
+  "
+>
+
+  <!-- ================= HEADER ================= -->
+
+  @if (showHeader()) {
+
+    <div class="border-b border-black/5 px-5 py-5">
+
+      <div class="flex items-center gap-3">
+
+        <!-- Header Icon -->
+        <div
+          class="
+            flex
+            h-7
+            w-7
+            shrink-0
+            items-center
+            justify-center
+            rounded-[3px]
+            bg-surface-high
+          "
+        >
+
+          <ng-content select="[card-icon]" />
+
+        </div>
+
+
+        <!-- Header Content -->
+        <div>
+
+          <h2
+            class="
+              text-[15px]
+              font-semibold
+              leading-5
+              text-primary-dark
+            "
+          >
+            {{ title() }}
+          </h2>
+
+          <p
+            class="
+              mt-0.5
+              text-[8px]
+              leading-3
+              text-secondary-dark
+            "
+          >
+            {{ subtitle() }}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  }
+
+
+  <!-- ================= BODY ================= -->
+
+  <div class="px-5 py-5">
+
+    <ng-content />
+
+  </div>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  @if (showFooter()) {
+
+    <div
+      class="
+        flex
+        min-h-[43px]
+        items-center
+        gap-2
+        bg-surface-low
+        px-5
+      "
+    >
+
+      <ng-content select="[card-footer-icon]" />
+
+      <div class="text-[7px] leading-3 text-secondary-dark">
+
+        <ng-content select="[card-footer]" />
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

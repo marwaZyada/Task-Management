@@ -1,10 +1,13 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError, switchMap, throwError } from 'rxjs';
+import { catchError,  switchMap, throwError } from 'rxjs';
 import { Auth } from '../services/auth';
+import { AppConfig } from '../config/app-config';
+
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(Auth);
+  const config=inject(AppConfig)
   const publicUrls = ['/auth/v1/signup', '/auth/v1/token'];
 
   const isPublicUrl = publicUrls.some((url) => req.url.includes(url));
@@ -12,7 +15,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   // Add API Key to every request
   let modifiedReq = req.clone({
     setHeaders: {
-      apikey: 'sb_publishable_5n8kh9s1vVaJ7HqiWWSMPg_tLyAlfi2',
+      apikey: config.apiKey,
     },
   });
 
@@ -60,7 +63,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         switchMap((response) => {
           const newRequest = req.clone({
             setHeaders: {
-              apikey: 'sb_publishable_5n8kh9s1vVaJ7HqiWWSMPg_tLyAlfi2',
+              apikey: config.apiKey,
               Authorization: `Bearer ${response.access_token}`,
             },
           });

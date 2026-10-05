@@ -1,0 +1,316 @@
+<div class="bg-background px-5 py-3 md:px-7">
+
+  <!-- ================= BREADCRUMB ================= -->
+
+  <div
+    class="
+      mb-1
+      flex
+      items-center
+      gap-2
+      text-[8px]
+      font-semibold
+      tracking-[0.08em]
+    "
+  >
+
+    <span class="text-secondary-dark">
+      PROJECTS
+    </span>
+
+    <span class="text-secondary-dark/50">
+      ›
+    </span>
+
+    <span class="text-primary-dark">
+      ADD NEW PROJECT
+    </span>
+
+  </div>
+
+
+  <!-- ================= PAGE TITLE ================= -->
+
+  <h1
+    class="
+      mb-7
+      text-[23px]
+      font-bold
+      leading-[1.2]
+      text-primary-dark
+    "
+  >
+    Add New Project
+  </h1>
+
+
+  <!-- ================= REUSABLE CARD ================= -->
+
+  <app-card
+    title="Initialize New Project"
+    subtitle="Define the scope and foundational details of your project."
+    [showFooter]="true"
+  >
+
+    <!-- ================= CARD ICON ================= -->
+
+    <svg
+      card-icon
+      class="h-[17px] w-[17px] text-primary-container"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+    >
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M12 8v8"></path>
+      <path d="M8 12h8"></path>
+      <path d="M16.5 5.5l2 2"></path>
+    </svg>
+
+
+    <!-- ================= FORM ================= -->
+
+    <form
+      [formGroup]="projectForm"
+      (ngSubmit)="createProject()"
+    >
+
+      <!-- PROJECT TITLE -->
+
+      <div class="mb-5">
+
+        <div class="mb-1.5 flex items-center justify-between">
+
+          <label
+            for="projectTitle"
+            class="
+              text-[7px]
+              font-bold
+              uppercase
+              tracking-[0.08em]
+              text-secondary-dark
+            "
+          >
+
+            Project Title
+
+            <span class="text-error">
+              *
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <input
+          id="projectTitle"
+          type="text"
+          formControlName="title"
+          placeholder="Enter project title"
+          class="
+            h-8
+            w-full
+            rounded-[3px]
+            border-0
+            bg-surface-high
+            px-3
+            text-[10px]
+            text-text
+            outline-none
+            placeholder:text-secondary-dark/50
+            focus:ring-2
+            focus:ring-primary-container/20
+          "
+        />
+
+
+        @if (title.touched && title.hasError('required')) {
+
+          <p class="mt-1 text-[7px] text-error">
+            Project title is required.
+          </p>
+
+        }
+
+        @if (title.touched && title.hasError('minlength')) {
+
+          <p class="mt-1 text-[7px] text-error">
+            Project title must be at least 3 characters.
+          </p>
+
+        }
+
+      </div>
+
+
+      <!-- DESCRIPTION -->
+
+      <div>
+
+        <div class="mb-1.5 flex items-center justify-between">
+
+          <label
+            for="description"
+            class="
+              text-[7px]
+              font-bold
+              uppercase
+              tracking-[0.08em]
+              text-secondary-dark
+            "
+          >
+            Description
+          </label>
+
+
+          <span class="text-[7px] text-secondary-dark/60">
+            Optional
+          </span>
+
+        </div>
+
+
+        <textarea
+          id="description"
+          formControlName="description"
+          maxlength="500"
+          rows="4"
+          placeholder="Provide a high-level overview of the project's architectural objectives and key milestones..."
+          class="
+            min-h-[92px]
+            w-full
+            resize-none
+            rounded-[3px]
+            border-0
+            bg-surface-high
+            px-3
+            py-3
+            text-[10px]
+            leading-4
+            text-text
+            outline-none
+            placeholder:text-secondary-dark/50
+            focus:ring-2
+            focus:ring-primary-container/20
+          "
+        ></textarea>
+
+
+        <!-- Character Counter -->
+
+        <div class="mt-1 flex justify-end">
+
+          <span class="text-[7px] text-secondary-dark">
+            {{ description.value.length }} / 500 characters
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= ACTIONS ================= -->
+
+      <div class="mt-7 flex items-center justify-between">
+
+        <!-- BACK -->
+
+        <button
+          type="button"
+          (click)="goBack()"
+          class="
+            px-4
+            py-2
+            text-[9px]
+            font-medium
+            text-text
+            transition
+            hover:text-primary-dark
+          "
+        >
+          Back
+        </button>
+
+
+        <!-- CREATE -->
+
+        <button
+          type="submit"
+          [disabled]="projectForm.invalid || isLoading"
+          class="
+            h-7
+            min-w-[101px]
+            rounded-[3px]
+            bg-primary-container
+            px-4
+            text-[9px]
+            font-semibold
+            text-white
+            shadow-[0_3px_6px_rgba(0,82,204,0.25)]
+            transition
+            hover:bg-primary-dark
+            disabled:cursor-not-allowed
+            disabled:opacity-50
+          "
+        >
+
+          @if (isLoading) {
+            Creating...
+          } @else {
+            Create Project
+          }
+
+        </button>
+
+      </div>
+
+
+      <!-- ================= ERROR ================= -->
+
+      @if (errorMessage) {
+
+        <div class="mt-5 text-center">
+
+          <p class="text-[8px] font-medium text-error">
+            {{ errorMessage }}
+          </p>
+
+        </div>
+
+      }
+
+    </form>
+
+
+    <!-- ================= CARD FOOTER ================= -->
+
+    <svg
+      card-footer-icon
+      class="h-[12px] w-[12px] shrink-0 text-secondary-dark"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+    >
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M12 10v6"></path>
+      <path d="M12 7h.01"></path>
+    </svg>
+
+
+    <span card-footer>
+
+      <span class="font-bold">
+        Pro Tip:
+      </span>
+
+      You can invite project members and assign epics immediately
+      after the initial creation process.
+
+    </span>
+
+  </app-card>
+
+</div>

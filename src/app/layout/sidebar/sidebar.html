@@ -4,7 +4,7 @@
     [class.flex]="menushow()">
     <app-taskly [collapse]="isCollapsed()" />
 
-    <img src="assets/close.svg" width="14" height="14" alt="menu" class="cursor-pointer md:hidden"
+    <img src="assets/images/close.svg" width="14" height="14" alt="menu" class="cursor-pointer md:hidden"
       (click)="onClose()" />
 
 
@@ -29,7 +29,7 @@
          hover:shadow-[0px_1px_2px_0px_#0000000D]
          transition-all duration-200 ">
 
-          <img [src]="'assets/project.svg'" alt="ii" />
+          <img [src]="'assets/images/project.svg'" alt="ii" />
 
 
 
@@ -44,7 +44,7 @@
          hover:shadow-[0px_1px_2px_0px_#0000000D]
          transition-all duration-200">
 
-          <img [src]="'assets/project.svg'" alt="ii" />
+          <img [src]="'assets/images/project.svg'" alt="ii" />
 
           @if (!isCollapsed() && menushow() ) {
           <span class="font-medium text-[14px] leading-[20px] ">Projects</span>
@@ -62,7 +62,7 @@
          hover:bg-surface-high 
          hover:shadow-[0px_1px_2px_0px_#0000000D]
          transition-all duration-200">
-          <img [src]="'assets/statistics.svg'" alt="ii" />
+          <img [src]="'assets/images/statistics.svg'" alt="ii" />
           @if(!isCollapsed() && menushow() )
           {
           <span class="font-medium text-[14px] leading-[20px] ">statistics</span>
@@ -274,7 +274,7 @@
     [class.hidden]="!menushow()" [class.md:block]="!menushow()">
     <div class="px-3 py-[10px] gap-3 mb-1 flex" [class.hidden]="menushow()" [class.md:flex]="menushow()">
       <button type="button" (click)="toggleSidebar()" class="cursor-pointer ">
-        <img src="../../../assets/collapse.svg" width="11.7" height="20" alt="" />
+        <img src="../../../assets/images/collapse.svg" width="11.7" height="20" alt="" />
       </button>
       @if (!isCollapsed()) {
       <p>Collapse</p>
@@ -282,7 +282,7 @@
     </div>
     <div class="px-3 py-[10px] flex gap-3 text-error">
       <button type="button" (click)="logout()" class="cursor-pointer " [disabled]="isLoggingOut()">
-        <img src="../../../assets/logout.svg" width="18" height="18" alt="" />
+        <img src="../../../assets/images/logout.svg" width="18" height="18" alt="" />
       </button>
       @if (!isCollapsed()&&!isLoggingOut()) {
 

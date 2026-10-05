@@ -83,7 +83,7 @@
                             }"/>
                         <button type="button" (click)="togglePasswordVisibility()"
                             class="absolute right-0 top-[8px] h-full w-12 flex items-center justify-center">
-                            <img [src]="'assets/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
+                            <img [src]="'assets/images/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
        
           
      
@@ -116,22 +116,22 @@
             <div class="pss-restriction rounded-md p-4   text-text mb-6">
 
                 <div class="flex items-center gap-2">
-                     <img [src]="hasMinLength ? 'assets/checkedcircle.svg':'assets/circle.svg' " alt=""/>
+                     <img [src]="hasMinLength ? 'assets/images/checkedcircle.svg':'assets/circle.svg' " alt=""/>
                     <span>At least 8 characters</span>
                 </div>
                 <div class="flex items-center gap-2">
-                     <img [src]="hasUppercaseLowercaseAndDigit ? 'assets/checkedcircle.svg':'assets/circle.svg'" alt=""/>
+                     <img [src]="hasUppercaseLowercaseAndDigit ? 'assets/images/checkedcircle.svg':'assets/circle.svg'" alt=""/>
                     <span>One uppercase, lowercase, and digit</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <img [src]="hasSpecialCharacter ? 'assets/checkedcircle.svg':'assets/circle.svg'" alt=""/>
+                    <img [src]="hasSpecialCharacter ? 'assets/images/checkedcircle.svg':'assets/circle.svg'" alt=""/>
                     <span>One special character</span>
                 </div>
             </div>
 
 
             <button type="submit"
-                class="w-full text-sm  py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all text-center block "
+                class="cursor-pointer w-full text-sm  py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all text-center block "
                 [disabled]="signupForm.invalid">
                 Create Account
             </button>

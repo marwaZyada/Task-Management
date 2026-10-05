@@ -61,8 +61,8 @@
           />
           <!-- Interactive Visibility Toggle -->
            <button type="button" (click)="togglePasswordVisibility()"
-                            class="absolute right-0 top-[8px] h-full w-12 flex items-center justify-center">
-                            <img [src]="'assets/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
+                            class="cursor-pointer absolute right-0 top-[8px] h-full w-12 flex items-center justify-center">
+                            <img [src]="'assets/images/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
        
           
      
@@ -91,7 +91,7 @@
       <!-- Action Execution Control -->
       <button 
         type="submit" 
-        class="w-full bg-[#0052CC] hover:bg-[#0043A4] text-white text-[14px] font-semibold py-3  rounded-[6px] shadow-sm active:scale-[0.99] transition-all "
+        class="cursor-pointer w-full bg-[#0052CC] hover:bg-[#0043A4] text-white text-[14px] font-semibold py-3  rounded-[6px] shadow-sm active:scale-[0.99] transition-all "
       [disabled]="loginForm.invalid"
       >
         Log In

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Auth } from '../../../../core/services/auth';
-import { SignupRequest } from '../../models/auth-service';
+import { SignupRequest } from '../../models/iauth';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 @Component({

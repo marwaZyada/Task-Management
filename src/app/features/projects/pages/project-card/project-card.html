@@ -1,0 +1,59 @@
+
+<div
+  class="flex h-[120px] flex-col rounded-[4px] bg-white p-3 shadow-[0_1px_2px_0_#0000000D]"
+>
+  <!-- Title -->
+  <h3 class="mb-1 truncate text-[11px] font-semibold text-text-primary">
+    {{ project().name }}
+  </h3>
+
+  <!-- Description -->
+  <p
+    class="line-clamp-2 text-[8px] leading-[12px] text-secondary-dark"
+  >
+    {{ project().description }}
+  </p>
+
+  <!-- Stats -->
+  <div class="mt-auto flex items-center gap-4 text-[7px] text-primary-dark">
+
+    <div class="flex items-center gap-1">
+      <img
+        src="assets/images/epic.svg"
+        class="h-3 w-3"
+        alt=""
+      />
+      <span>{{ project().epics }} Epics</span>
+    </div>
+
+    <div class="flex items-center gap-1">
+      <img
+        src="assets/images/tasks.svg"
+        class="h-3 w-3"
+        alt=""
+      />
+      <span>{{ project().tasks }} Tasks</span>
+    </div>
+
+    <div class="flex items-center gap-1">
+      <img
+        src="assets/images/members.svg"
+        class="h-3 w-3"
+        alt=""
+      />
+      <span>{{ project().members }} Members</span>
+    </div>
+
+  </div>
+
+  <!-- Created date -->
+  <div class="mt-3 flex items-center justify-between">
+    <span class="text-[6px] font-medium text-secondary-dark">
+      CREATED AT
+    </span>
+
+    <span class="text-[7px] text-secondary-dark">
+      {{ project().createdAt }}
+    </span>
+  </div>
+</div>

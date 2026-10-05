@@ -1,19 +1,21 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { LoginRequest, LoginResponse, SignupRequest } from '../../features/auth/models/auth-service'
+import { LoginRequest, LoginResponse, SignupRequest } from '../../features/auth/models/iauth'
 import { SKIP_LOADING } from '../tokens/loading-context';
+import { AppConfig } from '../config/app-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
    private readonly http = inject(HttpClient);
-  private readonly apiUrl = "https://ontkicxdgdybdmhojmtb.supabase.co/auth/v1/";
+   private config=inject(AppConfig)
+  // private readonly apiUrl = `${this.config.apiUrl}/auth/v1/`;
 
   signup(data: SignupRequest): Observable<any> {
     return this.http.post(
-      `${this.apiUrl}signup`,
+      `${this.config.apiUrl}/auth/v1/signup`,
       data
     );
   }
@@ -22,7 +24,7 @@ export class Auth {
 
     return this.http
       .post<LoginResponse>(
-        `${this.apiUrl}token?grant_type=password`,
+        `${this.config.apiUrl}/auth/v1/token?grant_type=password`,
         request
       )
       .pipe(
@@ -94,7 +96,7 @@ saveSession(
 console.log("refresh session")
     return this.http
       .post<any>(
-        `${this.apiUrl}/auth/v1/token?grant_type=refresh_token`,
+        `${this.config.apiUrl}/auth/v1/token?grant_type=refresh_token`,
         {
           refresh_token: refreshToken,
            context: new HttpContext().set(SKIP_LOADING, true)
@@ -197,13 +199,13 @@ console.log("remember active");
   // get user data 
    getUser(): Observable<any> {
     return this.http.get<any>(
-      `${this.apiUrl}user`
+      `${this.config.apiUrl}/auth/v1/user`
     );
   }
 
 
   // logout
 signout(): Observable<void> {
-  return this.http.post<void>(`${this.apiUrl}logout`, {});
+  return this.http.post<void>(`${this.config.apiUrl}/auth/v1/logout`, {});
 }
 }

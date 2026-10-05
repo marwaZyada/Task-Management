@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../../../core/services/auth';
 import { Router, RouterLink } from '@angular/router';
-import { LoginRequest } from '../../models/auth-service';
+import { LoginRequest } from '../../models/iauth';
 import { CommonModule } from '@angular/common';
 
 @Component({
