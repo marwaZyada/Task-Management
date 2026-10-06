@@ -39,7 +39,7 @@ export class Project implements OnInit {
 editProject(project: IProject) {
   this.selectedProject.set(project);
  console.log("edit project",this.selectedProject())
-this.router.navigate(['/project/add']);
+this.router.navigate(['/project', this.selectedProject()?.id, 'edit']);
 }
 
 }

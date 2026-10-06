@@ -1,12 +1,12 @@
 import { Component, input, output } from '@angular/core';
 import { IProject } from '../../models/iproject';
-import { RouterLink } from '@angular/router';
+
 
 
 
 @Component({
   selector: 'app-project-card',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './project-card.html',
   styleUrl: './project-card.css',
 })
