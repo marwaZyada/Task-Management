@@ -1,8 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal,  WritableSignal } from '@angular/core';
 import { ProjectCard } from '../project-card/project-card';
 import { AddProjectCard } from '../add-project-card/add-project-card';
 import { IProject } from '../../models/iproject';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProjectService } from '../../service/project-service';
 import { Noitems } from '../../../../shared/components/noitems/noitems';
 
@@ -14,7 +14,9 @@ import { Noitems } from '../../../../shared/components/noitems/noitems';
 })
 export class Project implements OnInit {
   private projecttService=inject(ProjectService)
-   projects!: IProject[] 
+  private router=inject(Router)
+   projects: WritableSignal<IProject[]> = signal<IProject[]>([]);
+   selectedProject = signal<IProject | null>(null);
 
     ngOnInit(): void {
     this.GetAllProjects()
@@ -26,7 +28,7 @@ export class Project implements OnInit {
 {  this.projecttService.getAllProducts().subscribe({
       next: (response) => {
      
-        this.projects = response;
+        this.projects.set( response);
         console.log("projects",this.projects)
       },
       error: (error) => {
@@ -34,6 +36,10 @@ export class Project implements OnInit {
       },
     });
   }
-
+editProject(project: IProject) {
+  this.selectedProject.set(project);
+ console.log("edit project",this.selectedProject())
+this.router.navigate(['/project/add']);
+}
 
 }
