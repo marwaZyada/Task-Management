@@ -19,7 +19,7 @@ export class AddProject implements OnInit {
   private readonly projectService = inject(ProjectService);
   private readonly router = inject(Router);
   private readonly activeroute = inject(ActivatedRoute);
-  private toastr=inject(ToastrService);
+  private toastr = inject(ToastrService);
 
   // ================= STATE =================
 
@@ -90,8 +90,12 @@ export class AddProject implements OnInit {
 
       error: (error) => {
         this.isLoading = false;
+        const action = this.projectId ? 'update' : 'create';
 
-        this.errorMessage = error?.error?.message ?? 'Failed To Add New Project, Try Again Later';
+        const apiMessage = error?.error?.message ?? 'Please try again later.';
+
+        this.errorMessage = `Failed to ${action} project: ${apiMessage}`;
+        
       },
     });
   }
