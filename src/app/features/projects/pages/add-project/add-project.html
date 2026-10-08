@@ -2,8 +2,7 @@
 
   <!-- ================= BREADCRUMB ================= -->
 
-  <div
-    class="
+  <div class="
       mb-1
       flex
       items-center
@@ -11,8 +10,7 @@
       text-[8px]
       font-semibold
       tracking-[0.08em]
-    "
-  >
+    ">
 
     <span class="text-secondary-dark">
       PROJECTS
@@ -21,9 +19,16 @@
     <span class="text-secondary-dark/50">
       ›
     </span>
-
-    <span class="text-primary-dark">
-      ADD NEW PROJECT
+@if (projectId) {
+    <span class="text-secondary-dark uppercase">
+       Project Title
+    </span>
+    <span class="text-secondary-dark/50">
+      ›
+    </span>
+  }
+    <span class="text-primary-dark uppercase">
+      {{projectId?"Edit":"Add New Project"}}
     </span>
 
   </div>
@@ -31,88 +36,64 @@
 
   <!-- ================= PAGE TITLE ================= -->
 
-  <h1
-    class="
+  <h1 class="
       mb-7
       text-[23px]
       font-bold
       leading-[1.2]
       text-primary-dark[]
-    "
-  >
-    Add New Project
+    ">
+    {{projectId?"Edit Project":"Add New Project"}}
   </h1>
 
 
   <!-- ================= REUSABLE CARD ================= -->
-<div class="px-9">
-  <app-card
-    title="Initialize New Project"
-    subtitle="Define the scope and foundational details of your project."
-    [showFooter]="true"
-  >
+  <div class="px-9">
+    <app-card title="{{projectId?'Edit Project':'Initialize New Project'}}"  subtitle="Define the scope and foundational details of your project."
+      [showFooter]="true">
 
-    <!-- ================= CARD ICON ================= -->
+      <!-- ================= CARD ICON ================= -->
 
-    <svg
-      card-icon
-      class="h-[17px] w-[17px] text-primary-container "
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.8"
-    >
-      <circle cx="12" cy="12" r="9"></circle>
-      <path d="M12 8v8"></path>
-      <path d="M8 12h8"></path>
-      <path d="M16.5 5.5l2 2"></path>
-    </svg>
+      <svg card-icon class="h-[17px] w-[17px] text-primary-container " viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 8v8"></path>
+        <path d="M8 12h8"></path>
+        <path d="M16.5 5.5l2 2"></path>
+      </svg>
 
 
-    <!-- ================= FORM ================= -->
+      <!-- ================= FORM ================= -->
 
-    <form
-      [formGroup]="projectForm"
-      (ngSubmit)="createProject()"
-      
-    >
+      <form [formGroup]="projectForm" (ngSubmit)="save()">
 
-      <!-- PROJECT TITLE -->
+        <!-- PROJECT TITLE -->
 
-      <div class="mb-8">
+        <div class="mb-8">
 
-        <div class="mb-2 flex items-center justify-between">
+          <div class="mb-2 flex items-center justify-between">
 
-          <label
-            for="projectTitle"
-            class="
+            <label for="projectTitle" class="
               text-[7px]
               font-bold
               uppercase
               tracking-[0.08em]
              
-            "
-            [class.text-error]="name.invalid && name.touched"
-                    [class.text-secondary-dark]="!name.invalid || !name.touched"
-          >
+            " [class.text-error]="name.invalid && name.touched"
+              [class.text-secondary-dark]="!name.invalid || !name.touched">
 
-            Project Title
+              Project Title
 
-            <span class="text-error">
-              *
-            </span>
+              <span class="text-error">
+                *
+              </span>
 
-          </label>
+            </label>
 
-        </div>
+          </div>
 
 
-        <input
-          id="projectTitle"
-          type="text"
-          formControlName="name"
-          placeholder="Enter project title"
-          class="
+          <input id="projectTitle" type="text" formControlName="name" placeholder="Enter project title" class="
             h-8
             w-full
             rounded-[3px]
@@ -125,68 +106,58 @@
             placeholder:text-secondary-dark/50
             focus:ring-2
             focus:ring-primary-container/20
-          "
-           [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched
+          " [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched
                         ,'placeholder-error': name.invalid && name.touched
-                    }"
-        />
+                    }" />
 
 
-        @if (name.touched && name.hasError('required')) {
+          @if (name.touched && name.hasError('required')) {
 
           <p class="mt-1 text-[7px] text-error">
             Project title is required.
           </p>
 
-        }
+          }
 
-        @if (name.touched && name.hasError('minlength')) {
+          @if (name.touched && name.hasError('minlength')) {
 
           <p class="mt-1 text-[7px] text-error">
             Project title must be at least 3 characters.
           </p>
 
-        }
+          }
 
-      </div>
+        </div>
 
 
-      <!-- DESCRIPTION -->
+        <!-- DESCRIPTION -->
 
-      <div class="mb-8">
+        <div class="mb-8">
 
-        <div class="mb-2 flex items-center justify-between">
+          <div class="mb-2 flex items-center justify-between">
 
-          <label
-            for="description"
-            class="
+            <label for="description" class="
               text-[7px]
               font-bold
               uppercase
               tracking-[0.08em]
               text-secondary-dark
-            "
-             [class.text-error]="description.invalid && description.touched"
-                    [class.text-secondary-dark]="!description.invalid || !description.touched"
-          >
-            Description
-          </label>
+            " [class.text-error]="description.invalid && description.touched"
+              [class.text-secondary-dark]="!description.invalid || !description.touched">
+              Description
+            </label>
 
 
-          <span class="text-[7px] text-secondary-dark/60">
-            Optional
-          </span>
+            <span class="text-[7px] text-secondary-dark/60">
+              Optional
+            </span>
 
-        </div>
+          </div>
 
 
-        <textarea
-          id="description"
-          formControlName="description"
-          maxlength="500"
-          rows="4"
-          placeholder="Provide a high-level overview of the project's architectural objectives and key milestones..."
-          class="
+          <textarea id="description" formControlName="description" maxlength="500" rows="4"
+            placeholder="Provide a high-level overview of the project's architectural objectives and key milestones..."
+            class="
             min-h-[92px]
             w-full
             resize-none
@@ -202,36 +173,31 @@
             placeholder:text-secondary-dark/50
             focus:ring-2
             focus:ring-primary-container/20
-          "
-           [ngClass]="{ 'input-error input-text-error': description.invalid && description.touched
+          " [ngClass]="{ 'input-error input-text-error': description.invalid && description.touched
                         ,'placeholder-error': description.invalid && description.touched
-                    }"
-        ></textarea>
+                    }"></textarea>
 
 
-        <!-- Character Counter -->
+          <!-- Character Counter -->
 
-        <div class="mt-1 flex justify-end">
+          <div class="mt-1 flex justify-end">
 
-          <span class="text-[7px] text-secondary-dark">
-            {{ description.value.length }} / 500 characters
-          </span>
+            <span class="text-[7px] text-secondary-dark">
+              {{ description.value.length }} / 500 characters
+            </span>
+
+          </div>
 
         </div>
 
-      </div>
 
+        <!-- ================= ACTIONS ================= -->
 
-      <!-- ================= ACTIONS ================= -->
+        <div class="w-full flex items-center justify-between flex-col-reverse md:flex-row">
 
-      <div class="w-full flex items-center justify-between flex-col-reverse md:flex-row">
+          <!-- BACK -->
 
-        <!-- BACK -->
-
-        <button
-          type="button"
-          (click)="goBack()"
-          class="
+          <button type="button" (click)="goBack()" class="
             px-4
             py-2
             text-[9px]
@@ -239,18 +205,14 @@
             text-text
             transition
             hover:text-primary-dark
-          "
-        >
-          Back
-        </button>
+          ">
+            Back
+          </button>
 
 
-        <!-- CREATE -->
+          <!-- CREATE -->
 
-        <button
-          type="submit"
-          [disabled]="projectForm.invalid || isLoading"
-          class="
+          <button type="submit" [disabled]="projectForm.invalid || isLoading" class="
             h-7
            w-full md:max-w-[101px]
             rounded-[3px]
@@ -264,23 +226,22 @@
             bg-primary-dark
             disabled:cursor-not-allowed
             
-          "
-        >
+          ">
 
-          @if (isLoading) {
-            Creating...
-          } @else {
-            Create Project
-          }
+            @if (isLoading) {
+            {{projectId?'Editing...':'Creating...'}}
+            } @else {
+           {{projectId?'Save Changes':'Create Project'}} 
+            }
 
-        </button>
+          </button>
 
-      </div>
+        </div>
 
 
-      <!-- ================= ERROR ================= -->
+        <!-- ================= ERROR ================= -->
 
-      @if (errorMessage) {
+        @if (errorMessage) {
 
         <div class="mt-8 text-center">
 
@@ -290,39 +251,33 @@
 
         </div>
 
-      }
+        }
 
-    </form>
-
-
-    <!-- ================= CARD FOOTER ================= -->
-
-    <svg
-      card-footer-icon
-      class="h-[12px] w-[12px] shrink-0 text-secondary-dark hidden md:block"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.7"
-    >
-      <circle cx="12" cy="12" r="9"></circle>
-      <path d="M12 10v6"></path>
-      <path d="M12 7h.01"></path>
-    </svg>
+      </form>
 
 
-    <span card-footer>
+      <!-- ================= CARD FOOTER ================= -->
 
-      <span class="font-bold block md:inline">
-        Pro Tip:
+      <svg card-footer-icon class="h-[12px] w-[12px] shrink-0 text-secondary-dark hidden md:block" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="1.7">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 10v6"></path>
+        <path d="M12 7h.01"></path>
+      </svg>
+
+
+      <span card-footer>
+
+        <span class="font-bold block md:inline">
+          Pro Tip:
+        </span>
+
+        You can invite project members and assign epics immediately
+        after the initial creation process.
+
       </span>
 
-      You can invite project members and assign epics immediately
-      after the initial creation process.
-
-    </span>
-
-  </app-card>
+    </app-card>
   </div>
 
 </div>

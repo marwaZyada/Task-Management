@@ -23,6 +23,16 @@ export class ProjectService {
   }   
   
   
+    //  Edid project 
+   editProject(
+   id:string, project: IProjectRequest
+  ): Observable<IProject> {
+    return this.http.patch<IProject>(
+      `${this.config.apiUrl}/rest/v1/projects?id=eq.${id}`,
+      project
+    ); 
+  }   
+
   // get all projects 
    getAllProducts(): Observable<IProject[]> {
     return this.http.get<IProject[]>(`${this.config.apiUrl}/rest/v1/rpc/get_projects`);
