@@ -85,7 +85,12 @@ export class AddProject implements OnInit {
         } else {
           this.toastr.success('Project created successfully', 'Success');
         }
-        this.router.navigate(['/project']);
+        // clear form after successfuly of creation
+        if (!this.projectId) {
+          this.projectForm.reset();
+        } else {
+          this.router.navigate(['/project']);
+        }
       },
 
       error: (error) => {
@@ -95,7 +100,6 @@ export class AddProject implements OnInit {
         const apiMessage = error?.error?.message ?? 'Please try again later.';
 
         this.errorMessage = `Failed to ${action} project: ${apiMessage}`;
-        
       },
     });
   }

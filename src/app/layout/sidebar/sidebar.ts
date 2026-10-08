@@ -75,15 +75,15 @@ ngOnInit(): void {
     this.isLoggingOut.set(true);
     this.authService.signout().subscribe({
       next: () => {
-        this.authService.clearStorage();
         this.router.navigate(['/auth/login']);
+        this.authService.clearStorage();
       },
 
       error: (error) => {
         if (error.error.code == 403) {
             this.isLoggingOut.set(true);
-          this.authService.clearStorage();
-          this.router.navigate(['/auth/login']);
+            this.router.navigate(['/auth/login']);
+            this.authService.clearStorage();
         }
         this.isLoggingOut.set(false);
         console.error('Logout failed:', error);
