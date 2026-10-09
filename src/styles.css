@@ -37,3 +37,6 @@
 .gradient-primary {
   background: var(--gradient-primary);
 }
+.display-none{
+  display: none;
+}
