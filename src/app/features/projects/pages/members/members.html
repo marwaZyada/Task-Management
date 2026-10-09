@@ -1,98 +1,83 @@
 <div class=" px-5 py-3 md:px-7">
   <!-- ================= BREADCRUMB ================= -->
-   <div class="flex justify-between items-center">
-<div>
-  <div class="mb-1 flex items-center gap-2 text-[8px] font-semibold tracking-[0.08em]">
-    <span class="text-secondary-dark"> PROJECTS </span>
+  <div class="flex justify-center items-center md:justify-between">
+    <div>
+      <div class="mb-1  items-center gap-2 text-[8px] font-semibold tracking-[0.08em] hidden md:flex">
+        <span class="text-secondary-dark"> PROJECTS </span>
 
-    <span class="text-secondary-dark/50"> › </span>
-    
-    <span class="text-secondary-dark uppercase"> Project Name </span>
-    <span class="text-secondary-dark/50"> › </span>
-    
-    <span class="text-primary-dark uppercase"> Members </span>
-  </div>
+        <span class="text-secondary-dark/50"> › </span>
 
-  <!-- ================= PAGE TITLE ================= -->
+        <span class="text-secondary-dark uppercase"> Project Name </span>
+        <span class="text-secondary-dark/50"> › </span>
 
-  <h1 class="mb-7 text-[23px] font-bold leading-[1.2] text-primary-dark[]">
-    Project Members
-  </h1>
-</div>
-  <button
-      type="button"
-      class="flex items-center justify-center gap-1 cursor-pointer add h-6 bg-primary-dark px-4 text-[8px] font-medium text-white transition hover:bg-primary-container"
-      
-    >
-     <img
-              [src]="'assets/images/add_member.svg' "
-              alt="Toggle password visibility"
-              width="18.3"
-              height="13.3"
-            />
-     <span class="hidden sm:inline">Invite Member</span>
- 
-    
+        <span class="text-primary-dark uppercase"> Members </span>
+      </div>
+
+      <!-- ================= PAGE TITLE ================= -->
+
+      <h1 class="mb-7 text-[23px] font-bold leading-[1.2] text-secondary-dark text-center md:text-left md:text-2xl">
+        Project Members
+      </h1>
+    </div>
+    <button type="button"
+      class="flex items-center justify-center gap-1 cursor-pointer add h-6 bg-primary-dark px-4 text-[8px] 
+      font-medium text-white transition hover:bg-primary-container">
+      <img [src]="'assets/images/add_member.svg' " alt="Toggle password visibility" width="18.3" height="13.3" />
+      <span class="hidden sm:inline">Invite Member</span>
+
+
     </button>
-</div>
+  </div>
   <!-- ================= REUSABLE CARD ================= -->
   <div class="px-9 ">
-    
 
- <div class="overflow-hidden rounded-md border border-[#E6EBFF] bg-white shadow-[0_1px_3px_0_#00000008]"> 
 
-  <!-- Table header -->
-  <div
-    class="grid grid-cols-[minmax(0,1fr)_80px] items-center bg-[#F5F7FF] px-5 py-3 sm:grid-cols-[minmax(0,1fr)_80px] md:grid-cols-[minmax(0,1fr)_80px]"
-  >
-    <span class="text-[10px] font-semibold tracking-wide text-[#434654]">
-      MEMBER
-    </span>
+    <div class="overflow-hidden md:rounded-md md:border md:border-[#E6EBFF] md:bg-white  shadow-[0_1px_3px_0_#00000008]">
 
-    <span class="text-[10px] font-semibold tracking-wide text-[#434654]">
-      ROLE
-    </span>
-  </div>
+      <!-- Table header -->
+      <div
+        class=" grid-cols-[minmax(0,1fr)_80px] items-center bg-[#F5F7FF] px-5 py-3 sm:grid-cols-[minmax(0,1fr)_80px] 
+        md:grid-cols-[minmax(0,1fr)_80px] hidden md:grid">
+        <span class="text-[10px] font-semibold tracking-wide text-[#434654]">
+          MEMBER
+        </span>
 
-  <!-- Members -->
-  @for (member of members(); track member.id) {
-    <div
-      class="grid grid-cols-[minmax(0,1fr)_80px] items-center gap-2 border-t border-[#E8EDFF] px-3 py-3 sm:px-5"
-    >
-      <!-- Member information -->
-      <div class="flex min-w-0 items-center gap-3">
-        <div
-          class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[9px] bg-[#DCE5FF] text-[11px] font-semibold text-[#003D9B]"
-        >
-          {{ member.initials }}
-        </div>
-
-        <div class="min-w-0">
-          <p class="truncate text-[11px] font-semibold text-[#15294B]">
-            {{ member.name }}
-          </p>
-
-          <p class="truncate text-[9px] text-[#555D6D]">
-            {{ member.email }}
-          </p>
-        </div>
-      </div>
-
-      <!-- Role badge -->
-      <div>
-        <span
-          class="inline-flex rounded-full px-2 py-1 text-[8px] font-bold leading-none"
-          [class.bg-[#0052CC]]="member.role === 'OWNER'"
-          [class.text-white]="member.role === 'OWNER'"
-          [class.bg-[#CEDCFF]]="member.role === 'ADMIN'"
-          [class.text-[#35435F]]="member.role !== 'OWNER'"
-          [class.bg-[#DCE5FF]]="member.role === 'MEMBER'"
-          [class.bg-[#E9EDFF]]="member.role === 'VIEWER'"
-        >
-          {{ member.role }}
+        <span class="text-[10px] font-semibold tracking-wide text-[#434654]">
+          ROLE
         </span>
       </div>
+
+      <!-- Members -->
+      @for (member of members(); track member.id) {
+      <div class="grid grid-cols-[minmax(0,1fr)_80px] items-center gap-2 md:border-t md:border-[#E8EDFF] px-3 py-3 sm:px-5 bg-white mb-3 md:mb-0 rounded-md md:rounded-none">
+        <!-- Member information -->
+        <div class="flex min-w-0 items-center gap-3">
+          <div
+            class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[9px] bg-[#DCE5FF] text-[11px] font-semibold text-[#003D9B]">
+            {{ member.initials }}
+          </div>
+
+          <div class="min-w-0">
+            <p class="truncate text-[11px] font-semibold text-[#15294B]">
+              {{ member.name }}
+            </p>
+
+            <p class="truncate text-[9px] text-[#555D6D]">
+              {{ member.email }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Role badge -->
+        <div>
+          <span class="inline-flex rounded-full px-2 py-1 text-[8px] font-bold leading-none"
+            [class.bg-[#0052CC]]="member.role === 'OWNER'" [class.text-white]="member.role === 'OWNER'"
+            [class.bg-[#CEDCFF]]="member.role === 'ADMIN'" [class.text-[#35435F]]="member.role !== 'OWNER'"
+            [class.bg-[#DCE5FF]]="member.role === 'MEMBER'" [class.bg-[#E9EDFF]]="member.role === 'VIEWER'">
+            {{ member.role }}
+          </span>
+        </div>
+      </div>
+      }
     </div>
-  }
- </div>
-</div>
+  </div>
