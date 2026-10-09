@@ -1,4 +1,4 @@
-<div class="flex h-[120px] flex-col rounded-[4px] bg-white p-3 shadow-[0_1px_2px_0_#0000000D] cursor-pointer" 
+<div class="flex h-30 flex-col rounded-sm bg-white p-3 shadow-[0_1px_2px_0_#0000000D] cursor-pointer" 
 [routerLink]="['/project', project()?.id, 'epics']">
   <!-- Title -->
   <div class="flex justify-between items-center">
@@ -7,7 +7,7 @@
       type="button"
       (click)="$event.stopPropagation()"
        [routerLink]="['/project', project()?.id, 'edit']"
-      class="cursor-pointer flex h-8 w-8 items-center justify-center rounded-[4px] hover:bg-surface-high"
+      class="cursor-pointer flex h-8 w-8 items-center justify-center rounded-sm hover:bg-surface-high"
       aria-label="Edit project"
     >
       <svg
@@ -27,26 +27,26 @@
     </button>
   </div>
   <!-- Description -->
-  <p class="line-clamp-2 text-[8px] leading-[12px] text-secondary-dark">
+  <p class="line-clamp-2 text-[8px] leading-3 text-secondary-dark">
     {{ project()?.description }}
   </p>
 
   <!-- Stats -->
   <div class="mt-auto flex justify-between items-center gap-4 text-[7px] text-primary-dark">
-    <div class="flex items-center gap-1"  (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'epics']">
+    <button class="flex items-center gap-1"  (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'epics']">
       <img src="assets/images/epic.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.epics }} Epics</span>
-    </div>
+    </button>
 
-    <div class="flex items-center gap-1" (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'tasks']">
+    <button class="flex items-center gap-1" (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'tasks']">
       <img src="assets/images/tasks.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.tasks }} Tasks</span>
-    </div>
+    </button>
 
-    <div class="flex items-center gap-1"  (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'members']">
+    <button class="flex items-center gap-1"  (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'members']">
       <img src="assets/images/members.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.members }} Members</span>
-    </div>
+    </button>
   </div>
 
   <!-- Created date -->

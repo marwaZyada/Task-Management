@@ -28,14 +28,16 @@
       class="flex border-b border-[#0000001A] items-center w-full justify-between md:justify-end"
     >
       <div class="flex px-6 py-3 md:hidden">
+        <button (click)="changeValue()">
         <img
           src="assets/images/Button.svg"
           width="26"
           height="20"
           alt="menu"
           class="cursor-pointer me-4"
-          (click)="changeValue()"
+          
         />
+        </button>
         <app-taskly [icon]="false" />
       </div>
       <div class="flex px-6 py-3">
@@ -44,7 +46,7 @@
     </div>
 
     <!-- Content -->
-    <div class="flex-grow-1 bg-background">
+    <div class="grow bg-background">
       <router-outlet></router-outlet>
     </div>
   </div>

@@ -38,22 +38,22 @@
       <div
         class=" grid-cols-[minmax(0,1fr)_80px] items-center bg-[#F5F7FF] px-5 py-3 sm:grid-cols-[minmax(0,1fr)_80px] 
         md:grid-cols-[minmax(0,1fr)_80px] hidden md:grid">
-        <span class="text-[10px] font-semibold tracking-wide text-[#434654]">
+        <span class="text-[10px] font-semibold tracking-wide text-text">
           MEMBER
         </span>
 
-        <span class="text-[10px] font-semibold tracking-wide text-[#434654]">
+        <span class="text-[10px] font-semibold tracking-wide text-text">
           ROLE
         </span>
       </div>
 
       <!-- Members -->
       @for (member of members(); track member.id) {
-      <div class="grid grid-cols-[minmax(0,1fr)_80px] items-center gap-2 md:border-t md:border-[#E8EDFF] px-3 py-3 sm:px-5 bg-white mb-3 md:mb-0 rounded-md md:rounded-none">
+      <div class="grid grid-cols-[minmax(0,1fr)_80px] items-center gap-2 md:border-t md:border-blue-low px-3 py-3 sm:px-5 bg-white mb-3 md:mb-0 rounded-md md:rounded-none">
         <!-- Member information -->
         <div class="flex min-w-0 items-center gap-3">
           <div
-            class="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[9px] bg-[#DCE5FF] text-[11px] font-semibold text-[#003D9B]">
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[9px] bg-[#DCE5FF] text-[11px] font-semibold text-primary-dark">
             {{ member.initials }}
           </div>
 

@@ -1,4 +1,4 @@
-import { Component, inject, input, model, OnInit, output, signal } from '@angular/core';
+import { Component, inject, model, OnInit, output, signal } from '@angular/core';
 import { Taskly } from '../../shared/components/taskly/taskly';
 import { SIDEBAR_ITEMS } from './sidebar-menu';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
