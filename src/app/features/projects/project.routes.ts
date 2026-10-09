@@ -29,4 +29,8 @@ export const PROJECT_ROUTES: Routes = [
     path: ':id/tasks',
     loadComponent: () => import('./pages/tasks/tasks').then((m) => m.Tasks),
   },
+  {
+    path: 'problem',
+    loadComponent: () => import('../../shared/components/api-problem/api-problem').then((m) => m.ApiProblem),
+  }
 ];

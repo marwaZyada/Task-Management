@@ -1,25 +1,44 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ProjectService } from '../../service/project-service';
+import { Member } from '../../models/iproject';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
-interface Member {
-  id: string;
-  name: string;
-  email: string;
-  role: MemberRole;
-  initials: string;
-}
- type MemberRole = 'OWNER' | 'ADMIN' | 'MEMBER' | 'VIEWER';
+
+
 @Component({
   selector: 'app-members',
   imports: [],
   templateUrl: './members.html',
   styleUrl: './members.css',
 })
-export class Members {
+export class Members implements OnInit{
+private projectservice=inject(ProjectService)
+private router=inject(Router)
+private route=inject(ActivatedRoute)
+projectMember :Member[]=[]
+id:string|null=''
+ngOnInit(): void {
+  this.id= this.route.snapshot.paramMap.get('id')!
+  this.getProjectMember(this.id);
+}
+
+getProjectMember(id:string){
+  this.projectservice.getAllMembers(id).subscribe({
+    next:(response)=>{
+      console.log("members",response)
+
+    },
+    error:(error)=>{
+      this.router.navigate(['/project/problem']);
+console.log("member error",error.error.errorMessage)
+    }
+  })
+}
+
 
  
-
 
 
 

@@ -20,7 +20,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
       toastr.error(message, 'Error');
       console.log('error', error.error.code);
-      if (error.error.status == 403) {
+      if (error.error.status == 403 ||error.error.status == 401) {
         authservice.signout();
         router.navigate(['/login']);
         authservice.clearStorage();

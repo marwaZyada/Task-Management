@@ -16,7 +16,7 @@ export class ProjectService {
     return this.http.post<IProject>(`${this.config.apiUrl}/rest/v1/projects`, project);
   }
 
-  //  Edid project
+  //  Edit project
   editProject(id: string, project: IProjectRequest): Observable<IProject> {
     return this.http.patch<IProject>(`${this.config.apiUrl}/rest/v1/projects?id=eq.${id}`, project);
   }
@@ -28,6 +28,6 @@ export class ProjectService {
 
   // get members
   getAllMembers(id:string): Observable<IProject[]> {
-    return this.http.get<IProject[]>(`${this.config.apiUrl}/rest/v1/rpc/get_project_members?project_id=eq.${id}`);
+    return this.http.get<IProject[]>(`${this.config.apiUrl}/rest/v1/get_project_members?project_id=eq.${id}`);
   }
 }
