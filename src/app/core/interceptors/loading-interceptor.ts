@@ -5,12 +5,7 @@ import { finalize } from 'rxjs';
 import { Load } from '../services/load';
 import { SKIP_LOADING } from '../tokens/loading-context';
 
-
-
-
-
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
-
   const loadingService = inject(Load);
 
   // Don't show loading for this request
@@ -23,7 +18,6 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     finalize(() => {
       loadingService.hide();
-    })
+    }),
   );
 };
-

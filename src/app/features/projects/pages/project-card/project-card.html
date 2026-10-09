@@ -1,85 +1,60 @@
-
-<div
-  class="flex h-[120px] flex-col rounded-[4px] bg-white p-3 shadow-[0_1px_2px_0_#0000000D]"
->
-
+<div class="flex h-[120px] flex-col rounded-[4px] bg-white p-3 shadow-[0_1px_2px_0_#0000000D] cursor-pointer" 
+[routerLink]="['/project', project()?.id, 'epics']">
   <!-- Title -->
-   <div class="flex justify-between items-center">
-  <h3 class="mb-1 truncate text-[11px] font-semibold text-text-primary">
-    {{ project()?.name }}
-  </h3>
-  <button
-  type="button"
-  (click)="onEdit()"
-  class="cursor-pointer flex h-8 w-8 items-center justify-center rounded-[4px] hover:bg-surface-high"
-  aria-label="Edit project" 
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    class="h-4 w-4 text-secondary-dark"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M16.862 3.487a2.25 2.25 0 0 1 3.182 3.182L7.5 19.213 3 21l1.787-4.5L16.862 3.487Z"
-    />
-  </svg>
-</button>
-</div>
+  <div class="flex justify-between items-center">
+    <h3 class="mb-1 truncate text-[11px] font-semibold text-text-primary">{{ project()?.name }}</h3>
+    <button
+      type="button"
+      (click)="$event.stopPropagation()"
+       [routerLink]="['/project', project()?.id, 'edit']"
+      class="cursor-pointer flex h-8 w-8 items-center justify-center rounded-[4px] hover:bg-surface-high"
+      aria-label="Edit project"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        class="h-4 w-4 text-secondary-dark"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M16.862 3.487a2.25 2.25 0 0 1 3.182 3.182L7.5 19.213 3 21l1.787-4.5L16.862 3.487Z"
+        />
+      </svg>
+    </button>
+  </div>
   <!-- Description -->
-  <p
-    class="line-clamp-2 text-[8px] leading-[12px] text-secondary-dark"
-  >
+  <p class="line-clamp-2 text-[8px] leading-[12px] text-secondary-dark">
     {{ project()?.description }}
   </p>
 
   <!-- Stats -->
-  <div class="mt-auto  flex justify-between items-center gap-4 text-[7px] text-primary-dark">
-
-    <div class="flex  items-center gap-1">
-      <img
-        src="assets/images/epic.svg"
-        class="h-3 w-3"
-        alt=""
-      />
+  <div class="mt-auto flex justify-between items-center gap-4 text-[7px] text-primary-dark">
+    <div class="flex items-center gap-1"  [routerLink]="['/project', project()?.id, 'epics']">
+      <img src="assets/images/epic.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.epics }} Epics</span>
     </div>
 
-    <div class="flex items-center gap-1">
-      <img
-        src="assets/images/tasks.svg"
-        class="h-3 w-3"
-        alt=""
-      />
+    <div class="flex items-center gap-1" [routerLink]="['/project', project()?.id, 'tasks']">
+      <img src="assets/images/tasks.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.tasks }} Tasks</span>
     </div>
 
-    <div class="flex items-center gap-1">
-      <img
-        src="assets/images/members.svg"
-        class="h-3 w-3"
-        alt=""
-      />
+    <div class="flex items-center gap-1" [routerLink]="['/project', project()?.id, 'members']">
+      <img src="assets/images/members.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.members }} Members</span>
     </div>
-
   </div>
 
   <!-- Created date -->
   <div class="mt-3 flex items-center justify-between">
-    <span class="text-[6px] font-medium text-secondary-dark">
-      CREATED AT
-    </span>
+    <span class="text-[6px] font-medium text-secondary-dark"> CREATED AT </span>
 
     <span class="text-[7px] text-secondary-dark">
-      {{ project()?.created_at
- }}
+      {{ project()?.created_at| date:'dd MMM yyyy' }}
     </span>
   </div>
-
-
 </div>

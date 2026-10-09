@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { Authlayout } from './authlayout';
 
-
 export const AUTH_LAYOUT_ROUTES: Routes = [
   {
     path: '',
@@ -9,19 +8,13 @@ export const AUTH_LAYOUT_ROUTES: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () =>
-          import('../../features/auth/pages/login/login').then(
-            (m) => m.Login
-          ),
+        loadComponent: () => import('../../features/auth/pages/login/login').then((m) => m.Login),
       },
       {
         path: 'sign-up',
         loadComponent: () =>
-          import('../../features/auth/pages/signup/signup').then(
-            (m) => m.Signup
-          ),
+          import('../../features/auth/pages/signup/signup').then((m) => m.Signup),
       },
-      
 
       {
         path: '',

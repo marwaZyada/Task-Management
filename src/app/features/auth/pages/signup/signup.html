@@ -1,146 +1,195 @@
 <div class="min-h-screen w-full flex items-center justify-center pb-12 pt-4 bg-background">
-    <div
-        class="signup-container bg-white border-0 rounded-lg p-12 max-w-[45%] w-full shadow-[0px_24px_48px_0px_#041B3C0F] ">
-        <!--main header-->
-        <div class="text-center pb-10">
-            <h1 class="text-3xl font-semibold mb-2 text-secondary-dark">Create your workspace</h1>
-            <p class="text-sm font-normal text-secondary">Join the editorial approach to task management.</p>
-        </div>
+  <div
+    class="signup-container bg-white border-0 rounded-lg p-12 max-w-[45%] w-full shadow-[0px_24px_48px_0px_#041B3C0F]"
+  >
+    <!--main header-->
+    <div class="text-center pb-10">
+      <h1 class="text-3xl font-semibold mb-2 text-secondary-dark">Create your workspace</h1>
+      <p class="text-sm font-normal text-secondary">
+        Join the editorial approach to task management.
+      </p>
+    </div>
 
-        <!--form-->
-        @if (apiError()) {
-        <div class="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-600" role="alert">
-            {{ apiError() }}
-        </div>
-        }
-        <form class="pb-4 " [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-
-            <!-- Name-->
-            <div class="mb-6">
-                <label
-                  for="name"
-                    class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
-                    [class.text-error]="name.invalid && name.touched"
-                    [class.text-secondary]="!name.invalid || !name.touched">Name</label>
-                <input id="name" type="text" placeholder="Enter your full name" class="input-box input-text"
-                    formControlName="name" [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched,
+    <!--form-->
+    @if (apiError()) {
+    <div class="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-600" role="alert">
+      {{ apiError() }}
+    </div>
+    }
+    <form class="pb-4" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- Name-->
+      <div class="mb-6">
+        <label
+          for="name"
+          class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase"
+          [class.text-error]="name.invalid && name.touched"
+          [class.text-secondary]="!name.invalid || !name.touched"
+          >Name</label
+        >
+        <input
+          id="name"
+          type="text"
+          placeholder="Enter your full name"
+          class="input-box input-text"
+          formControlName="name"
+          [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched,
                         'placeholder-error': name.invalid && name.touched
                     }"
-                    />
-                @if (name.touched && name.hasError('required'))
-                { <p class="text-red-500 px-1 body-md"> Name is required. </p> }
-                @if (name.touched && name.hasError('minlength'))
-                { <p class="text-red-500 px-1 body-md"> Name must be at least 3 characters. </p> }
-                @if (name.touched && name.hasError('invalidName')) {
-                <p class="text-red-500 px-1 body-md">
-                    Name can contain letters and Single spaces between names .
-                </p>
-                }
+        />
+        @if (name.touched && name.hasError('required')) {
+        <p class="text-red-500 px-1 body-md">Name is required.</p>
+        } @if (name.touched && name.hasError('minlength')) {
+        <p class="text-red-500 px-1 body-md">Name must be at least 3 characters.</p>
+        } @if (name.touched && name.hasError('invalidName')) {
+        <p class="text-red-500 px-1 body-md">
+          Name can contain letters and Single spaces between names .
+        </p>
+        }
+      </div>
 
-            </div>
-
-            <!-- Email-->
-            <div class="mb-6">
-                <label for="email"
-                    class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
-                     [class.text-error]="email.invalid && email.touched"
-                    [class.text-secondary]="!email.invalid || !email.touched">Email</label>
-                <input id="email" type="email" placeholder="yourname@company.com" class="input-box input-text"
-                    formControlName="email"
-                    [ngClass]="{ 'input-error input-text-error': email.invalid && email.touched
+      <!-- Email-->
+      <div class="mb-6">
+        <label
+          for="email"
+          class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase"
+          [class.text-error]="email.invalid && email.touched"
+          [class.text-secondary]="!email.invalid || !email.touched"
+          >Email</label
+        >
+        <input
+          id="email"
+          type="email"
+          placeholder="yourname@company.com"
+          class="input-box input-text"
+          formControlName="email"
+          [ngClass]="{ 'input-error input-text-error': email.invalid && email.touched
                         ,'placeholder-error': email.invalid && email.touched
-                    }"/>
-                @if (email.touched && email.hasError('required'))
-                { <p class="text-red-500 px-1 body-md"> Email is required. </p> }
-                @if (email.touched && email.hasError('email'))
-                { <p class="text-red-500 px-1 body-md"> Please enter a valid email address. </p> }
-            </div>
+                    }"
+        />
+        @if (email.touched && email.hasError('required')) {
+        <p class="text-red-500 px-1 body-md">Email is required.</p>
+        } @if (email.touched && email.hasError('email')) {
+        <p class="text-red-500 px-1 body-md">Please enter a valid email address.</p>
+        }
+      </div>
 
-            <!--Job Title-->
-            <div class="mb-6">
-                <label for="job"
-                    class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary">Job
-                    Title
-                    <span class="body-md">(Optional)</span> </label>
-                <input id="job" type="text" placeholder="e.g. Project Manager" class="input-box input-text"
-                    formControlName="department">
+      <!--Job Title-->
+      <div class="mb-6">
+        <label
+          for="job"
+          class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase text-secondary"
+          >Job Title <span class="body-md">(Optional)</span>
+        </label>
+        <input
+          id="job"
+          type="text"
+          placeholder="e.g. Project Manager"
+          class="input-box input-text"
+          formControlName="department"
+        />
+      </div>
 
-            </div>
-
-            <!-- Password-->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-
-                <div>
-                    <label for="password"
-                        class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
-                         [class.text-error]="password.invalid && password.touched"
-                    [class.text-secondary]="!password.invalid || !password.touched">Password</label>
-                    <div class="relative">
-                        <input [type]="showPassword ? 'text' : 'password'" placeholder="Password" class="input-box input-text w-full pr-12"
-                            formControlName="password"
-                            [ngClass]="{ 'input-error input-text-error': password.invalid && password.touched,
+      <!-- Password-->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label
+            for="password"
+            class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase"
+            [class.text-error]="password.invalid && password.touched"
+            [class.text-secondary]="!password.invalid || !password.touched"
+            >Password</label
+          >
+          <div class="relative">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Password"
+              class="input-box input-text w-full pr-12"
+              formControlName="password"
+              [ngClass]="{ 'input-error input-text-error': password.invalid && password.touched,
                                 'placeholder-error': password.invalid && password.touched
-                            }"/>
-                        <button type="button" (click)="togglePasswordVisibility()"
-                            class="absolute right-0 top-[8px] h-full w-12 flex items-center justify-center">
-                            <img [src]="'assets/images/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
-       
-          
-     
-                        </button>
-                    </div>
-                    @if (password.touched && password.hasError('required'))
-                    { <p class="text-red-500 text-sm mt-1"> Password is required. </p> }
-               
-                </div>
-                <!--Confirm Password-->
-                <div>
-                    <label for="confirm"
-                        class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase "
-                         [class.text-error]="confirmPassword.invalid && confirmPassword.touched"
-                    [class.text-secondary]="!confirmPassword.invalid || !confirmPassword.touched">Confirm
-                        Password</label>
-                    <input id="confirm" type="password" placeholder="Repeat your password" class="input-box input-text"
-                        formControlName="confirmPassword"
-                        [ngClass]="{ 'input-error input-text-error': confirmPassword.invalid && confirmPassword.touched
-                            ,'placeholder-error': confirmPassword.invalid && confirmPassword.touched
-                        }">
-                    @if (confirmPassword.touched && confirmPassword.hasError('required'))
-                    { <p class="text-red-500 px-1 body-md"> Confirm password is required. </p> }
-                    @if ( confirmPassword.touched && signupForm.hasError('passwordMismatch') )
-                    { <p class="text-red-500 px-1 body-md"> Passwords do not match. </p> }
-                </div>
-            </div>
-
-            <!-- password restriction-->
-            <div class="pss-restriction rounded-md p-4   text-text mb-6">
-
-                <div class="flex items-center gap-2">
-                     <img [src]="hasMinLength ? 'assets/images/checkedcircle.svg':'assets/circle.svg' " alt=""/>
-                    <span>At least 8 characters</span>
-                </div>
-                <div class="flex items-center gap-2">
-                     <img [src]="hasUppercaseLowercaseAndDigit ? 'assets/images/checkedcircle.svg':'assets/circle.svg'" alt=""/>
-                    <span>One uppercase, lowercase, and digit</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <img [src]="hasSpecialCharacter ? 'assets/images/checkedcircle.svg':'assets/circle.svg'" alt=""/>
-                    <span>One special character</span>
-                </div>
-            </div>
-
-
-            <button type="submit"
-                class="cursor-pointer w-full text-sm  py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all text-center block "
-                [disabled]="signupForm.invalid">
-                Create Account
+                            }"
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="absolute right-0 top-[8px] h-full w-12 flex items-center justify-center"
+            >
+              <img
+                [src]="'assets/images/eye.svg' "
+                alt="Toggle password visibility"
+                width="22"
+                height="15"
+              />
             </button>
-        </form>
-
-
-        <div class="text-center pt-8 text-sm font-normal text-secondary">
-            Already have an account? <a routerLink="/auth/login"
-                class="text-blue-600 font-semibold  hover:underline">Log in</a>
+          </div>
+          @if (password.touched && password.hasError('required')) {
+          <p class="text-red-500 text-sm mt-1">Password is required.</p>
+          }
         </div>
+        <!--Confirm Password-->
+        <div>
+          <label
+            for="confirm"
+            class="block text-[11px] font-bold leading-[16.5px] tracking-[0.55px] uppercase"
+            [class.text-error]="confirmPassword.invalid && confirmPassword.touched"
+            [class.text-secondary]="!confirmPassword.invalid || !confirmPassword.touched"
+            >Confirm Password</label
+          >
+          <input
+            id="confirm"
+            type="password"
+            placeholder="Repeat your password"
+            class="input-box input-text"
+            formControlName="confirmPassword"
+            [ngClass]="{ 'input-error input-text-error': confirmPassword.invalid && confirmPassword.touched
+                            ,'placeholder-error': confirmPassword.invalid && confirmPassword.touched
+                        }"
+          />
+          @if (confirmPassword.touched && confirmPassword.hasError('required')) {
+          <p class="text-red-500 px-1 body-md">Confirm password is required.</p>
+          } @if ( confirmPassword.touched && signupForm.hasError('passwordMismatch') ) {
+          <p class="text-red-500 px-1 body-md">Passwords do not match.</p>
+          }
+        </div>
+      </div>
+
+      <!-- password restriction-->
+      <div class="pss-restriction rounded-md p-4 text-text mb-6">
+        <div class="flex items-center gap-2">
+          <img
+            [src]="hasMinLength ? 'assets/images/checkedcircle.svg':'assets/circle.svg' "
+            alt=""
+          />
+          <span>At least 8 characters</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <img
+            [src]="hasUppercaseLowercaseAndDigit ? 'assets/images/checkedcircle.svg':'assets/circle.svg'"
+            alt=""
+          />
+          <span>One uppercase, lowercase, and digit</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <img
+            [src]="hasSpecialCharacter ? 'assets/images/checkedcircle.svg':'assets/circle.svg'"
+            alt=""
+          />
+          <span>One special character</span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="cursor-pointer w-full text-sm py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all text-center block"
+        [disabled]="signupForm.invalid"
+      >
+        Create Account
+      </button>
+    </form>
+
+    <div class="text-center pt-8 text-sm font-normal text-secondary">
+      Already have an account?
+      <a routerLink="/auth/login" class="text-blue-600 font-semibold hover:underline">Log in</a>
     </div>
+  </div>
 </div>

@@ -1,87 +1,102 @@
 <div class="bg-background min-h-screen flex items-center justify-center px-6 py-[147px]">
-
   <!-- Main Login Card Container Container -->
-  <div class="bg-white w-full max-w-[480px] rounded-[8px] shadow-[0_24px_48px_0_#041B3C0F] px-12 py-12 flex flex-col items-center">
-    
+  <div
+    class="bg-white w-full max-w-[480px] rounded-[8px] shadow-[0_24px_48px_0_#041B3C0F] px-12 py-12 flex flex-col items-center"
+  >
     <!-- Header Text Block -->
-    <h1 class="w-full  mb-2 text-secondary-dark text-[30px] font-semibold leading-[36px] tracking-[-0.75px]  text-center">
+    <h1
+      class="w-full mb-2 text-secondary-dark text-[30px] font-semibold leading-[36px] tracking-[-0.75px] text-center"
+    >
       Welcome Back
     </h1>
-    <p class="text-secondary text-sm font-normal text-center ">
+    <p class="text-secondary text-sm font-normal text-center">
       Please enter your details to access your workspace
     </p>
 
     <!-- Interactive Authentication Form -->
-   
-    <form class="w-full mt-10 mb-[32px]"[formGroup]="loginForm"   (ngSubmit)="signIn()" >
-         @if (apiError()) {
-        <div class="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-600" role="alert">
-            {{ apiError() }}
-        </div>
-        }
-      
+
+    <form class="w-full mt-10 mb-[32px]" [formGroup]="loginForm" (ngSubmit)="signIn()">
+      @if (apiError()) {
+      <div class="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-600" role="alert">
+        {{ apiError() }}
+      </div>
+      }
+
       <div class="mb-6">
-        <label for="email" class="block text-[11px] font-bold uppercase tracking-wider mb-2"
-         [class.text-error]="email.invalid && email.touched"
-                    [class.text-secondary]="!email.invalid || !email.touched">
+        <label
+          for="email"
+          class="block text-[11px] font-bold uppercase tracking-wider mb-2"
+          [class.text-error]="email.invalid && email.touched"
+          [class.text-secondary]="!email.invalid || !email.touched"
+        >
           Email
         </label>
-        <input 
-          type="email" 
-          id="email" 
-          placeholder="yourname@company.com" 
-          class=" w-full input-box input-text"
-        formControlName="email"
-         [ngClass]="{ 'input-error input-text-error': email.invalid && email.touched
+        <input
+          type="email"
+          id="email"
+          placeholder="yourname@company.com"
+          class="w-full input-box input-text"
+          formControlName="email"
+          [ngClass]="{ 'input-error input-text-error': email.invalid && email.touched
                         ,'placeholder-error': email.invalid && email.touched
                     }"
         />
-            @if (email.invalid && email.touched) {
-      <p class="text-red-500 text-sm mt-1">Email is required and must be valid.</p>
-            }
+        @if (email.invalid && email.touched) {
+        <p class="text-red-500 text-sm mt-1">Email is required and must be valid.</p>
+        }
       </div>
 
       <!-- Field: Security Passphrase -->
       <div class="mb-6">
-        <label for="password" class="block text-[11px] font-bold uppercase tracking-wider mb-2"
-         [class.text-error]="password.invalid && password.touched"
-                    [class.text-secondary]="!password.invalid || !password.touched">
+        <label
+          for="password"
+          class="block text-[11px] font-bold uppercase tracking-wider mb-2"
+          [class.text-error]="password.invalid && password.touched"
+          [class.text-secondary]="!password.invalid || !password.touched"
+        >
           Password
         </label>
         <div class="relative">
-          <input 
-            [type]="showPassword ? 'text' : 'password'" 
-            id="password" 
-            placeholder="Enter your password" 
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            placeholder="Enter your password"
             class="w-full input-box input-text"
             formControlName="password"
-             [ngClass]="{ 'input-error input-text-error': password.invalid && password.touched
+            [ngClass]="{ 'input-error input-text-error': password.invalid && password.touched
                         ,'placeholder-error': password.invalid && password.touched
                     }"
           />
           <!-- Interactive Visibility Toggle -->
-           <button type="button" (click)="togglePasswordVisibility()"
-                            class="cursor-pointer absolute right-0 top-[8px] h-full w-12 flex items-center justify-center">
-                            <img [src]="'assets/images/eye.svg' " alt="Toggle password visibility" width="22" height="15"/>
-       
-          
-     
-                        </button>
+          <button
+            type="button"
+            (click)="togglePasswordVisibility()"
+            class="cursor-pointer absolute right-0 top-[8px] h-full w-12 flex items-center justify-center"
+          >
+            <img
+              [src]="'assets/images/eye.svg' "
+              alt="Toggle password visibility"
+              width="22"
+              height="15"
+            />
+          </button>
         </div>
-           @if (password.invalid && password.touched) {
-      <p class="text-red-500 text-sm mt-1">Password is required.</p>
-           }
+        @if (password.invalid && password.touched) {
+        <p class="text-red-500 text-sm mt-1">Password is required.</p>
+        }
       </div>
 
       <!-- Control Bar: Session Retention & Password Reset Link -->
       <div class="flex items-center justify-between text-[13px] mb-6">
-        <label class="flex items-center space-x-2 text-[#475569] font-medium cursor-pointer select-none">
-          <input 
-            type="checkbox" 
+        <label
+          class="flex items-center space-x-2 text-[#475569] font-medium cursor-pointer select-none"
+        >
+          <input
+            type="checkbox"
             class="w-4 h-4 rounded-[2px] bg-background text-[#0052CC] border border-[#C3C6D6] focus:ring-[#0052CC] cursor-pointer"
             formControlName="rememberMe"
           />
-          <span class="text-text text-sm font-medium leading-5 tracking-normal ">Remember Me</span>
+          <span class="text-text text-sm font-medium leading-5 tracking-normal">Remember Me</span>
         </label>
         <a href="#" class="text-[#003D9B] text-sm font-medium leading-5 tracking-normal">
           Forgot Password?
@@ -89,20 +104,23 @@
       </div>
 
       <!-- Action Execution Control -->
-      <button 
-        type="submit" 
-        class="cursor-pointer w-full bg-[#0052CC] hover:bg-[#0043A4] text-white text-[14px] font-semibold py-3  rounded-[6px] shadow-sm active:scale-[0.99] transition-all "
-      [disabled]="loginForm.invalid"
+      <button
+        type="submit"
+        class="cursor-pointer w-full bg-[#0052CC] hover:bg-[#0043A4] text-white text-[14px] font-semibold py-3 rounded-[6px] shadow-sm active:scale-[0.99] transition-all"
+        [disabled]="loginForm.invalid"
       >
         Log In
       </button>
     </form>
 
     <!-- Alternative Routing Node -->
-    <div class=" ext-sm font-normal leading-5 tracking-normal pt-8 text-secondary">
-      Don't have an account? 
-      <a routerLink="/auth/sign-up" class="text-sm font-semibold leading-5 tracking-normal text-[#003D9B]">Sign Up</a>
+    <div class="ext-sm font-normal leading-5 tracking-normal pt-8 text-secondary">
+      Don't have an account?
+      <a
+        routerLink="/auth/sign-up"
+        class="text-sm font-semibold leading-5 tracking-normal text-[#003D9B]"
+        >Sign Up</a
+      >
     </div>
-
   </div>
-
+</div>

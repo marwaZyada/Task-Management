@@ -7,11 +7,8 @@ import { Component, input } from '@angular/core';
   styleUrl: './card.css',
 })
 export class Card {
-
   title = input<string>('');
   subtitle = input<string>('');
   showHeader = input<boolean>(true);
   showFooter = input<boolean>(false);
-
-
 }

@@ -1,6 +1,6 @@
 export interface IProject {
-  id:string;
-      name: string;
+  id: string;
+  name: string;
   description: string;
   epics?: number;
   tasks?: number;

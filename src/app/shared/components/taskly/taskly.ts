@@ -7,6 +7,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './taskly.css',
 })
 export class Taskly {
- collapse = input(false);
- icon = input(true);
+  collapse = input(false);
+  icon = input(true);
 }

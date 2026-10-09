@@ -1,11 +1,10 @@
-    @media (max-width: 768px)  {
-  .mobile-setting{
+@media (max-width: 768px) {
+  .mobile-setting {
     position: absolute;
     top: 95%;
     left: 0;
     width: 100%;
-  display: block;
- /* z-index: 1; */
-   
+    display: block;
+    /* z-index: 1; */
   }
 }

@@ -1,45 +1,51 @@
-<div  class="min-h-screen w-full    md:flex "
+<div
+  class="min-h-screen w-full md:flex"
   [ngClass]="{
     'block': menuclicked,
     'flex': !menuclicked
   }"
+>
+  <div
+    class="item-center justify-center"
+    [class.mobile-setting]="!menuclicked"
+    [class.block]="menuclicked"
+    [class.flex]="!menuclicked"
   >
-
-
-
-  <div class=" item-center justify-center"   [class.mobile-setting]="!menuclicked"
-  [class.block]="menuclicked"
-   [class.flex]="!menuclicked"
- >
-
     <!-- Sidebar -->
-    <div class="bg-surface-low "  [class.p-4]="menuclicked"[class.p-0]="!menuclicked" [class.hidden]="isIcon">
-      <app-sidebar (closeSidebar)="menuclicked = false" [(menushow)]="menuclicked"
-      />
+    <div
+      class="bg-surface-low"
+      [class.p-4]="menuclicked"
+      [class.p-0]="!menuclicked"
+      [class.hidden]="isIcon"
+    >
+      <app-sidebar (closeSidebar)="menuclicked = false" [(menushow)]="menuclicked" />
     </div>
   </div>
 
-  <div class=" flex-col  w-full bg-background md:flex "
-    [class.hidden]="menuclicked">
+  <div class="flex-col w-full bg-background md:flex" [class.hidden]="menuclicked">
     <!-- Navbar -->
-    <div class="flex border-b border-[#0000001A] items-center w-full justify-between md:justify-end">
+    <div
+      class="flex border-b border-[#0000001A] items-center w-full justify-between md:justify-end"
+    >
       <div class="flex px-6 py-3 md:hidden">
-         <img src="assets/images/Button.svg" width="26" height="20" alt="menu" 
-         class="cursor-pointer me-4 " 
-         (click)="changeValue()"/>
-        <app-taskly [icon]="false"/>
+        <img
+          src="assets/images/Button.svg"
+          width="26"
+          height="20"
+          alt="menu"
+          class="cursor-pointer me-4"
+          (click)="changeValue()"
+        />
+        <app-taskly [icon]="false" />
       </div>
-      <div class=" flex px-6 py-3  ">
+      <div class="flex px-6 py-3">
         <app-navbar />
       </div>
     </div>
 
     <!-- Content -->
-    <div class="flex-grow-1  bg-background">
+    <div class="flex-grow-1 bg-background">
       <router-outlet></router-outlet>
     </div>
   </div>
-
-
-
 </div>

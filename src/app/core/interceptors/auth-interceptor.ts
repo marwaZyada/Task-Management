@@ -1,13 +1,12 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError,  switchMap, throwError } from 'rxjs';
+import { catchError, switchMap, throwError } from 'rxjs';
 import { Auth } from '../services/auth';
 import { AppConfig } from '../config/app-config';
 
-
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(Auth);
-  const config=inject(AppConfig)
+  const config = inject(AppConfig);
   const publicUrls = ['/auth/v1/signup', '/auth/v1/token'];
 
   const isPublicUrl = publicUrls.some((url) => req.url.includes(url));
@@ -45,7 +44,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       // No Remember Me
       if (!authService.isRememberMeActive()) {
         authService.signout();
-          authService.clearStorage();
+        authService.clearStorage();
 
         return throwError(() => error);
       }
@@ -53,8 +52,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       const refreshToken = authService.getRefreshToken();
 
       if (!refreshToken) {
-         authService.signout();
-          authService.clearStorage();
+        authService.signout();
+        authService.clearStorage();
 
         return throwError(() => error);
       }

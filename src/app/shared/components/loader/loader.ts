@@ -8,5 +8,5 @@ import { Load } from '../../../core/services/load';
   styleUrl: './loader.css',
 })
 export class Loader {
-   protected loadingService = inject(Load);
+  protected loadingService = inject(Load);
 }

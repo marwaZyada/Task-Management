@@ -22,11 +22,6 @@ const config = {
   apiKey,
 };
 
-fs.writeFileSync(
-  path.join(assetsPath, 'config.json'),
-  JSON.stringify(config, null, 2)
-);
-
-
+fs.writeFileSync(path.join(assetsPath, 'config.json'), JSON.stringify(config, null, 2));
 
 console.log(' config.json generated');

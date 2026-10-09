@@ -1,112 +1,47 @@
 <div
-  class="
-    mx-auto
-    w-full
-    
-    overflow-hidden
-    rounded-[5px]
-    bg-white
-    shadow-[0_1px_3px_rgba(0,0,0,0.03)]
-  "
+  class="mx-auto w-full overflow-hidden rounded-[5px] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
 >
-
   <!-- ================= HEADER ================= -->
 
   @if (showHeader()) {
 
-    <div class="border-b border-black/5 px-8 pt-8 pb-10">
-
-      <div class="flex items-center gap-3">
-
-        <!-- Header Icon -->
-        <div
-          class="
-            hidden md:flex
-            h-7
-            w-7
-            shrink-0
-            items-center
-            justify-center
-            rounded-[3px]
-            bg-surface-high
-            
-          "
-        >
-
-          <ng-content select="[card-icon]" />
-
-        </div>
-
-
-        <!-- Header Content -->
-        <div>
-
-          <h2
-            class="
-              text-[15px]
-              font-semibold
-              leading-5
-              text-secondary-dark
-            "
-          >
-            {{ title() }}
-          </h2>
-
-          <p
-            class="
-              mt-0.5
-              text-[8px]
-              leading-3
-              text-secondary-dark
-            "
-          >
-            {{ subtitle() }}
-          </p>
-
-        </div>
-
+  <div class="border-b border-black/5 px-8 pt-8 pb-10">
+    <div class="flex items-center gap-3">
+      <!-- Header Icon -->
+      <div
+        class="hidden md:flex h-7 w-7 shrink-0 items-center justify-center rounded-[3px] bg-surface-high"
+      >
+        <ng-content select="[card-icon]" />
       </div>
 
+      <!-- Header Content -->
+      <div>
+        <h2 class="text-[15px] font-semibold leading-5 text-secondary-dark">{{ title() }}</h2>
+
+        <p class="mt-0.5 text-[8px] leading-3 text-secondary-dark">{{ subtitle() }}</p>
+      </div>
     </div>
+  </div>
 
   }
-
 
   <!-- ================= BODY ================= -->
 
   <div class="p-8">
-
     <ng-content />
-
   </div>
-
 
   <!-- ================= FOOTER ================= -->
 
   @if (showFooter()) {
 
-    <div
-      class="
-       flex
-        
-        min-h-[43px]
-        items-center 
-       
-        bg-surface-low
-        p-6
-      "
-    >
+  <div class="flex min-h-[43px] items-center bg-surface-low p-6">
+    <ng-content select="[card-footer-icon]" />
 
-      <ng-content select="[card-footer-icon]" />
-
-      <div class="text-[7px] leading-3 text-secondary-dark">
-
-        <ng-content select="[card-footer]" />
-
-      </div>
-
+    <div class="text-[7px] leading-3 text-secondary-dark">
+      <ng-content select="[card-footer]" />
     </div>
+  </div>
 
   }
-
 </div>

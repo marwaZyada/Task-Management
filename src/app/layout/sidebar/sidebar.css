@@ -1,1 +1,10 @@
-
+@media (max-width: 768px) {
+.sidebaritems{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: yellow;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+}

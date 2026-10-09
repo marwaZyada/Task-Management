@@ -4,7 +4,7 @@ import { Taskly } from '../../shared/components/taskly/taskly';
 
 @Component({
   selector: 'app-authlayout',
-  imports: [RouterOutlet,Taskly],
+  imports: [RouterOutlet, Taskly],
   templateUrl: './authlayout.html',
   styleUrl: './authlayout.css',
 })

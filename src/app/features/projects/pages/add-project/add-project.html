@@ -1,284 +1,181 @@
 <div class="bg-background px-5 py-3 md:px-7">
-
   <!-- ================= BREADCRUMB ================= -->
 
-  <div class="
-      mb-1
-      flex
-      items-center
-      gap-2
-      text-[8px]
-      font-semibold
-      tracking-[0.08em]
-    ">
+  <div class="mb-1 flex items-center gap-2 text-[8px] font-semibold tracking-[0.08em]">
+    <span class="text-secondary-dark"> PROJECTS </span>
 
-    <span class="text-secondary-dark">
-      PROJECTS
-    </span>
-
-    <span class="text-secondary-dark/50">
-      ›
-    </span>
-@if (projectId) {
-    <span class="text-secondary-dark uppercase">
-       Project Title
-    </span>
-    <span class="text-secondary-dark/50">
-      ›
-    </span>
-  }
-    <span class="text-primary-dark uppercase">
-      {{projectId?"Edit":"Add New Project"}}
-    </span>
-
+    <span class="text-secondary-dark/50"> › </span>
+    @if (projectId) {
+    <span class="text-secondary-dark uppercase"> Project Title </span>
+    <span class="text-secondary-dark/50"> › </span>
+    }
+    <span class="text-primary-dark uppercase"> {{projectId?"Edit":"Add New Project"}} </span>
   </div>
-
 
   <!-- ================= PAGE TITLE ================= -->
 
-  <h1 class="
-      mb-7
-      text-[23px]
-      font-bold
-      leading-[1.2]
-      text-primary-dark[]
-    ">
+  <h1 class="mb-7 text-[23px] font-bold leading-[1.2] text-primary-dark[]">
     {{projectId?"Edit Project":"Add New Project"}}
   </h1>
 
-
   <!-- ================= REUSABLE CARD ================= -->
   <div class="px-9">
-    <app-card title="{{projectId?'Edit Project':'Initialize New Project'}}"  subtitle="Define the scope and foundational details of your project."
-      [showFooter]="true">
-
+    <app-card
+      title="{{projectId?'Edit Project':'Initialize New Project'}}"
+      subtitle="Define the scope and foundational details of your project."
+      [showFooter]="true"
+    >
       <!-- ================= CARD ICON ================= -->
 
-      <svg card-icon class="h-[17px] w-[17px] text-primary-container " viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="1.8">
+      <svg
+        card-icon
+        class="h-[17px] w-[17px] text-primary-container"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
         <circle cx="12" cy="12" r="9"></circle>
         <path d="M12 8v8"></path>
         <path d="M8 12h8"></path>
         <path d="M16.5 5.5l2 2"></path>
       </svg>
 
-
       <!-- ================= FORM ================= -->
 
       <form [formGroup]="projectForm" (ngSubmit)="save()">
-
         <!-- PROJECT TITLE -->
 
         <div class="mb-8">
-
           <div class="mb-2 flex items-center justify-between">
-
-            <label for="projectTitle" class="
-              text-[7px]
-              font-bold
-              uppercase
-              tracking-[0.08em]
-             
-            " [class.text-error]="name.invalid && name.touched"
-              [class.text-secondary-dark]="!name.invalid || !name.touched">
-
+            <label
+              for="projectTitle"
+              class="text-[7px] font-bold uppercase tracking-[0.08em]"
+              [class.text-error]="name.invalid && name.touched"
+              [class.text-secondary-dark]="!name.invalid || !name.touched"
+            >
               Project Title
 
-              <span class="text-error">
-                *
-              </span>
-
+              <span class="text-error"> * </span>
             </label>
-
           </div>
 
-
-          <input id="projectTitle" type="text" formControlName="name" placeholder="Enter project title" class="
-            h-8
-            w-full
-            rounded-[3px]
-            border-0
-            bg-surface-high
-            px-3
-            text-[10px]
-            text-text
-            outline-none
-            placeholder:text-secondary-dark/50
-            focus:ring-2
-            focus:ring-primary-container/20
-          " [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched
+          <input
+            id="projectTitle"
+            type="text"
+            formControlName="name"
+            placeholder="Enter project title"
+            class="h-8 w-full rounded-[3px] border-0 bg-surface-high px-3 text-[10px] text-text outline-none placeholder:text-secondary-dark/50 focus:ring-2 focus:ring-primary-container/20"
+            [ngClass]="{ 'input-error input-text-error': name.invalid && name.touched
                         ,'placeholder-error': name.invalid && name.touched
-                    }" />
-
+                    }"
+          />
 
           @if (name.touched && name.hasError('required')) {
 
-          <p class="mt-1 text-[7px] text-error">
-            Project title is required.
-          </p>
+          <p class="mt-1 text-[7px] text-error">Project title is required.</p>
+
+          } @if (name.touched && name.hasError('minlength')) {
+
+          <p class="mt-1 text-[7px] text-error">Project title must be at least 3 characters.</p>
 
           }
-
-          @if (name.touched && name.hasError('minlength')) {
-
-          <p class="mt-1 text-[7px] text-error">
-            Project title must be at least 3 characters.
-          </p>
-
-          }
-
         </div>
-
 
         <!-- DESCRIPTION -->
 
         <div class="mb-8">
-
           <div class="mb-2 flex items-center justify-between">
-
-            <label for="description" class="
-              text-[7px]
-              font-bold
-              uppercase
-              tracking-[0.08em]
-              text-secondary-dark
-            " [class.text-error]="description.invalid && description.touched"
-              [class.text-secondary-dark]="!description.invalid || !description.touched">
+            <label
+              for="description"
+              class="text-[7px] font-bold uppercase tracking-[0.08em] text-secondary-dark"
+              [class.text-error]="description.invalid && description.touched"
+              [class.text-secondary-dark]="!description.invalid || !description.touched"
+            >
               Description
             </label>
 
-
-            <span class="text-[7px] text-secondary-dark/60">
-              Optional
-            </span>
-
+            <span class="text-[7px] text-secondary-dark/60"> Optional </span>
           </div>
 
-
-          <textarea id="description" formControlName="description" maxlength="500" rows="4"
+          <textarea
+            id="description"
+            formControlName="description"
+            maxlength="500"
+            rows="4"
             placeholder="Provide a high-level overview of the project's architectural objectives and key milestones..."
-            class="
-            min-h-[92px]
-            w-full
-            resize-none
-            rounded-[3px]
-            border-0
-            bg-surface-high
-            px-3
-            py-3
-            text-[10px]
-            leading-4
-            text-text
-            outline-none
-            placeholder:text-secondary-dark/50
-            focus:ring-2
-            focus:ring-primary-container/20
-          " [ngClass]="{ 'input-error input-text-error': description.invalid && description.touched
+            class="min-h-[92px] w-full resize-none rounded-[3px] border-0 bg-surface-high px-3 py-3 text-[10px] leading-4 text-text outline-none placeholder:text-secondary-dark/50 focus:ring-2 focus:ring-primary-container/20"
+            [ngClass]="{ 'input-error input-text-error': description.invalid && description.touched
                         ,'placeholder-error': description.invalid && description.touched
-                    }"></textarea>
-
+                    }"
+          ></textarea>
 
           <!-- Character Counter -->
 
           <div class="mt-1 flex justify-end">
-
             <span class="text-[7px] text-secondary-dark">
               {{ description.value.length }} / 500 characters
             </span>
-
           </div>
-
         </div>
-
 
         <!-- ================= ACTIONS ================= -->
 
         <div class="w-full flex items-center justify-between flex-col-reverse md:flex-row">
-
           <!-- BACK -->
 
-          <button type="button" (click)="goBack()" class="
-          cursor-pointer
-            px-4
-            py-2
-            text-[9px]
-            font-medium
-            text-text
-            transition
-            hover:text-primary-dark
-          ">
+          <button
+            type="button"
+            (click)="goBack()"
+            class="cursor-pointer px-4 py-2 text-[9px] font-medium text-text transition hover:text-primary-dark"
+          >
             Back
           </button>
 
-
           <!-- CREATE -->
 
-          <button type="submit" [disabled]="projectForm.invalid || isLoading" class="
-            h-7
-           w-full md:max-w-[101px]
-            rounded-[3px]
-            shadow-[0px_4px_6px_-4px_#003D9B33]
-            px-4
-            text-[9px]
-            font-semibold
-            text-white
-            cursor-pointer
-            transition
-            bg-primary-dark
-            disabled:cursor-not-allowed
-            
-          ">
-
-            @if (isLoading) {
-            {{projectId?'Editing...':'Creating...'}}
-            } @else {
-           {{projectId?'Save Changes':'Create Project'}} 
-            }
-
+          <button
+            type="submit"
+            [disabled]="projectForm.invalid || isLoading"
+            class="h-7 w-full md:max-w-[101px] rounded-[3px] shadow-[0px_4px_6px_-4px_#003D9B33] px-4 text-[9px] font-semibold text-white cursor-pointer transition bg-primary-dark disabled:cursor-not-allowed"
+          >
+            @if (isLoading) { {{projectId?'Editing...':'Creating...'}} } @else { {{projectId?'Save
+            Changes':'Create Project'}} }
           </button>
-
         </div>
-
 
         <!-- ================= ERROR ================= -->
 
         @if (errorMessage) {
 
         <div class="mt-8 text-center">
-
-          <p class="text-[8px] font-medium text-error">
-            {{ errorMessage }}
-          </p>
-
+          <p class="text-[8px] font-medium text-error">{{ errorMessage }}</p>
         </div>
 
         }
-
       </form>
-
 
       <!-- ================= CARD FOOTER ================= -->
 
-      <svg card-footer-icon class="h-[12px] w-[12px] shrink-0 text-secondary-dark hidden md:block" viewBox="0 0 24 24"
-        fill="none" stroke="currentColor" stroke-width="1.7">
+      <svg
+        card-footer-icon
+        class="h-[12px] w-[12px] shrink-0 text-secondary-dark hidden md:block"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+      >
         <circle cx="12" cy="12" r="9"></circle>
         <path d="M12 10v6"></path>
         <path d="M12 7h.01"></path>
       </svg>
 
-
       <span card-footer>
+        <span class="font-bold block md:inline"> Pro Tip: </span>
 
-        <span class="font-bold block md:inline">
-          Pro Tip:
-        </span>
-
-        You can invite project members and assign epics immediately
-        after the initial creation process.
-
+        You can invite project members and assign epics immediately after the initial creation
+        process.
       </span>
-
     </app-card>
   </div>
-
 </div>

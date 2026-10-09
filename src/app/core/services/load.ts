@@ -4,7 +4,6 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class Load {
-
   private requestCount = 0;
 
   private loadingSignal = signal(false);

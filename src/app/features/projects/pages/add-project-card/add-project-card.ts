@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './add-project-card.css',
 })
 export class AddProjectCard {
-    addProject = output<void>();
+  addProject = output<void>();
 }

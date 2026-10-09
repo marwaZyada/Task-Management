@@ -1,15 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
 
 @import './styles/_Typography.css';
 
-
 @theme {
   --color-primary-dark: #003d9b;
-
 
   --color-primary-container: #0052cc;
 
@@ -24,22 +22,17 @@
   --color-secondary-light: #c3c6d6;
 
   --color-text: #434654;
- --color-blue-low:#e8edff;
+  --color-blue-low: #e8edff;
 
   --color-success: #82f9be;
   --color-error: #ba1a1a;
   --color-warning: #ffb300;
   --color-error-light: #ffdad6;
 
-   --shadow-card: 0px 24px 48px 0px #041B3C0F;
+  --shadow-card: 0px 24px 48px 0px #041b3c0f;
 }
 :root {
-  --gradient-primary: linear-gradient(
-    95.71deg,
-    #003d9b 0%,
-    #0052cc 100%
-  );
-
+  --gradient-primary: linear-gradient(95.71deg, #003d9b 0%, #0052cc 100%);
 }
 .gradient-primary {
   background: var(--gradient-primary);

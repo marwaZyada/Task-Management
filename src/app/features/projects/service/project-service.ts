@@ -8,34 +8,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProjectService {
-    private readonly http = inject(HttpClient);
-   private config=inject(AppConfig)
+  private readonly http = inject(HttpClient);
+  private config = inject(AppConfig);
 
+  //  create project
+  createProject(project: IProjectRequest): Observable<IProject> {
+    return this.http.post<IProject>(`${this.config.apiUrl}/rest/v1/projects`, project);
+  }
 
-      //  create project 
-   createProject(
-    project: IProjectRequest
-  ): Observable<IProject> {
-    return this.http.post<IProject>(
-      `${this.config.apiUrl}/rest/v1/projects`,
-      project
-    ); 
-  }   
-  
-  
-    //  Edid project 
-   editProject(
-   id:string, project: IProjectRequest
-  ): Observable<IProject> {
-    return this.http.patch<IProject>(
-      `${this.config.apiUrl}/rest/v1/projects?id=eq.${id}`,
-      project
-    ); 
-  }   
+  //  Edid project
+  editProject(id: string, project: IProjectRequest): Observable<IProject> {
+    return this.http.patch<IProject>(`${this.config.apiUrl}/rest/v1/projects?id=eq.${id}`, project);
+  }
 
-  // get all projects 
-   getAllProducts(): Observable<IProject[]> {
+  // get all projects
+  getAllProjects(): Observable<IProject[]> {
     return this.http.get<IProject[]>(`${this.config.apiUrl}/rest/v1/rpc/get_projects`);
   }
-    
+
+  // get members
+  getAllMembers(id:string): Observable<IProject[]> {
+    return this.http.get<IProject[]>(`${this.config.apiUrl}/rest/v1/rpc/get_project_members?project_id=eq.${id}`);
+  }
 }

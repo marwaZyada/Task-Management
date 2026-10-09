@@ -112,7 +112,7 @@ export class AddProject implements OnInit {
 
   // ================= Load project =================
   getProjectById(id: string) {
-    this.projectService.getAllProducts().subscribe({
+    this.projectService.getAllProjects().subscribe({
       next: (response) => {
         const project = response.find((pro) => pro?.id === id);
 
