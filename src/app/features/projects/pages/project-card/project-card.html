@@ -33,17 +33,17 @@
 
   <!-- Stats -->
   <div class="mt-auto flex justify-between items-center gap-4 text-[7px] text-primary-dark">
-    <div class="flex items-center gap-1"  [routerLink]="['/project', project()?.id, 'epics']">
+    <div class="flex items-center gap-1"  (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'epics']">
       <img src="assets/images/epic.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.epics }} Epics</span>
     </div>
 
-    <div class="flex items-center gap-1" [routerLink]="['/project', project()?.id, 'tasks']">
+    <div class="flex items-center gap-1" (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'tasks']">
       <img src="assets/images/tasks.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.tasks }} Tasks</span>
     </div>
 
-    <div class="flex items-center gap-1" [routerLink]="['/project', project()?.id, 'members']">
+    <div class="flex items-center gap-1"  (click)="$event.stopPropagation()" [routerLink]="['/project', project()?.id, 'members']">
       <img src="assets/images/members.svg" class="h-3 w-3" alt="" />
       <span>{{ project()?.members }} Members</span>
     </div>
