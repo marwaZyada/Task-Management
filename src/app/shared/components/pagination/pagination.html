@@ -1,0 +1,44 @@
+
+@if (totalPages() > 0) {
+  <nav
+    class="flex items-center justify-end gap-2  py-10 mt-9"
+    aria-label="Pagination"
+  >
+   
+    <button
+      type="button"
+      class=" px-3 rounded border border-secondary-light  disabled:cursor-not-allowed disabled:opacity-40 num_button"
+      [disabled]="currentPage() === 1"
+      (click)="previousPage()"
+    >
+     <svg class="w-2 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://w3.org">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+            </svg>
+    </button>
+
+    @for (page of pages(); track page) {
+      <button
+        type="button"
+        class=" px-3 rounded border border-secondary-light cursor-pointer"
+        [class.bg-[#003D9B]]="currentPage() === page"
+        [class.text-white]="currentPage() === page"
+        [attr.aria-current]="currentPage() === page ? 'page' : null"
+        (click)="goToPage(page)"
+      >
+        {{ page }}
+      </button>
+    }
+
+    <button
+      type="button"
+      class="px-3 border rounded border-secondary-light disabled:cursor-not-allowed disabled:opacity-40"
+      [disabled]="currentPage() === totalPages()"
+      (click)="nextPage()"
+    >
+     <svg class="w-2 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://w3.org">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+            </svg>
+    </button>
+    
+  </nav>
+}

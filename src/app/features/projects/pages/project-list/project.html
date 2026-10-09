@@ -21,16 +21,25 @@
 
   <!-- Projects Grid -->
   <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-    @for (project of projects(); track project.id) {
+    @for (project of paginatedProjects(); track project.id) {
     <app-project-card [project]="project" />
+
     }
 
     <!-- Add Project -->
+      @if (currentPage() === totalPages()) {
     <app-add-project-card />
+      }
   </div>
-
+    <app-pagination
+    [totalItems]="projects().length"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage()"
+    (pageChange)="onPageChange($event)"
+  />
   } @else {
 
   <app-noitems></app-noitems>
   }
+
 </div>
