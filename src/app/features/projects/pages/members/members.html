@@ -48,32 +48,32 @@
       </div>
 
       <!-- Members -->
-      @for (member of members(); track member.id) {
+      @for (member of members(); track member.project_id) {
       <div class="grid grid-cols-[minmax(0,1fr)_80px] items-center gap-2 md:border-t md:border-blue-low px-3 py-3 sm:px-5 bg-white mb-3 md:mb-0 rounded-md md:rounded-none">
         <!-- Member information -->
         <div class="flex min-w-0 items-center gap-3">
           <div
             class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[9px] bg-[#DCE5FF] text-[11px] font-semibold text-primary-dark">
-            {{ member.initials }}
+            {{  member.metadata.name.trim().split(/\s+/).map(word => word[0]).join('') }}
           </div>
 
           <div class="min-w-0">
             <p class="truncate text-[11px] font-semibold text-[#15294B]">
-              {{ member.name }}
+              {{ member.metadata.name }}
             </p>
 
             <p class="truncate text-[9px] text-[#555D6D]">
-              {{ member.email }}
+              {{ member.metadata.email }}
             </p>
           </div>
         </div>
 
         <!-- Role badge -->
         <div>
-          <span class="inline-flex rounded-full px-2 py-1 text-[8px] font-bold leading-none"
-            [class.bg-[#0052CC]]="member.role === 'OWNER'" [class.text-white]="member.role === 'OWNER'"
-            [class.bg-[#CEDCFF]]="member.role === 'ADMIN'" [class.text-[#35435F]]="member.role !== 'OWNER'"
-            [class.bg-[#DCE5FF]]="member.role === 'MEMBER'" [class.bg-[#E9EDFF]]="member.role === 'VIEWER'">
+          <span class="inline-flex rounded-full px-2 py-1 text-[8px] font-bold leading-none uppercase"
+            [class.bg-[#0052CC]]="member.role === 'owner'" [class.text-white]="member.role === 'owner'"
+            [class.bg-[#CEDCFF]]="member.role === 'admin'" [class.text-[#35435F]]="member.role !== 'owner'"
+            [class.bg-[#DCE5FF]]="member.role === 'viewer'" [class.bg-[#E9EDFF]]="member.role === 'viewer'">
             {{ member.role }}
           </span>
         </div>

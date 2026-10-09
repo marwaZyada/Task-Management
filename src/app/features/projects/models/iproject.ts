@@ -13,11 +13,17 @@ export interface IProjectRequest {
   description: string;
 }
 export interface Member {
-  id: string;
-  name: string;
-  email: string;
+member_id:string;
+project_id:string
   role: MemberRole;
-  initials: string;
+  metadata:memberData
 }
 
-type MemberRole = 'OWNER' | 'ADMIN' | 'MEMBER' | 'VIEWER';
+export interface memberData {
+  sub: string;
+  name: string;
+  email: string;
+  department: string;
+}
+
+type MemberRole = 'owner' | 'admin' | 'member' | 'viewer';

@@ -1,7 +1,7 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { LoginRequest, LoginResponse, SignupRequest } from '../../features/auth/models/iauth';
+import { AuthResponse, LoginRequest, SignupRequest, User } from '../../features/auth/models/iauth';
 import { SKIP_LOADING } from '../tokens/loading-context';
 import { AppConfig } from '../config/app-config';
 
@@ -13,13 +13,13 @@ export class Auth {
   private config = inject(AppConfig);
   // private readonly apiUrl = `${this.config.apiUrl}/auth/v1/`;
 
-  signup(data: SignupRequest): Observable<any> {
-    return this.http.post(`${this.config.apiUrl}/auth/v1/signup`, data);
+  signup(data: SignupRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.config.apiUrl}/auth/v1/signup`, data);
   }
 
-  login(request: LoginRequest): Observable<LoginResponse> {
+  login(request: LoginRequest): Observable<AuthResponse> {
     return this.http
-      .post<LoginResponse>(`${this.config.apiUrl}/auth/v1/token?grant_type=password`, request)
+      .post<AuthResponse>(`${this.config.apiUrl}/auth/v1/token?grant_type=password`, request)
       .pipe(
         tap((response) => {
           sessionStorage.setItem('accessToken', response.access_token);
@@ -29,7 +29,7 @@ export class Auth {
   }
 
   // save session
-  saveSession(response: LoginResponse, rememberMe: boolean): void {
+  saveSession(response: AuthResponse, rememberMe: boolean): void {
     const storage = rememberMe ? localStorage : sessionStorage;
 
     storage.setItem('accessToken', response.access_token);
@@ -46,7 +46,7 @@ export class Auth {
   }
 
   // generate refresh token
-  refreshSession(): Observable<LoginResponse> {
+  refreshSession(): Observable<AuthResponse> {
     const refreshToken = this.getRefreshToken();
 
     if (!refreshToken) {
@@ -55,7 +55,7 @@ export class Auth {
 
     console.log('refresh session');
     return this.http
-      .post<any>(`${this.config.apiUrl}/auth/v1/token?grant_type=refresh_token`, {
+      .post<AuthResponse>(`${this.config.apiUrl}/auth/v1/token?grant_type=refresh_token`, {
         refresh_token: refreshToken,
         context: new HttpContext().set(SKIP_LOADING, true),
       })
@@ -122,8 +122,8 @@ export class Auth {
   }
 
   // get user data
-  getUser(): Observable<any> {
-    return this.http.get<any>(`${this.config.apiUrl}/auth/v1/user`);
+  getUser(): Observable<User> {
+    return this.http.get<User>(`${this.config.apiUrl}/auth/v1/user`);
   }
 
   // logout

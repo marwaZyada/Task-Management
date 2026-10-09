@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AppConfig } from '../../../core/config/app-config';
-import { IProjectRequest, IProject } from '../models/iproject';
+import { IProjectRequest, IProject, Member } from '../models/iproject';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class ProjectService {
   }
 
   // get members
-  getAllMembers(id:string): Observable<IProject[]> {
-    return this.http.get<IProject[]>(`${this.config.apiUrl}/rest/v1/get_project_members?project_id=eq.${id}`);
+  getAllMembers(id:string): Observable<Member[]> {
+    return this.http.get<Member[]>(`${this.config.apiUrl}/rest/v1/get_project_members?project_id=eq.${id}`);
   }
 }
