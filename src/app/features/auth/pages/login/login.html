@@ -1,11 +1,11 @@
-<div class="bg-background min-h-screen flex items-center justify-center px-6 py-[147px]">
+<div class="bg-background min-h-screen flex items-center justify-center px-6 py-36.75">
   <!-- Main Login Card Container Container -->
   <div
-    class="bg-white w-full max-w-[480px] rounded-[8px] shadow-[0_24px_48px_0_#041B3C0F] px-12 py-12 flex flex-col items-center"
+    class="bg-white w-full max-w-120 rounded-lg shadow-[0_24px_48px_0_#041B3C0F] px-12 py-12 flex flex-col items-center"
   >
     <!-- Header Text Block -->
     <h1
-      class="w-full mb-2 text-secondary-dark text-[30px] font-semibold leading-[36px] tracking-[-0.75px] text-center"
+      class="w-full mb-2 text-secondary-dark text-[30px] font-semibold leading-9 tracking-[-0.75px] text-center"
     >
       Welcome Back
     </h1>
@@ -15,7 +15,7 @@
 
     <!-- Interactive Authentication Form -->
 
-    <form class="w-full mt-10 mb-[32px]" [formGroup]="loginForm" (ngSubmit)="signIn()">
+    <form class="w-full mt-10 mb-8" [formGroup]="loginForm" (ngSubmit)="signIn()">
       @if (apiError()) {
       <div class="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-600" role="alert">
         {{ apiError() }}
@@ -71,7 +71,7 @@
           <button
             type="button"
             (click)="togglePasswordVisibility()"
-            class="cursor-pointer absolute right-0 top-[8px] h-full w-12 flex items-center justify-center"
+            class="cursor-pointer absolute right-0 top-2 h-full w-12 flex items-center justify-center"
           >
             <img
               [src]="'assets/images/eye.svg' "
@@ -93,12 +93,12 @@
         >
           <input
             type="checkbox"
-            class="w-4 h-4 rounded-[2px] bg-background text-[#0052CC] border border-[#C3C6D6] focus:ring-[#0052CC] cursor-pointer"
+            class="w-4 h-4 rounded-xs bg-background text-primary-container border border-secondary-light focus:ring-[#0052CC] cursor-pointer"
             formControlName="rememberMe"
           />
           <span class="text-text text-sm font-medium leading-5 tracking-normal">Remember Me</span>
         </label>
-        <a href="#" class="text-[#003D9B] text-sm font-medium leading-5 tracking-normal">
+        <a href="#" class="text-primary-dark text-sm font-medium leading-5 tracking-normal" routerLink="/auth/forgot-password">
           Forgot Password?
         </a>
       </div>
@@ -106,7 +106,7 @@
       <!-- Action Execution Control -->
       <button
         type="submit"
-        class="cursor-pointer w-full bg-[#0052CC] hover:bg-[#0043A4] text-white text-[14px] font-semibold py-3 rounded-[6px] shadow-sm active:scale-[0.99] transition-all"
+        class="cursor-pointer w-full bg-primary-container hover:bg-[#0043A4] text-white text-[14px] font-semibold py-3 rounded-md shadow-sm active:scale-[0.99] transition-all"
         [disabled]="loginForm.invalid"
       >
         Log In
@@ -118,7 +118,7 @@
       Don't have an account?
       <a
         routerLink="/auth/sign-up"
-        class="text-sm font-semibold leading-5 tracking-normal text-[#003D9B]"
+        class="text-sm font-semibold leading-5 tracking-normal text-primary-dark"
         >Sign Up</a
       >
     </div>

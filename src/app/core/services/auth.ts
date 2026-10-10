@@ -1,4 +1,4 @@
-import { HttpClient, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { AuthResponse, LoginRequest, SignupRequest, User } from '../../features/auth/models/iauth';
@@ -27,6 +27,31 @@ export class Auth {
         }),
       );
   }
+
+   forgotPassword(email: string): Observable<void> {
+    const params = new HttpParams().set(
+      'redirect_to',
+      `${window.location.origin}/auth/reset-password`,
+    );
+
+    return this.http.post<void>(
+      `${this.config.apiUrl}/auth/v1/recover`,
+      { email },{params});
+    }
+
+    updatePassword(password: string, accessToken: string) {
+  return this.http.put(
+    `${this.config.apiUrl}/auth/v1/user`,
+    { password },
+    {
+      headers: {
+        
+        Authorization: `Bearer ${accessToken}`,
+        
+      },
+    },
+  );
+}
 
   // save session
   saveSession(response: AuthResponse, rememberMe: boolean): void {
