@@ -1,59 +1,141 @@
-# TaskManagement
+# Task Management
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.17.
+A modern Angular-based task and project management application for organizing work, tracking progress, and collaborating across projects.
 
-## Development server
+## Overview
 
-To start a local development server, run:
+This project provides a user-friendly workspace for:
 
-```bash
-ng serve
+- Authentication and account flows
+- Project creation and management
+- Team member management
+- Epic and task tracking
+- Dashboard-based progress overview
+- Secure API configuration for backend services
+
+The app uses Angular 21, TypeScript, Tailwind CSS, and environment-based configuration with a Supabase-compatible API endpoint.
+
+## Features
+
+- Sign up, login, forgot password, and reset password flows
+- Dashboard landing page for project insights
+- Project list with create, edit, and details views
+- Epics, tasks, and team member management per project
+- Responsive UI for desktop and mobile screens
+- Environment-configured API access via generated asset config
+
+## Tech Stack
+
+- Angular 21
+- TypeScript
+- RxJS
+- Tailwind CSS
+- Angular CDK
+- Angular Router
+- Vitest for tests
+
+## Project Structure
+
+```text
+src/
+├── app/
+│   ├── core/
+│   ├── features/
+│   │   ├── auth/
+│   │   ├── dashboard/
+│   │   └── projects/
+│   ├── layout/
+│   └── shared/
+├── assets/
+├── styles/
+├── index.html
+├── main.ts
+├── styles.css
+├── app.config.ts
+└── app.routes.ts
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Prerequisites
 
-## Code scaffolding
+Before running the app, make sure you have:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js 20+
+- pnpm 10+
+- A configured API endpoint and API key
 
-```bash
-ng generate component component-name
-```
+## Installation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+1. Clone the repository.
+2. Install dependencies:
 
 ```bash
-ng build
+pnpm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. Configure environment variables.
 
-## Running unit tests
+The project reads `API_URL` and `API_KEY` from the environment and generates a config file at `src/assets/config.json` during startup/build.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Example values are provided in `.env.example`:
 
 ```bash
-ng test
+API_URL=https://your-api-url
+API_KEY=your-api-key
 ```
 
-## Running end-to-end tests
+If needed, copy it to a local `.env` file or update `.env.example` before running the app.
 
-For end-to-end (e2e) testing, run:
+## Running the App
+
+Start the development server:
 
 ```bash
-ng e2e
+pnpm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Then open:
 
-## Additional Resources
+```text
+http://localhost:4200/
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The Angular app will automatically reload when files change.
+
+## Production Build
+
+Build the application for production:
+
+```bash
+pnpm build
+```
+
+The output will be generated in the `dist/` directory.
+
+## Linting and Testing
+
+Run linting:
+
+```bash
+pnpm lint
+```
+
+Run tests:
+
+```bash
+pnpm test
+```
+
+Format the project:
+
+```bash
+pnpm format
+```
+
+## Notes
+
+- The `scripts/set-env.mjs` script generates `src/assets/config.json` from the environment variables before the app starts or builds.
+- This project is configured to work with a backend/API service and is intended to be connected to your project data source.
+
+## License
+
+This project is currently unlicensed unless otherwise specified by the repository owner.
